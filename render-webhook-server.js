@@ -27,45 +27,45 @@ function verifyWebhook(body, hmacHeader, secret) {
     console.log('  - Body:', body);
     console.log('  - HMAC Header:', hmacHeader);
     console.log('  - Secret length:', secret.length);
-    
+
     // Farklı HMAC hesaplama yöntemlerini deneyelim
     const bodyString = typeof body === 'string' ? body : JSON.stringify(body);
-    
+
     // Yöntem 1: Normal HMAC
     const calculatedHmac1 = crypto
       .createHmac('sha256', secret)
       .update(bodyString, 'utf8')
       .digest('base64');
-    
+
     // Yöntem 2: Raw body ile HMAC
     const calculatedHmac2 = crypto
       .createHmac('sha256', secret)
       .update(bodyString)
       .digest('base64');
-    
+
     // Yöntem 3: Buffer ile HMAC
     const calculatedHmac3 = crypto
       .createHmac('sha256', secret)
       .update(Buffer.from(bodyString))
       .digest('base64');
-    
+
     console.log('  - Calculated HMAC 1 (utf8):', calculatedHmac1);
     console.log('  - Calculated HMAC 2 (raw):', calculatedHmac2);
     console.log('  - Calculated HMAC 3 (buffer):', calculatedHmac3);
     console.log('  - HMAC Header:', hmacHeader);
-    
+
     // Tüm yöntemleri test edelim
     const isValid1 = calculatedHmac1 === hmacHeader;
     const isValid2 = calculatedHmac2 === hmacHeader;
     const isValid3 = calculatedHmac3 === hmacHeader;
-    
+
     console.log('  - HMAC 1 match:', isValid1);
     console.log('  - HMAC 2 match:', isValid2);
     console.log('  - HMAC 3 match:', isValid3);
-    
+
     const isValid = isValid1 || isValid2 || isValid3;
     console.log('✅ HMAC verification:', isValid ? 'SUCCESS' : 'FAILED');
-    
+
     return isValid;
   } catch (error) {
     console.error('❌ HMAC verification error:', error);

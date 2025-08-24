@@ -1,0 +1,16 @@
+version: '2'
+authtoken: ''
+tunnels:
+  webhook:
+    proto: http
+    addr: 3000
+    host_header: 'localhost:3000'
+    inspect: false
+    bind_tls: true
+    allow_host_header_change: true
+    basic_auth: []
+    schemes: ['https']
+    subdomain: ''
+    domain: ''
+    region: 'us'
+    console_ui: false

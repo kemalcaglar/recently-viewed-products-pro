@@ -3,7 +3,7 @@
 client_id = "8688d8723b6ece99e11b49b5a29b8c91"
 name = "Recently Viewed Products Pro"
 handle = "recently-viewed-products-widget-pro"
-application_url = "https://recently-viewed-products-pro.onrender.com"
+application_url = "https://e1c37ff24c6c.ngrok-free.app"
 embedded = true
 
 [build]
@@ -13,31 +13,11 @@ include_config_on_deploy = true
 api_version = "2025-07"
 topics = ["APP_UNINSTALLED", "SHOP_UPDATE", "CUSTOMERS_DATA_REQUEST", "CUSTOMERS_REDACT", "SHOP_REDACT"]
 
-[[webhooks.handlers]]
-topic = "APP_UNINSTALLED"
-url = "https://recently-viewed-products-pro.onrender.com/webhooks/app/uninstalled"
-
-[[webhooks.handlers]]
-topic = "SHOP_UPDATE"
-url = "https://recently-viewed-products-pro.onrender.com/webhooks/shop/update"
-
-[[webhooks.handlers]]
-topic = "CUSTOMERS_DATA_REQUEST"
-url = "https://recently-viewed-products-pro.onrender.com/webhooks/customers/data_request"
-
-[[webhooks.handlers]]
-topic = "CUSTOMERS_REDACT"
-url = "https://recently-viewed-products-pro.onrender.com/webhooks/customers/redact"
-
-[[webhooks.handlers]]
-topic = "SHOP_REDACT"
-url = "https://recently-viewed-products-pro.onrender.com/webhooks/shop/redact"
-
 [access_scopes]
 scopes = "read_products,read_themes,write_products,write_themes"
 
 [auth]
-redirect_urls = [ "https://recently-viewed-products-pro.onrender.com/auth" ]
+redirect_urls = [ "https://e1c37ff24c6c.ngrok-free.app/auth" ]
 
 [pos]
 embedded = false
