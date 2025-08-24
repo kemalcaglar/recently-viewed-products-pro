@@ -28,9 +28,15 @@ function verifyWebhook(body, hmacHeader, secret) {
       .update(body, 'utf8')
       .digest('base64');
 
+    // Buffer length kontrolü ekleyelim
+    if (calculatedHmac.length !== hmacHeader.length) {
+      console.log('HMAC length mismatch:', calculatedHmac.length, 'vs', hmacHeader.length);
+      return false;
+    }
+
     const isValid = crypto.timingSafeEqual(
-      Buffer.from(calculatedHmac),
-      Buffer.from(hmacHeader)
+      Buffer.from(calculatedHmac, 'base64'),
+      Buffer.from(hmacHeader, 'base64')
     );
 
     console.log('HMAC verification:', isValid ? 'SUCCESS' : 'FAILED');
