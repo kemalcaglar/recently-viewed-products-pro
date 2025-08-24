@@ -3,7 +3,7 @@
 client_id = "8688d8723b6ece99e11b49b5a29b8c91"
 name = "Recently Viewed Products Pro"
 handle = "recently-viewed-products-widget-pro"
-application_url = "https://shopify.dev/apps/default-app-home"
+application_url = "https://kemalcaglar.github.io/recently-viewed-products-pro"
 embedded = true
 
 [build]
@@ -17,7 +17,7 @@ topics = ["APP_UNINSTALLED", "SHOP_UPDATE", "CUSTOMERS_DATA_REQUEST", "CUSTOMERS
 scopes = "read_products,read_themes,write_products,write_themes"
 
 [auth]
-redirect_urls = [ "https://shopify.dev/apps/default-app-home/api/auth" ]
+redirect_urls = [ "https://kemalcaglar.github.io/recently-viewed-products-pro/api/auth" ]
 
 [pos]
 embedded = false
