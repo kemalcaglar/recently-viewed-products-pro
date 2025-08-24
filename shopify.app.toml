@@ -1,0 +1,23 @@
+# Learn more about configuring your app at https://shopify.dev/docs/apps/tools/cli/configuration
+
+client_id = "8688d8723b6ece99e11b49b5a29b8c91"
+name = "Recently Viewed Products Pro"
+handle = "recently-viewed-products-widget-pro"
+application_url = "https://shopify.dev/apps/default-app-home"
+embedded = true
+
+[build]
+include_config_on_deploy = true
+
+[webhooks]
+api_version = "2025-07"
+topics = ["APP_UNINSTALLED", "SHOP_UPDATE", "CUSTOMERS_DATA_REQUEST", "CUSTOMERS_REDACT", "SHOP_REDACT"]
+
+[access_scopes]
+scopes = "read_products,read_themes,write_products,write_themes"
+
+[auth]
+redirect_urls = [ "https://shopify.dev/apps/default-app-home/api/auth" ]
+
+[pos]
+embedded = false

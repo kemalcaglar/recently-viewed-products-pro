@@ -1,0 +1,1090 @@
+{% comment %}
+  Global Recently Viewed Products Widget
+  Bu snippet tüm sayfalarda kullanılabilir
+  Sayfa tipine göre otomatik kontrol yapar
+{% endcomment %}
+
+{% liquid
+  assign current_template = template.name
+  assign current_suffix = template.suffix
+  assign show_widget = false
+  
+  case current_template
+    when 'index'
+      if settings.show_on_homepage
+        assign show_widget = true
+      endif
+    when 'product'
+      if settings.show_on_product_pages
+        assign show_widget = true
+      endif
+    when 'collection'
+      if settings.show_on_collection_pages
+        assign show_widget = true
+      endif
+    when 'blog'
+      if settings.show_on_blog_pages
+        assign show_widget = true
+      endif
+    when 'article'
+      if settings.show_on_article_pages
+        assign show_widget = true
+      endif
+    when 'page'
+      if settings.show_on_static_pages
+        assign show_widget = true
+      endif
+    when 'search'
+      if settings.show_on_search_pages
+        assign show_widget = true
+      endif
+    when 'cart'
+      if settings.show_on_cart_page
+        assign show_widget = true
+      endif
+    when 'customers/login', 'customers/register', 'customers/account'
+      if settings.show_on_customer_pages
+        assign show_widget = true
+      endif
+  endcase
+  
+  # Ödeme sayfalarını her zaman hariç tut
+  if current_template contains 'checkout' or current_template contains 'thank_you'
+    assign show_widget = false
+  endif
+%}
+
+{% if show_widget and settings.show_recently_viewed_products %}
+  <!-- Debug için görünür bir test elementi (sadece geliştirme aşamasında) -->
+  {% if settings.debug_mode %}
+    <div style="position: fixed; top: 50px; right: 10px; background: green; color: white; padding: 5px; z-index: 9999; font-size: 10px;">
+      WIDGET AKTIF - {{ current_template }}
+    </div>
+  {% endif %}
+  
+     <!-- Widget Container -->
+   <div id="recently-viewed-products-widget-global" 
+        data-shop="{{ shop.permanent_domain }}"
+        data-template="{{ current_template }}"
+        data-product-id="{% if product %}{{ product.id }}{% endif %}"
+        data-product-title="{% if product %}{{ product.title | escape }}{% endif %}"
+        data-product-image="{% if product %}{{ product.featured_image | img_url: '300x300' }}{% endif %}"
+        data-product-url="{% if product %}{{ product.url }}{% endif %}"
+        data-product-price="{% if product %}{{ product.price | money_without_currency }}{% endif %}"
+        data-widget-config="{{ settings.widget_config | escape }}"
+        data-position="{{ settings.widget_position }}">
+   </div>
+  
+     <!-- Widget Kapalı Durum - İnce Dikey Çubuk -->
+            <div id="widget-closed-global"
+              data-position="{{ settings.widget_position }}"
+              style="
+           position: fixed;
+           {% if settings.widget_position == 'left' %}left: 0px;{% else %}right: 0px;{% endif %}
+           top: {{ settings.vertical_value }}%;
+           transform: none;
+           background: {{ settings.background_color }};
+           box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+           z-index: 1000;
+           cursor: pointer;
+           font-family: inherit;
+           font-size: {{ settings.general_font_size }}px;
+           color: {{ settings.primary_color }};
+           transition: all 0.3s ease;
+           min-height: 300px;
+           display: flex;
+           {% if settings.widget_position == 'left' %}flex-direction: row-reverse;{% else %}flex-direction: row;{% endif %}
+           align-items: stretch;
+           padding: 0;
+         ">
+         <!-- Kapatma Butonu -->
+     <button id="close-widget-global" style="
+     background: #ffffff;
+     border: none;
+     color: #000000;
+     width: 30px;
+     height: 30px;
+     cursor: pointer;
+     font-size: 12px;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     position: absolute;
+     {% if settings.widget_position == 'left' %}left: 0px;{% else %}right: 0px;{% endif %}
+     top: -29px;
+     {% if settings.widget_position == 'left' %}box-shadow: 6px -5px 9px 0 #33333350;{% else %}box-shadow: -6px -5px 9px 0 #33333350;{% endif %}
+     ">✕</button>
+    
+    <!-- Sol Taraf - Başlık ve İkonlar -->
+    <div style="
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    background: #000000;
+    min-height: 300px;
+    margin: 0;
+    ">
+      <!-- Widget Başlığı - Dikey Yazı -->
+      <div style="
+    padding: 1rem 0;
+    width: 50px;
+    flex-grow: 1;
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+                 font-size: {{ settings.widget_title_font_size }}px;
+    text-align: center;
+          color: {{ settings.widget_title_color }};
+    height: 155px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: {{ settings.widget_title_background | default: '#000000' }};
+    font-weight: {{ settings.widget_title_font_weight | default: 600 }};
+      ">
+        {{ settings.widget_title | default: 'Popüler Ürünler' }}
+      </div>
+      
+      <!-- Kontrol İkonları - Başlığın Altında -->
+      <div style="
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-height: 91.22px;
+    min-height: 91.22px;
+      ">
+        <button id="expand-widget-global" style="
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: .5rem .8rem;
+    flex: 1;
+    transition: all .5s ease;
+    cursor: pointer;
+    background: {{ settings.expand_button_background | default: '#000000' }};
+    border: none;
+        ">
+        <img src="https://cdn.hellosmpl.com/uploads/2025/03/14/sp8f8n7re5b2as72499m6sdcu1.png" alt="expand" style="
+    width: 100%;
+    max-width: 14.41px;
+    min-width: 14.41px;
+    height: auto !important;
+    transition: all .5s ease;
+">
+      </button>
+        <button id="scroll-up-global" style="
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: .5rem .8rem;
+    flex: 1;
+    transition: all .5s ease;
+    cursor: pointer;
+    background: {{ settings.scroll_up_button_background | default: '#000000' }};
+    border: none;
+        ">
+      <img src="https://cdn.hellosmpl.com/uploads/2025/03/14/baab7sh0esgrf11p8amff75sva.png" alt="up" style="
+    width: 100%;
+    max-width: 14.41px;
+    min-width: 14.41px;
+    height: auto !important;
+    transition: all .5s ease;
+">
+      </button>
+        <button id="scroll-down-global" style="
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: .5rem .8rem;
+    flex: 1;
+    transition: all .5s ease;
+    cursor: pointer;
+    background: {{ settings.scroll_down_button_background | default: '#000000' }};
+    border: none;
+        ">
+      <img src="https://cdn.hellosmpl.com/uploads/2025/03/14/mggrcqumvtb6hqeg9e7qira2nn.png" alt="down" style="
+    width: 100%;
+    max-width: 14.41px;
+    min-width: 14.41px;
+    height: auto !important;
+    transition: all .5s ease;
+">
+      </button>
+      </div>
+    </div>
+    
+    <!-- Sağ Taraf - Ürün Görselleri -->
+    <div id="product-thumbnails-global" style="
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    background: {{ settings.thumbnail_background | default: '#f5f5f5' }};
+    min-height: 300px;
+    align-items: center;
+    justify-content: center;
+    ">
+      <!-- Ürünler JavaScript ile eklenecek -->
+    </div>
+  </div>
+
+  <!-- Widget Popup - Açık Hali -->
+  <div id="widget-popup-global" style="
+    position: fixed;
+    top: {{ settings.vertical_value | default: 50 }}%;
+    transform: none;
+    {% if settings.widget_position == 'left' %}left: -580px;{% else %}right: -580px;{% endif %}
+    width: 580px;
+    height: 367px;
+    background: {{ settings.swiper_background | default: '#f9f9f9' }};
+    {% if settings.widget_position == 'left' %}box-shadow: 4px 0 15px rgba(0, 0, 0, 0.2);{% else %}box-shadow: -4px 0 15px rgba(0, 0, 0, 0.2);{% endif %}
+    z-index: 10000;
+    transition: all 0.3s ease;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  ">
+    <!-- Popup Header -->
+    <div style="
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 20px;
+      border-bottom: 1px solid #e0e0e0;
+      background: {{ settings.popup_header_background | default: '#ffffff' }};
+      color: {{ settings.popup_header_color | default: '#000000' }};
+    ">
+      <h3 style="margin: 0; font-size: {{ settings.popup_title_font_size | default: 18 }}px; font-weight: {{ settings.popup_title_font_weight | default: 600 }};">
+        {{ settings.widget_title | default: 'Popüler Ürünler' }}
+      </h3>
+      <button id="close-popup-global" style="
+        background: {{ settings.close_button_text_background }};
+        border: none;
+        color: {{ settings.close_button_text_color }};
+        font-size: {{ settings.close_button_text_font_size }}px;
+        cursor: pointer;
+        padding: 5px;
+        text-decoration: underline;
+        font-weight: {{ settings.close_button_text_font_weight }};
+      ">{{ settings.close_button_text }}</button>
+    </div>
+    
+    <!-- Swiper Slider -->
+    <div style="flex-grow: 1; position: relative; padding: 20px 10px 40px 10px;">
+      <div class="swiper" id="popup-swiper-global" style="height: 100%;">
+        <div class="swiper-wrapper" id="swiper-wrapper-global">
+          <!-- Slider içeriği JavaScript ile eklenecek -->
+        </div>
+        
+        <!-- Pagination dots - Altta sabit -->
+        <div class="swiper-pagination" id="swiper-pagination-global"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Swiper CSS ve JS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  
+     <style>
+     /* Swiper özel stilleri */
+     .swiper {
+       overflow: visible !important;
+     }
+     .swiper-pagination-bullet {
+       width: 8px !important;
+       height: 8px !important;
+       background: #ccc !important;
+       opacity: 1 !important;
+     }
+     
+     .swiper-pagination-bullet-active {
+       background: #333 !important;
+     }
+     
+     .swiper-slide {
+       height: auto !important;
+     }
+     
+     /* Pagination dots altta sabit - 10px yukarıda */
+     .swiper-pagination {
+       position: absolute !important;
+       bottom: -45px !important;
+       left: 50% !important;
+       transform: translateX(-50%) !important;
+       z-index: 10 !important;
+       width: auto !important;
+     }
+     
+     /* Scrollbar gizleme */
+     .swiper-wrapper {
+       -ms-overflow-style: none !important;
+       scrollbar-width: none !important;
+     }
+     
+     .swiper-wrapper::-webkit-scrollbar {
+       display: none !important;
+     }
+     
+     /* Mobil Responsive Tasarım */
+     @media (max-width: 768px) {
+       /* Widget kapalı durum - mobil boyutlar */
+       #widget-closed-global {
+         min-height: 200px !important;
+         top: {{ settings.vertical_value | default: 50 }}% !important;
+         transform: none !important;
+       }
+       
+       /* Sol taraf için mobil ayarlar */
+       #widget-closed-global[data-position="left"] {
+         left: 0px !important;
+         right: auto !important;
+       }
+       
+       /* Sağ taraf için mobil ayarlar */
+       #widget-closed-global[data-position="right"] {
+         right: 0px !important;
+         left: auto !important;
+       }
+       
+       /* Sol taraf - başlık ve ikonlar mobil */
+       #widget-closed-global > div:first-of-type {
+         min-height: 200px !important;
+       }
+       
+       /* Widget başlığı mobil */
+       #widget-closed-global > div:first-of-type > div:first-of-type {
+         height: 100px !important;
+         font-size: 11px !important;
+         width: 40px !important;
+       }
+       
+       /* Kontrol ikonları mobil */
+       #widget-closed-global > div:first-of-type > div:last-of-type {
+         max-height: 60px !important;
+         min-height: 60px !important;
+       }
+       
+       /* İkon butonları mobil */
+       #widget-closed-global button img {
+         max-width: 9px !important;
+         min-width: 9px !important;
+       }
+       
+       /* Ürün görselleri alanı mobil */
+       #product-thumbnails-global {
+         min-height: 200px !important;
+       }
+       
+       /* Ürün thumbnail'ları mobil */
+       #product-thumbnails-global > div {
+         width: 50px !important;
+         height: 50px !important;
+         margin-bottom: 6px !important;
+       }
+       
+       /* Popup mobil boyutlar */
+       #widget-popup-global {
+        width: 40vw !important;
+        max-width: 400px !important;
+        height: 234px !important;
+        top: {{ settings.vertical_value | default: 50 }}% !important;
+        transform: none !important;
+       }
+       
+       /* Popup header mobil */
+       #widget-popup-global > div:first-of-type {
+         padding: 12px 15px !important;
+       }
+       
+       #widget-popup-global h3 {
+         font-size: 14px !important;
+       }
+       
+       /* Swiper slider mobil */
+       #widget-popup-global > div:nth-child(2) {
+         padding: 15px 8px 35px 8px !important;
+       }
+       
+       /* Swiper slide'ları mobil */
+       .swiper-slide > div {
+         width: 140px !important;
+       }
+       
+       .swiper-slide img {
+         height: 80px !important;
+       }
+       
+       /* Pagination mobil */
+       .swiper-pagination {
+         bottom: -35px !important;
+       }
+       
+       .swiper-pagination-bullet {
+         width: 6px !important;
+         height: 6px !important;
+       }
+       
+       /* Kapatma butonu mobil */
+       #close-widget-global {
+         width: 25px !important;
+         height: 25px !important;
+         top: -24px !important;
+         font-size: 10px !important;
+       }
+     }
+          @media (max-width: 700px) {
+            #widget-popup-global {
+            width: 60vw !important;
+            max-width: 400px !important;
+            height: 270px !important;
+            top: {{ settings.vertical_value | default: 50 }}% !important;
+            transform: none !important;
+            }
+          }
+     /* Çok küçük mobil cihazlar */
+     @media (max-width: 480px) {
+       #widget-closed-global {
+         min-height: 180px !important;
+         top: {{ settings.vertical_value | default: 50 }}% !important;
+         transform: none !important;
+       }
+       
+       #widget-closed-global > div:first-of-type {
+         min-height: 180px !important;
+       }
+       
+       #widget-closed-global > div:first-of-type > div:first-of-type {
+         height: 80px !important;
+         font-size: 10px !important;
+         width: 35px !important;
+       }
+       
+       #widget-closed-global > div:first-of-type > div:last-of-type {
+         max-height: 50px !important;
+         min-height: 50px !important;
+       }
+       
+       #product-thumbnails-global {
+         min-height: 180px !important;
+       }
+
+      #widget-closed-global button img {
+         max-width: 7px !important;
+         min-width: 7px !important;
+       }
+       
+       #product-thumbnails-global > div {
+         width: 45px !important;
+         height: 45px !important;
+         margin-bottom: 5px !important;
+       }
+       
+       #widget-popup-global {
+        width: 65vw !important;
+        height: 235px !important;
+        top: {{ settings.vertical_value | default: 50 }}% !important;
+        transform: none !important;
+       }
+       
+       .swiper-slide > div {
+         width: 120px !important;
+       }
+       
+       .swiper-slide img {
+         height: 70px !important;
+       }
+     }
+   </style>
+
+  <script>
+    // Global widget script'i
+    document.addEventListener('DOMContentLoaded', function() {
+      console.log('Global widget yüklendi! Template:', '{{ current_template }}');
+      
+      // Widget ayarları - Liquid'den JavaScript'e aktarılıyor
+      const productNameFontSize = {{ settings.product_name_font_size }};
+      const productNameFontWeight = {{ settings.product_name_font_weight }};
+      const productNameColor = '{{ settings.product_name_color }}';
+      const productNameBackground = '{{ settings.product_name_background }}';
+      const priceFontSize = {{ settings.price_font_size }};
+      const priceFontWeight = {{ settings.price_font_weight }};
+      const priceColor = '{{ settings.price_color }}';
+      const priceBackground = '{{ settings.price_background }}';
+      const showPrice = {{ settings.show_price }};
+      
+      // Debug için console'a yazdır
+      console.log('Product Name Settings:', {
+        fontSize: productNameFontSize,
+        fontWeight: productNameFontWeight,
+        color: productNameColor,
+        background: productNameBackground
+      });
+      console.log('Price Settings:', {
+        fontSize: priceFontSize,
+        fontWeight: priceFontWeight,
+        color: priceColor,
+        background: priceBackground
+      });
+      
+      // Swiper instance'ı için global değişken
+      let popupSwiper = null;
+      
+      const productThumbnails = document.getElementById('product-thumbnails-global');
+      const widgetClosed = document.getElementById('widget-closed-global');
+      const widgetPopup = document.getElementById('widget-popup-global');
+      const closePopup = document.getElementById('close-popup-global');
+      const popupContent = document.getElementById('popup-content-global');
+      const expandWidget = document.getElementById('expand-widget-global');
+      const closeWidget = document.getElementById('close-widget-global');
+      const scrollUp = document.getElementById('scroll-down-global');
+      const scrollDown = document.getElementById('scroll-up-global');
+      const paginationDots = document.getElementById('pagination-dots-global');
+      
+      // Widget yön okları için Swiper kontrolleri
+      if (scrollUp) {
+        scrollUp.addEventListener('click', function() {
+          // Popup açıksa swiper'ı kontrol et
+          if (widgetPopup && widgetPopup.style.right !== '-580px' && popupSwiper) {
+            popupSwiper.slidePrev();
+          } else {
+            slideUp();
+          }
+        });
+      }
+      
+      if (scrollDown) {
+        scrollDown.addEventListener('click', function() {
+          // Popup açıksa swiper'ı kontrol et
+          if (widgetPopup && widgetPopup.style.right !== '-580px' && popupSwiper) {
+            popupSwiper.slideNext();
+          } else {
+            slideDown();
+          }
+        });
+      }
+      
+      // localStorage'dan ürünleri yükle
+      function loadRecentProducts() {
+        const recentProducts = JSON.parse(localStorage.getItem('recentlyViewedProducts') || '[]');
+        totalSlides = recentProducts.length;
+        currentSlideIndex = 0;
+        
+        // Kapalı widget'ta ürün görsellerini göster
+        if (productThumbnails && recentProducts.length > 0) {
+          updateSlider();
+        } else if (productThumbnails) {
+          productThumbnails.innerHTML = `
+            <div style="
+              width: 48px;
+              height: 48px;
+              border-radius: 4px;
+              background: #666;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              color: white;
+              font-size: 10px;
+            ">0</div>
+          `;
+        }
+        
+        // Popup içeriğini Swiper ile güncelle
+        const swiperWrapper = document.getElementById('swiper-wrapper-global');
+        if (swiperWrapper && recentProducts.length > 0) {
+          // Swiper slide'larını oluştur
+          swiperWrapper.innerHTML = recentProducts.map(product => `
+            <div class="swiper-slide">
+              <div style="
+                text-align: center;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                overflow: hidden;
+                border: 1px solid #e0e0e0;
+                background: white;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+                width: 180px;
+                margin: 0 auto;
+              " onclick="window.location.href='${product.url}'">
+                <img 
+                  src="${product.image}" 
+                  alt="${product.title}"
+                  style="
+                    width: 100%;
+                    height: auto;
+                    object-fit: contain;
+                    object-position: center;
+                    margin-bottom: 8px;
+                    display: block;
+                  "
+                  loading="lazy"
+                />
+                <div style="
+                  font-size: ${productNameFontSize}px;
+                  font-weight: ${productNameFontWeight};
+                  color: ${productNameColor};
+                  line-height: 1.2;
+                  padding: 0 6px 6px 6px;
+                  height: 25px;
+                  overflow: hidden;
+                  display: -webkit-box;
+                  -webkit-line-clamp: 2;
+                  -webkit-box-orient: vertical;
+                  background: ${productNameBackground};
+                ">
+                  ${product.title}
+                </div>
+                ${showPrice ? `
+                <div style="
+                  font-size: ${priceFontSize}px;
+                  color: ${priceColor};
+                  font-weight: ${priceFontWeight};
+                  padding: 0 6px 6px;
+                  background: ${priceBackground};
+                ">
+                  ₺${product.price}
+                </div>
+                ` : ''}
+              </div>
+            </div>
+          `).join('');
+          
+          // Swiper'ı yeniden başlat
+          initializePopupSwiper();
+        } else if (popupContent) {
+          popupContent.innerHTML = `
+            <div style="
+              grid-column: 1 / -1;
+              text-align: center;
+              padding: 40px 20px;
+              color: #666;
+            ">
+              <div style="font-size: 48px; margin-bottom: 16px;">👁️</div>
+              <div style="font-size: 18px; margin-bottom: 8px;">Henüz ürün görüntülenmemiş</div>
+              <div style="font-size: 14px;">Ürün sayfalarında gezinerek ürünleri takip edin</div>
+            </div>
+          `;
+        }
+        
+        return recentProducts;
+      }
+      
+             // Widget genişletme olayı - Animasyonlu açılış
+       if (expandWidget) {
+         expandWidget.addEventListener('click', function() {
+           if (widgetPopup && widgetClosed) {
+             // Widget pozisyonuna göre popup pozisyonunu ayarla
+             const widgetPosition = '{{ settings.widget_position | default: "right" }}';
+             const verticalValue = '{{ settings.vertical_value | default: 50 }}';
+             const isMobile = window.innerWidth <= 768;
+             const isSmallMobile = window.innerWidth <= 480;
+             const isMediumMobile = window.innerWidth <= 700;
+             
+             let popupPosition;
+             if (widgetPosition === 'left') {
+               // Sol taraf için
+               if (isSmallMobile) {
+                 popupPosition = '45px'; // 480px altında
+               } else if (isMediumMobile) {
+                 popupPosition = '45px'; // 700px altında
+               } else if (isMobile) {
+                 popupPosition = '40px'; // 768px altında
+               } else {
+                 popupPosition = '60px'; // Desktop
+               }
+               widgetPopup.style.left = popupPosition;
+             } else {
+               // Sağ taraf için
+               if (isSmallMobile) {
+                 popupPosition = '45px'; // 480px altında
+               } else if (isMediumMobile) {
+                 popupPosition = '45px'; // 700px altında
+               } else if (isMobile) {
+                 popupPosition = '40px'; // 768px altında
+               } else {
+                 popupPosition = '60px'; // Desktop
+               }
+               widgetPopup.style.right = popupPosition;
+             }
+             
+             // Sadece ürün görsellerini gizle, kulakçık kalsın
+             const productThumbnails = widgetClosed.querySelector('#product-thumbnails-global');
+             if (productThumbnails) {
+               productThumbnails.style.display = 'none';
+             }
+             
+             // Swiper'ı başlat
+             setTimeout(() => {
+               initializePopupSwiper();
+             }, 300);
+           }
+         });
+       }
+      
+      // Widget kapatma olayı
+      if (closeWidget) {
+        closeWidget.addEventListener('click', function() {
+          if (widgetClosed) {
+            widgetClosed.style.display = 'none';
+          }
+        });
+      }
+      
+             // Popup kapatma olayı - Animasyonla kapanış
+       if (closePopup) {
+         closePopup.addEventListener('click', function() {
+           if (widgetPopup && widgetClosed) {
+             // Widget pozisyonuna göre popup pozisyonunu ayarla
+             const widgetPosition = '{{ settings.widget_position | default: "right" }}';
+             const verticalValue = '{{ settings.vertical_value | default: 50 }}';
+             const isMobile = window.innerWidth <= 768;
+             const isSmallMobile = window.innerWidth <= 480;
+             const isMediumMobile = window.innerWidth <= 700;
+             
+             let popupPosition;
+             if (widgetPosition === 'left') {
+               // Sol taraf için
+               if (isSmallMobile) {
+                 popupPosition = '-65vw'; // 480px altında
+               } else if (isMediumMobile) {
+                 popupPosition = '-60vw'; // 700px altında
+               } else if (isMobile) {
+                 popupPosition = '-40vw'; // 768px altında
+               } else {
+                 popupPosition = '-580px'; // Desktop
+               }
+               widgetPopup.style.left = popupPosition;
+             } else {
+               // Sağ taraf için
+               if (isSmallMobile) {
+                 popupPosition = '-65vw'; // 480px altında
+               } else if (isMediumMobile) {
+                 popupPosition = '-60vw'; // 700px altında
+               } else if (isMobile) {
+                 popupPosition = '-40vw'; // 768px altında
+               } else {
+                 popupPosition = '-580px'; // Desktop
+               }
+               widgetPopup.style.right = popupPosition;
+             }
+             
+             // Ürün görsellerini tekrar göster
+             setTimeout(() => {
+               const productThumbnails = widgetClosed.querySelector('#product-thumbnails-global');
+               if (productThumbnails) {
+                 productThumbnails.style.display = 'flex';
+               }
+             }, 300);
+           }
+         });
+       }
+      
+      // Slider kontrolleri
+      let currentSlideIndex = 0;
+      let totalSlides = 0;
+      
+      if (scrollUp) {
+        scrollUp.addEventListener('click', function() {
+          if (productThumbnails && totalSlides > 3) {
+            currentSlideIndex = Math.max(0, currentSlideIndex - 1);
+            updateSlider();
+          }
+        });
+      }
+      
+      if (scrollDown) {
+        scrollDown.addEventListener('click', function() {
+          if (productThumbnails && totalSlides > 3) {
+            currentSlideIndex = Math.min(totalSlides - 3, currentSlideIndex + 1);
+            updateSlider();
+          }
+        });
+      }
+      
+      // Slider güncelleme fonksiyonu
+      function updateSlider() {
+        if (productThumbnails) {
+          const recentProducts = JSON.parse(localStorage.getItem('recentlyViewedProducts') || '[]');
+          const startIndex = currentSlideIndex;
+          const endIndex = Math.min(startIndex + 3, recentProducts.length);
+          const visibleProducts = recentProducts.slice(startIndex, endIndex);
+          
+          productThumbnails.innerHTML = visibleProducts.map(product => `
+            <div style="
+              width: 70px;
+              height: 70px;
+              border-radius: 4px;
+              overflow: hidden;
+              cursor: pointer;
+              border: 1px solid #ffffff;
+              transition: all 0.3s ease;
+              margin-bottom: 8px;
+            " onclick="window.location.href='${product.url}'">
+              <img src="${product.image}" alt="${product.title}" style="
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+              ">
+            </div>
+          `).join('');
+          
+          // Scroll oklarını aktif/pasif yap
+          if (scrollUp) {
+            scrollUp.style.opacity = currentSlideIndex === 0 ? '0.3' : '1';
+            scrollUp.style.cursor = currentSlideIndex === 0 ? 'not-allowed' : 'pointer';
+          }
+          
+          if (scrollDown) {
+            scrollDown.style.opacity = currentSlideIndex >= totalSlides - 3 ? '0.3' : '1';
+            scrollDown.style.cursor = currentSlideIndex >= totalSlides - 3 ? 'not-allowed' : 'pointer';
+          }
+        }
+      }
+      
+      // Mevcut ürünü takip et (sadece ürün sayfalarında)
+      {% if product %}
+      const currentProduct = {
+        id: '{{ product.id }}',
+        title: '{{ product.title | escape }}',
+        image: '{{ product.featured_image | img_url: "300x300" }}',
+        url: '{{ product.url }}',
+        price: {{ product.price | money_without_currency }},
+        category: '{{ product.type | escape }}',
+        timestamp: new Date().toISOString()
+      };
+      
+      if (currentProduct.id) {
+        console.log('Ürün kaydediliyor:', currentProduct);
+        
+        const recentProducts = JSON.parse(localStorage.getItem('recentlyViewedProducts') || '[]');
+        const filteredProducts = recentProducts.filter(p => p.id !== currentProduct.id);
+        const updatedProducts = [currentProduct, ...filteredProducts].slice(0, {{ settings.max_products | default: 5 }});
+        localStorage.setItem('recentlyViewedProducts', JSON.stringify(updatedProducts));
+        
+        // Ürün görsellerini güncelle
+        loadRecentProducts();
+        
+        // Analitik veri topla
+        if ({{ settings.enable_analytics | default: true }}) {
+          // Ürün görüntüleme süresini takip et
+          let startTime = Date.now();
+          let isTracking = false;
+          
+          // Sayfa yüklendiğinde takibi başlat
+          if (!isTracking) {
+            isTracking = true;
+            startTime = Date.now();
+            
+            // Sayfa kapanmadan önce veriyi kaydet
+            window.addEventListener('beforeunload', () => {
+              const duration = Date.now() - startTime;
+              saveAnalyticsData(currentProduct.id, duration);
+            });
+            
+            // Sayfa gizlendiğinde veriyi kaydet
+            document.addEventListener('visibilitychange', () => {
+              if (document.hidden) {
+                const duration = Date.now() - startTime;
+                saveAnalyticsData(currentProduct.id, duration);
+              } else {
+                startTime = Date.now();
+              }
+            });
+          }
+          
+          // Analitik veriyi kaydet
+          function saveAnalyticsData(productId, duration) {
+            const analytics = JSON.parse(localStorage.getItem('product_analytics') || '{}');
+            
+            if (!analytics.productViews) {
+              analytics.productViews = {};
+            }
+            
+            if (!analytics.productViews[productId]) {
+              analytics.productViews[productId] = {
+                totalViews: 0,
+                totalDuration: 0,
+                averageDuration: 0,
+                lastViewed: null,
+                viewHistory: []
+              };
+            }
+            
+            const product = analytics.productViews[productId];
+            product.totalViews++;
+            product.totalDuration += duration;
+            product.averageDuration = Math.round(product.totalDuration / product.totalViews);
+            product.lastViewed = Date.now();
+            product.viewHistory.push({
+              duration: duration,
+              timestamp: Date.now(),
+              sessionId: getSessionId()
+            });
+            
+            // Son 100 görüntülemeyi tut
+            if (product.viewHistory.length > 100) {
+              product.viewHistory = product.viewHistory.slice(-100);
+            }
+            
+            localStorage.setItem('product_analytics', JSON.stringify(analytics));
+            console.log('Analitik veri kaydedildi:', { productId, duration });
+          }
+          
+          // Session ID oluştur
+          function getSessionId() {
+            let sessionId = sessionStorage.getItem('analytics_session_id');
+            if (!sessionId) {
+              sessionId = 'session_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+              sessionStorage.setItem('analytics_session_id', sessionId);
+            }
+            return sessionId;
+          }
+        }
+      }
+      {% endif %}
+      
+      // İlk yükleme
+      loadRecentProducts();
+      
+      // localStorage değişikliklerini dinle
+      window.addEventListener('storage', function(e) {
+        if (e.key === 'recentlyViewedProducts') {
+          loadRecentProducts();
+        }
+      });
+      
+      // Swiper başlatma fonksiyonu
+      function initializePopupSwiper() {
+        // Eğer zaten bir swiper instance'ı varsa, onu yok et
+        if (popupSwiper) {
+          popupSwiper.destroy(true, true);
+        }
+        
+                 // Yeni Swiper instance'ı oluştur
+         popupSwiper = new Swiper('#popup-swiper-global', {
+           slidesPerView: 2,
+           spaceBetween: 15,
+           grabCursor: true,
+           mousewheel: false,
+           keyboard: {
+             enabled: true,
+           },
+           pagination: {
+             el: '#swiper-pagination-global',
+             clickable: true,
+             dynamicBullets: false,
+           },
+           breakpoints: {
+             320: {
+               slidesPerView: 1,
+               spaceBetween: 8
+             },
+             480: {
+               slidesPerView: 2,
+               spaceBetween: 10
+             },
+             768: {
+               slidesPerView: 3,
+               spaceBetween: 12
+             },
+             1024: {
+               slidesPerView: 3,
+               spaceBetween: 15
+             }
+           }
+         });
+        
+        console.log('Swiper başlatıldı:', popupSwiper);
+      }
+      
+      // Popup navigasyon butonları için event listener'lar
+      document.addEventListener('click', function(e) {
+        if (e.target.id === 'popup-prev-btn-global') {
+          if (popupSwiper) {
+            popupSwiper.slidePrev();
+          }
+        }
+        
+        if (e.target.id === 'popup-next-btn-global') {
+          if (popupSwiper) {
+            popupSwiper.slideNext();
+          }
+        }
+      });
+      
+      // Sayfa fonksiyonları
+      window.showPage = function(pageIndex) {
+        const recentProducts = JSON.parse(localStorage.getItem('recentlyViewedProducts') || '[]');
+        const startIndex = pageIndex * 3;
+        const pageProducts = recentProducts.slice(startIndex, startIndex + 3);
+        
+        if (popupContent && pageProducts.length > 0) {
+          popupContent.innerHTML = pageProducts.map(product => `
+            <div style="
+              text-align: center;
+              cursor: pointer;
+              transition: all 0.3s ease;
+              border-radius: 8px;
+              overflow: hidden;
+              border: 1px solid #f0f0f0;
+              background: white;
+            " onclick="window.location.href='${product.url}'">
+              <div style="
+                width: 100%;
+                height: 150px;
+                background-image: url('${product.image}');
+                background-size: cover;
+                background-position: center;
+                margin-bottom: 12px;
+              "></div>
+              <div style="
+                fontSize: ${productNameFontSize}px;
+                fontWeight: ${productNameFontWeight};
+                color: '${productNameColor}';
+                lineHeight: 1.4;
+                marginBottom: 8px;
+                padding: 0 8px;
+                background: '${productNameBackground}';
+              ">
+                ${product.title}
+              </div>
+              ${showPrice ? `
+              <div style="
+                fontSize: ${priceFontSize}px;
+                color: '${priceColor}';
+                fontWeight: ${priceFontWeight};
+                padding: 0 8px 8px;
+                background: '${priceBackground}';
+              ">
+                ₺${product.price}
+              </div>
+              ` : ''}
+            </div>
+          `).join('');
+        }
+        
+        // Pagination noktalarını güncelle
+        if (paginationDots) {
+          const totalPages = Math.ceil(recentProducts.length / 3);
+          paginationDots.innerHTML = Array.from({length: totalPages}, (_, i) => `
+            <div style="
+              width: 8px;
+              height: 8px;
+              border-radius: 50%;
+              background: ${i === pageIndex ? '#2c2c2c' : '#ccc'};
+              cursor: pointer;
+            " onclick="showPage(${i})"></div>
+          `).join('');
+        }
+      };
+    });
+  </script>
+{% endif %}

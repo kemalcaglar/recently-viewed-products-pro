@@ -1,0 +1,307 @@
+{% comment %}
+  Recently Viewed Products Widget Section
+  Bu section anasayfada widget'ı gösterir
+{% endcomment %}
+
+{% if settings.show_recently_viewed_products %}
+  <div class="recently-viewed-widget-section" style="padding: 40px 0;">
+    <div class="page-width">
+      <div class="section-header text-center" style="margin-bottom: 30px;">
+        <h2 class="section-title" style="
+          font-size: 28px;
+          font-weight: 600;
+          color: {{ settings.primary_color | default: '#000000' }};
+          margin: 0 0 10px 0;
+        ">
+          {{ settings.widget_title | default: 'Son Görüntülenen Ürünler' }}
+        </h2>
+        <p class="section-description" style="
+          font-size: 16px;
+          color: #666;
+          margin: 0;
+          max-width: 600px;
+          margin: 0 auto;
+        ">
+          Müşterilerinizin en son görüntülediği ürünleri keşfedin
+        </p>
+      </div>
+      
+      <!-- Widget Container -->
+      <div id="recently-viewed-products-widget-homepage" 
+           data-shop="{{ shop.permanent_domain }}"
+           data-widget-config="{{ settings.widget_config | escape }}">
+      </div>
+      
+      <!-- Widget Kapalı Durum -->
+      <div id="widget-closed-homepage" style="
+        position: relative;
+        background: {{ settings.background_color | default: '#ffffff' }};
+        border: 1px solid #e0e0e0;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        padding: 20px;
+        margin: 0 auto;
+        max-width: 400px;
+        cursor: pointer;
+        font-family: {{ settings.font_family | default: 'Arial, sans-serif' }};
+        font-size: {{ settings.font_size | default: 14 }}px;
+        color: {{ settings.primary_color | default: '#000000' }};
+        transition: all 0.3s ease;
+        text-align: center;
+      ">
+        <div style="
+          font-weight: bold; 
+          margin-bottom: 12px;
+          font-size: 18px;
+        ">
+          {{ settings.widget_title | default: 'Son Görüntülenen Ürünler' }}
+        </div>
+        <div style="
+          font-size: 14px; 
+          opacity: 0.7;
+          margin-bottom: 16px;
+        ">
+          👁️ <span id="product-count-homepage">0</span> ürün görüntülendi
+        </div>
+        <div style="
+          font-size: 12px;
+          color: #666;
+          font-style: italic;
+        ">
+          Ürün sayfalarında gezinerek ürünleri takip edin
+        </div>
+      </div>
+      
+      <!-- Demo Ürünler (Eğer henüz ürün görüntülenmemişse) -->
+      <div id="demo-products-homepage" style="
+        display: none;
+        margin-top: 30px;
+        text-align: center;
+      ">
+        <h3 style="margin: 0 0 20px 0; color: #666; font-size: 18px;">
+          Henüz ürün görüntülenmemiş
+        </h3>
+        <div style="
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+          gap: 20px;
+          max-width: 600px;
+          margin: 0 auto;
+        ">
+          <div style="
+            background: #f9f9f9;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+          ">
+            <div style="
+              width: 80px;
+              height: 80px;
+              background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+              border-radius: 50%;
+              margin: 0 auto 15px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              color: white;
+              font-size: 24px;
+            ">
+              🛍️
+            </div>
+            <div style="font-weight: 500; margin-bottom: 8px;">Demo Ürün 1</div>
+            <div style="font-size: 14px; color: #666;">₺99.99</div>
+          </div>
+          
+          <div style="
+            background: #f9f9f9;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+          ">
+            <div style="
+              width: 80px;
+              height: 80px;
+              background: linear-gradient(45deg, #4ecdc4, #45b7d1);
+              border-radius: 50%;
+              margin: 0 auto 15px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              color: white;
+              font-size: 24px;
+            ">
+              🎯
+            </div>
+            <div style="font-weight: 500; margin-bottom: 8px;">Demo Ürün 2</div>
+            <div style="font-size: 14px; color: #666;">₺149.99</div>
+          </div>
+          
+          <div style="
+            background: #f9f9f9;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+          ">
+            <div style="
+              width: 80px;
+              height: 80px;
+              background: linear-gradient(45deg, #45b7d1, #96ceb4);
+              border-radius: 50%;
+              margin: 0 auto 15px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              color: white;
+              font-size: 24px;
+            ">
+              🚀
+            </div>
+            <div style="font-weight: 500; margin-bottom: 8px;">Demo Ürün 3</div>
+            <div style="font-size: 14px; color: #666;">₺199.99</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Anasayfa widget script'i
+    document.addEventListener('DOMContentLoaded', function() {
+      console.log('Anasayfa widget yüklendi!');
+      
+      const productCount = document.getElementById('product-count-homepage');
+      const demoProducts = document.getElementById('demo-products-homepage');
+      const widgetClosed = document.getElementById('widget-closed-homepage');
+      
+      // localStorage'dan ürünleri yükle
+      const recentProducts = JSON.parse(localStorage.getItem('recentlyViewedProducts') || '[]');
+      
+      if (productCount) {
+        productCount.textContent = recentProducts.length;
+      }
+      
+      // Eğer ürün yoksa demo ürünleri göster
+      if (recentProducts.length === 0) {
+        if (demoProducts) demoProducts.style.display = 'block';
+        if (widgetClosed) widgetClosed.style.display = 'none';
+      } else {
+        if (demoProducts) demoProducts.style.display = 'none';
+        if (widgetClosed) widgetClosed.style.display = 'block';
+      }
+      
+      // Widget'a tıklama olayı
+      if (widgetClosed) {
+        widgetClosed.addEventListener('click', function() {
+          // Ürün sayfalarına yönlendir
+          if (recentProducts.length > 0) {
+            window.location.href = recentProducts[0].url;
+          } else {
+            window.location.href = '/collections/all';
+          }
+        });
+      }
+      
+      // localStorage değişikliklerini dinle
+      window.addEventListener('storage', function(e) {
+        if (e.key === 'recentlyViewedProducts') {
+          const updatedProducts = JSON.parse(e.newValue || '[]');
+          if (productCount) {
+            productCount.textContent = updatedProducts.length;
+          }
+          
+          if (updatedProducts.length === 0) {
+            if (demoProducts) demoProducts.style.display = 'block';
+            if (widgetClosed) widgetClosed.style.display = 'none';
+          } else {
+            if (demoProducts) demoProducts.style.display = 'none';
+            if (widgetClosed) widgetClosed.style.display = 'block';
+          }
+        }
+      });
+    });
+  </script>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Recently Viewed Widget",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "header",
+              "content": "Widget Visibility"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_recently_viewed_products",
+             "label": "Show Widget",
+      "default": true
+    },
+    {
+      "type": "header",
+              "content": "Appearance Settings"
+    },
+    {
+      "type": "text",
+      "id": "widget_title",
+             "label": "Widget Title",
+      "default": "Son Görüntülenen Ürünler"
+    },
+    {
+      "type": "color",
+      "id": "primary_color",
+             "label": "Primary Color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+             "label": "Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "font_size",
+             "label": "Font Size",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "default": 14,
+      "unit": "px"
+    },
+    {
+      "type": "select",
+      "id": "font_family",
+             "label": "Font Family",
+      "options": [
+        {
+          "value": "Arial, sans-serif",
+          "label": "Arial"
+        },
+        {
+          "value": "Helvetica, sans-serif",
+          "label": "Helvetica"
+        },
+        {
+          "value": "Georgia, serif",
+          "label": "Georgia"
+        },
+        {
+          "value": "Times New Roman, serif",
+          "label": "Times New Roman"
+        }
+      ],
+      "default": "Arial, sans-serif"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Recently Viewed Products Widget"
+    }
+  ]
+}
+{% endschema %}
