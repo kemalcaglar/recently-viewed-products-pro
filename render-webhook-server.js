@@ -152,11 +152,22 @@ app.post('/webhooks/shop/redact', (req, res) => {
   }
 });
 
+// Auth endpoint
+app.get('/auth', (req, res) => {
+  console.log('🔐 Auth endpoint accessed');
+  res.json({
+    success: true,
+    message: 'Auth endpoint ready',
+    status: 'working'
+  });
+});
+
 // Server başlat
 app.listen(PORT, () => {
   console.log(`🚀 Webhook Server running on port ${PORT}`);
   console.log(`📝 Test endpoints:`);
   console.log(`   GET  / - Server status`);
+  console.log(`   GET  /auth - Auth endpoint`);
   console.log(`   POST /webhooks/app/uninstalled`);
   console.log(`   POST /webhooks/shop/update`);
   console.log(`   POST /webhooks/customers/data_request`);
