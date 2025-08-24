@@ -37,12 +37,9 @@ function verifyWebhook(body, hmacHeader, secret) {
     console.log('  - HMAC Header length:', hmacHeader.length);
     console.log('  - Calculated HMAC length:', calculatedHmac.length);
 
-    // Length kontrolünü kaldırdık - base64 encoded HMAC'lar farklı uzunluklarda olabilir
-    const isValid = crypto.timingSafeEqual(
-      Buffer.from(calculatedHmac, 'base64'),
-      Buffer.from(hmacHeader, 'base64')
-    );
-
+    // timingSafeEqual yerine basit string karşılaştırması kullanıyoruz
+    const isValid = calculatedHmac === hmacHeader;
+    
     console.log('✅ HMAC verification:', isValid ? 'SUCCESS' : 'FAILED');
     return isValid;
   } catch (error) {
