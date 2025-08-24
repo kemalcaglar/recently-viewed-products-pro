@@ -16,7 +16,11 @@ export default function handler(req, res) {
   }
 
   // HMAC doğrulaması (gerçek uygulamada SHOPIFY_API_SECRET kullanın)
-  const secret = process.env.SHOPIFY_API_SECRET || 'your_secret_here';
+  const secret = process.env.SHOPIFY_API_SECRET;
+  if (!secret) {
+    console.error('SHOPIFY_API_SECRET environment variable is not set');
+    return res.status(500).json({ error: 'Server configuration error' });
+  }
   const body = req.body;
   const rawBody = typeof body === 'string' ? body : JSON.stringify(body);
 

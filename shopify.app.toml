@@ -13,26 +13,6 @@ include_config_on_deploy = true
 api_version = "2025-07"
 topics = ["APP_UNINSTALLED", "SHOP_UPDATE", "CUSTOMERS_DATA_REQUEST", "CUSTOMERS_REDACT", "SHOP_REDACT"]
 
-[[webhooks.handlers]]
-topic = "APP_UNINSTALLED"
-url = "https://recently-viewed-products-pro.onrender.com/webhooks/app/uninstalled"
-
-[[webhooks.handlers]]
-topic = "SHOP_UPDATE"
-url = "https://recently-viewed-products-pro.onrender.com/webhooks/shop/update"
-
-[[webhooks.handlers]]
-topic = "CUSTOMERS_DATA_REQUEST"
-url = "https://recently-viewed-products-pro.onrender.com/webhooks/customers/data_request"
-
-[[webhooks.handlers]]
-topic = "CUSTOMERS_REDACT"
-url = "https://recently-viewed-products-pro.onrender.com/webhooks/customers/redact"
-
-[[webhooks.handlers]]
-topic = "SHOP_REDACT"
-url = "https://recently-viewed-products-pro.onrender.com/webhooks/shop/redact"
-
 [access_scopes]
 scopes = "read_products,read_themes,write_products,write_themes"
 

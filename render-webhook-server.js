@@ -67,8 +67,12 @@ app.post('/webhooks/app/uninstalled', (req, res) => {
   console.log('Headers:', { hmacHeader, shopHeader, topicHeader });
   console.log('Body:', req.body);
 
-  // HMAC doğrulaması (gerçek uygulamada SHOPIFY_API_SECRET kullanın)
-  const secret = process.env.SHOPIFY_API_SECRET || 'your_secret_here';
+  // HMAC doğrulaması
+  const secret = process.env.SHOPIFY_API_SECRET;
+  if (!secret) {
+    console.error('SHOPIFY_API_SECRET environment variable is not set');
+    return res.status(500).json({ error: 'Server configuration error' });
+  }
   const body = typeof req.body === 'string' ? req.body : JSON.stringify(req.body);
 
   if (verifyWebhook(body, hmacHeader, secret)) {
@@ -87,7 +91,11 @@ app.post('/webhooks/shop/update', (req, res) => {
   const hmacHeader = req.headers['x-shopify-hmac-sha256'];
   const shopHeader = req.headers['x-shopify-shop-domain'];
 
-  const secret = process.env.SHOPIFY_API_SECRET || 'your_secret_here';
+  const secret = process.env.SHOPIFY_API_SECRET;
+  if (!secret) {
+    console.error('SHOPIFY_API_SECRET environment variable is not set');
+    return res.status(500).json({ error: 'Server configuration error' });
+  }
   const body = typeof req.body === 'string' ? req.body : JSON.stringify(req.body);
 
   if (verifyWebhook(body, hmacHeader, secret)) {
@@ -105,7 +113,11 @@ app.post('/webhooks/customers/data_request', (req, res) => {
   const hmacHeader = req.headers['x-shopify-hmac-sha256'];
   const shopHeader = req.headers['x-shopify-shop-domain'];
 
-  const secret = process.env.SHOPIFY_API_SECRET || 'your_secret_here';
+  const secret = process.env.SHOPIFY_API_SECRET;
+  if (!secret) {
+    console.error('SHOPIFY_API_SECRET environment variable is not set');
+    return res.status(500).json({ error: 'Server configuration error' });
+  }
   const body = typeof req.body === 'string' ? req.body : JSON.stringify(req.body);
 
   if (verifyWebhook(body, hmacHeader, secret)) {
@@ -123,7 +135,11 @@ app.post('/webhooks/customers/redact', (req, res) => {
   const hmacHeader = req.headers['x-shopify-hmac-sha256'];
   const shopHeader = req.headers['x-shopify-shop-domain'];
 
-  const secret = process.env.SHOPIFY_API_SECRET || 'your_secret_here';
+  const secret = process.env.SHOPIFY_API_SECRET;
+  if (!secret) {
+    console.error('SHOPIFY_API_SECRET environment variable is not set');
+    return res.status(500).json({ error: 'Server configuration error' });
+  }
   const body = typeof req.body === 'string' ? req.body : JSON.stringify(req.body);
 
   if (verifyWebhook(body, hmacHeader, secret)) {
@@ -141,7 +157,11 @@ app.post('/webhooks/shop/redact', (req, res) => {
   const hmacHeader = req.headers['x-shopify-hmac-sha256'];
   const shopHeader = req.headers['x-shopify-shop-domain'];
 
-  const secret = process.env.SHOPIFY_API_SECRET || 'your_secret_here';
+  const secret = process.env.SHOPIFY_API_SECRET;
+  if (!secret) {
+    console.error('SHOPIFY_API_SECRET environment variable is not set');
+    return res.status(500).json({ error: 'Server configuration error' });
+  }
   const body = typeof req.body === 'string' ? req.body : JSON.stringify(req.body);
 
   if (verifyWebhook(body, hmacHeader, secret)) {
