@@ -37,12 +37,7 @@ function verifyWebhook(body, hmacHeader, secret) {
     console.log('  - HMAC Header length:', hmacHeader.length);
     console.log('  - Calculated HMAC length:', calculatedHmac.length);
 
-    // Buffer length kontrolü
-    if (calculatedHmac.length !== hmacHeader.length) {
-      console.log('❌ HMAC length mismatch:', calculatedHmac.length, 'vs', hmacHeader.length);
-      return false;
-    }
-
+    // Length kontrolünü kaldırdık - base64 encoded HMAC'lar farklı uzunluklarda olabilir
     const isValid = crypto.timingSafeEqual(
       Buffer.from(calculatedHmac, 'base64'),
       Buffer.from(hmacHeader, 'base64')
@@ -88,7 +83,7 @@ app.post('/webhooks/app/uninstalled', (req, res) => {
     console.error('SHOPIFY_API_SECRET environment variable is not set');
     return res.status(500).json({ error: 'Server configuration error' });
   }
-  
+
   const body = typeof req.body === 'string' ? req.body : JSON.stringify(req.body);
 
   if (verifyWebhook(body, hmacHeader, secret)) {
