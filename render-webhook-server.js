@@ -18,19 +18,28 @@ app.use((req, res, next) => {
 // HMAC doğrulama fonksiyonu
 function verifyWebhook(body, hmacHeader, secret) {
   if (!body || !hmacHeader || !secret) {
-    console.error('Missing required parameters');
+    console.error('Missing required parameters:', { body: !!body, hmacHeader: !!hmacHeader, secret: !!secret });
     return false;
   }
 
   try {
+    console.log('🔐 HMAC Verification Details:');
+    console.log('  - Body:', body);
+    console.log('  - HMAC Header:', hmacHeader);
+    console.log('  - Secret length:', secret.length);
+    
     const calculatedHmac = crypto
       .createHmac('sha256', secret)
       .update(body, 'utf8')
       .digest('base64');
+    
+    console.log('  - Calculated HMAC:', calculatedHmac);
+    console.log('  - HMAC Header length:', hmacHeader.length);
+    console.log('  - Calculated HMAC length:', calculatedHmac.length);
 
-    // Buffer length kontrolü ekleyelim
+    // Buffer length kontrolü
     if (calculatedHmac.length !== hmacHeader.length) {
-      console.log('HMAC length mismatch:', calculatedHmac.length, 'vs', hmacHeader.length);
+      console.log('❌ HMAC length mismatch:', calculatedHmac.length, 'vs', hmacHeader.length);
       return false;
     }
 
@@ -39,10 +48,10 @@ function verifyWebhook(body, hmacHeader, secret) {
       Buffer.from(hmacHeader, 'base64')
     );
 
-    console.log('HMAC verification:', isValid ? 'SUCCESS' : 'FAILED');
+    console.log('✅ HMAC verification:', isValid ? 'SUCCESS' : 'FAILED');
     return isValid;
   } catch (error) {
-    console.error('HMAC verification error:', error);
+    console.error('❌ HMAC verification error:', error);
     return false;
   }
 }
@@ -73,19 +82,13 @@ app.post('/webhooks/app/uninstalled', (req, res) => {
   console.log('Headers:', { hmacHeader, shopHeader, topicHeader });
   console.log('Body:', req.body);
 
-  // HMAC doğrulaması - TEST MODE
+  // HMAC doğrulaması
   const secret = process.env.SHOPIFY_API_SECRET;
   if (!secret) {
     console.error('SHOPIFY_API_SECRET environment variable is not set');
     return res.status(500).json({ error: 'Server configuration error' });
   }
   
-  // TEST MODE: Geçici olarak HMAC doğrulamasını bypass edelim
-  console.log('🧪 TEST MODE: HMAC bypass enabled');
-  console.log(`✅ App uninstalled from shop: ${shopHeader}`);
-  res.status(200).json({ success: true, message: 'App uninstalled successfully (TEST MODE)' });
-  
-  /*
   const body = typeof req.body === 'string' ? req.body : JSON.stringify(req.body);
 
   if (verifyWebhook(body, hmacHeader, secret)) {
@@ -95,7 +98,6 @@ app.post('/webhooks/app/uninstalled', (req, res) => {
     console.log('❌ Invalid HMAC signature');
     res.status(401).json({ error: 'Invalid signature' });
   }
-  */
 });
 
 // SHOP_UPDATE webhook
