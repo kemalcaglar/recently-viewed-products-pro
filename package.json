@@ -2,13 +2,27 @@
   "name": "recently-viewed-products-pro",
   "version": "1.0.0",
   "description": "Highly customizable Recently Viewed Products Widget for Shopify",
-  "main": "index.js",
+  "main": "webhook-server.js",
   "scripts": {
+    "start": "node webhook-server.js",
+    "dev": "nodemon webhook-server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": ["shopify", "widget", "recently-viewed", "products"],
+  "keywords": [
+    "shopify",
+    "widget",
+    "recently-viewed",
+    "products"
+  ],
   "author": "Kemal Caglar",
   "license": "MIT",
-  "dependencies": {},
-  "devDependencies": {}
+  "dependencies": {
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
 }

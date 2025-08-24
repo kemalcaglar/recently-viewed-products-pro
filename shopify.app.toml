@@ -3,6 +3,7 @@
 client_id = "8688d8723b6ece99e11b49b5a29b8c91"
 name = "Recently Viewed Products Pro"
 handle = "recently-viewed-products-widget-pro"
+application_url = "https://recently-viewed-products-pro-production.up.railway.app"
 embedded = true
 
 [build]
@@ -16,7 +17,7 @@ topics = ["APP_UNINSTALLED", "SHOP_UPDATE", "CUSTOMERS_DATA_REQUEST", "CUSTOMERS
 scopes = "read_products,read_themes,write_products,write_themes"
 
 [auth]
-redirect_urls = [ "https://shopify.dev/apps/default-app-home" ]
+redirect_urls = [ "https://recently-viewed-products-pro-production.up.railway.app/auth" ]
 
 [pos]
 embedded = false
