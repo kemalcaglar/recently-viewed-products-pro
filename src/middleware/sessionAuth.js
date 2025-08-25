@@ -86,18 +86,18 @@ const validateSessionToken = (req, res, next) => {
 const optionalSessionValidation = (req, res, next) => {
   try {
     const authHeader = req.headers['authorization'];
-    
+
     if (authHeader && authHeader.startsWith('Bearer ')) {
       const sessionToken = authHeader.substring(7);
-      
+
       try {
         // Basic JWT validation
         if (sessionToken && sessionToken.split('.').length === 3) {
           const [header, payload] = sessionToken.split('.');
-          
+
           try {
             const decodedPayload = JSON.parse(Buffer.from(payload, 'base64').toString());
-            
+
             // Validate required fields
             if (decodedPayload.dest && decodedPayload.sub) {
               req.sessionData = {
@@ -106,7 +106,7 @@ const optionalSessionValidation = (req, res, next) => {
                 sessionId: decodedPayload.sid || `session_${Date.now()}`,
                 issuedAt: decodedPayload.iat || Math.floor(Date.now() / 1000)
               };
-              
+
               console.log('✅ Optional session validation successful for shop:', decodedPayload.dest);
             } else {
               console.log('ℹ️ Optional session validation: missing required fields');
@@ -123,7 +123,7 @@ const optionalSessionValidation = (req, res, next) => {
     } else {
       console.log('ℹ️ No authorization header, continuing without session');
     }
-    
+
     next();
   } catch (error) {
     console.log('ℹ️ Optional session validation error, continuing without session');
