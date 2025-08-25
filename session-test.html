@@ -1,388 +1,475 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Session Token Test - Recently Viewed Products Pro</title>
     <style>
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            background: #f6f6f7;
-        }
-        .container {
-            background: white;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-        h1 {
-            color: #004c3f;
-            text-align: center;
-            margin-bottom: 30px;
-        }
-        .test-section {
-            margin: 20px 0;
-            padding: 20px;
-            border: 1px solid #e1e3e5;
-            border-radius: 6px;
-            background: #fafbfc;
-        }
-        .test-section h3 {
-            margin-top: 0;
-            color: #2c3e50;
-        }
-        button {
-            background: #008060;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 4px;
-            cursor: pointer;
-            margin: 5px;
-            font-size: 14px;
-        }
-        button:hover {
-            background: #006b52;
-        }
-        button:disabled {
-            background: #ccc;
-            cursor: not-allowed;
-        }
-        .result {
-            margin-top: 15px;
-            padding: 15px;
-            border-radius: 4px;
-            font-family: monospace;
-            font-size: 12px;
-            white-space: pre-wrap;
-            max-height: 300px;
-            overflow-y: auto;
-        }
-        .success {
-            background: #d4edda;
-            border: 1px solid #c3e6cb;
-            color: #155724;
-        }
-        .error {
-            background: #f8d7da;
-            border: 1px solid #f5c6cb;
-            color: #721c24;
-        }
-        .info {
-            background: #d1ecf1;
-            border: 1px solid #bee5eb;
-            color: #0c5460;
-        }
-        .input-group {
-            margin: 10px 0;
-        }
-        input, textarea {
-            width: 100%;
-            padding: 8px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            font-family: monospace;
-            font-size: 12px;
-        }
-        .status {
-            text-align: center;
-            padding: 10px;
-            margin: 10px 0;
-            border-radius: 4px;
-            font-weight: bold;
-        }
-        .status.connected {
-            background: #d4edda;
-            color: #155724;
-        }
-        .status.disconnected {
-            background: #f8d7da;
-            color: #721c24;
-        }
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+          sans-serif;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        background: #f6f6f7;
+      }
+      .container {
+        background: white;
+        padding: 30px;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      }
+      h1 {
+        color: #004c3f;
+        text-align: center;
+        margin-bottom: 30px;
+      }
+      .test-section {
+        margin: 20px 0;
+        padding: 20px;
+        border: 1px solid #e1e3e5;
+        border-radius: 6px;
+        background: #fafbfc;
+      }
+      .test-section h3 {
+        margin-top: 0;
+        color: #2c3e50;
+      }
+      button {
+        background: #008060;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 4px;
+        cursor: pointer;
+        margin: 5px;
+        font-size: 14px;
+      }
+      button:hover {
+        background: #006b52;
+      }
+      button:disabled {
+        background: #ccc;
+        cursor: not-allowed;
+      }
+      .result {
+        margin-top: 15px;
+        padding: 15px;
+        border-radius: 4px;
+        font-family: monospace;
+        font-size: 12px;
+        white-space: pre-wrap;
+        max-height: 300px;
+        overflow-y: auto;
+      }
+      .success {
+        background: #d4edda;
+        border: 1px solid #c3e6cb;
+        color: #155724;
+      }
+      .error {
+        background: #f8d7da;
+        border: 1px solid #f5c6cb;
+        color: #721c24;
+      }
+      .info {
+        background: #d1ecf1;
+        border: 1px solid #bee5eb;
+        color: #0c5460;
+      }
+      .input-group {
+        margin: 10px 0;
+      }
+      input,
+      textarea {
+        width: 100%;
+        padding: 8px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        font-family: monospace;
+        font-size: 12px;
+      }
+      .status {
+        text-align: center;
+        padding: 10px;
+        margin: 10px 0;
+        border-radius: 4px;
+        font-weight: bold;
+      }
+      .status.connected {
+        background: #d4edda;
+        color: #155724;
+      }
+      .status.disconnected {
+        background: #f8d7da;
+        color: #721c24;
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <div class="container">
-        <h1>🔐 Session Token Test</h1>
-        <p style="text-align: center; color: #666;">Recently Viewed Products Pro - Session Authentication Testing</p>
-        
-        <div class="status" id="connectionStatus">
-            🔴 Disconnected
-        </div>
+      <h1>🔐 Session Token Test</h1>
+      <p style="text-align: center; color: #666">
+        Recently Viewed Products Pro - Session Authentication Testing
+      </p>
 
-        <div class="test-section">
-            <h3>📡 Server Connection Test</h3>
-            <p>Test the connection to your webhook server and session endpoints.</p>
-            <button onclick="testServerConnection()">Test Connection</button>
-            <button onclick="testSessionHealth()">Test Session Health</button>
-            <div id="connectionResult" class="result" style="display: none;"></div>
-        </div>
+      <div class="status" id="connectionStatus">🔴 Disconnected</div>
 
-        <div class="test-section">
-            <h3>🎫 Session Token Validation</h3>
-            <p>Test session token validation with a mock token.</p>
-            <div class="input-group">
-                <label>Mock Session Token:</label>
-                <textarea id="mockToken" rows="3" placeholder="Enter a mock JWT token for testing...">eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwczovL3Rlc3QubXlzaG9waWZ5LmNvbS9hZG1pbiIsImRlc3QiOiJodHRwczovL3Rlc3QubXlzaG9waWZ5LmNvbSIsImF1ZCI6InRlc3QtY2xpZW50LWlkIiwic3ViIjoiMTIzIiwiZXhwIjoxNzM1NzY1MDU4LCJuYmYiOjE3MzU3NjQ5OTgsImlhdCI6MTczNTc2NDk5OCwianRpIjoiZjg5MTIxMjktMWFmNi00Y2FkLTljYTMtNzZiMGY3NjIxMDg3Iiwic2lkIjoiYWFlYTE4MmYyNzMyZDQ0YzIzMDU3YzBmZWE1ODQwMjFhNDQ4NWIyYmQyNWQzZWI3ZmQzNDkzMTNhZDI0YzY4NSIsInNpZyI6ImYwN2NmMzc0MDI3MGMxN2ZiNjFjNzAwYjJmMGYyZTdmMmY0ZmM4Y2M0ODQyNjIyMTczOGY3YTM5ZTRjNDc1YmYifQ.test_signature</textarea>
-            </div>
-            <button onclick="testSessionValidation()">Validate Token</button>
-            <button onclick="testSessionInfo()">Get Session Info</button>
-            <div id="sessionResult" class="result" style="display: none;"></div>
-        </div>
+      <div class="test-section">
+        <h3>📡 Server Connection Test</h3>
+        <p>Test the connection to your webhook server and session endpoints.</p>
+        <button onclick="testServerConnection()">Test Connection</button>
+        <button onclick="testSessionHealth()">Test Session Health</button>
+        <div id="connectionResult" class="result" style="display: none"></div>
+      </div>
 
-        <div class="test-section">
-            <h3>🔄 Session Refresh Test</h3>
-            <p>Test session refresh functionality.</p>
-            <div class="input-group">
-                <label>Shop Domain:</label>
-                <input type="text" id="shopDomain" placeholder="test.myshopify.com" value="test.myshopify.com">
-            </div>
-            <div class="input-group">
-                <label>User ID:</label>
-                <input type="text" id="userId" placeholder="123" value="123">
-            </div>
-            <button onclick="testSessionRefresh()">Refresh Session</button>
-            <div id="refreshResult" class="result" style="display: none;"></div>
+      <div class="test-section">
+        <h3>🎫 Session Token Validation</h3>
+        <p>Test session token validation with a mock token.</p>
+        <div class="input-group">
+          <label>Mock Session Token:</label>
+          <textarea
+            id="mockToken"
+            rows="3"
+            placeholder="Enter a mock JWT token for testing...">
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwczovL3Rlc3QubXlzaG9waWZ5LmNvbS9hZG1pbiIsImRlc3QiOiJodHRwczovL3Rlc3QubXlzaG9waWZ5LmNvbSIsImF1ZCI6InRlc3QtY2xpZW50LWlkIiwic3ViIjoiMTIzIiwiZXhwIjoxNzM1NzY1MDU4LCJuYmYiOjE3MzU3NjQ5OTgsImlhdCI6MTczNTc2NDk5OCwianRpIjoiZjg5MTIxMjktMWFmNi00Y2FkLTljYTMtNzZiMGY3NjIxMDg3Iiwic2lkIjoiYWFlYTE4MmYyNzMyZDQ0YzIzMDU3YzBmZWE1ODQwMjFhNDQ4NWIyYmQyNWQzZWI3ZmQzNDkzMTNhZDI0YzY4NSIsInNpZyI6ImYwN2NmMzc0MDI3MGMxN2ZiNjFjNzAwYjJmMGYyZTdmMmY0ZmM4Y2M0ODQyNjIyMTczOGY3YTM5ZTRjNDc1YmYifQ.test_signature</textarea
+          >
         </div>
+        <button onclick="testSessionValidation()">Validate Token</button>
+        <button onclick="testSessionInfo()">Get Session Info</button>
+        <div id="sessionResult" class="result" style="display: none"></div>
+      </div>
 
-        <div class="test-section">
-            <h3>📊 Test Results Summary</h3>
-            <p>Overall test status and recommendations.</p>
-            <button onclick="runAllTests()">Run All Tests</button>
-            <button onclick="clearResults()">Clear Results</button>
-            <div id="summaryResult" class="result" style="display: none;"></div>
+      <div class="test-section">
+        <h3>🔄 Session Refresh Test</h3>
+        <p>Test session refresh functionality.</p>
+        <div class="input-group">
+          <label>Shop Domain:</label>
+          <input
+            type="text"
+            id="shopDomain"
+            placeholder="test.myshopify.com"
+            value="test.myshopify.com" />
         </div>
+        <div class="input-group">
+          <label>User ID:</label>
+          <input type="text" id="userId" placeholder="123" value="123" />
+        </div>
+        <button onclick="testSessionRefresh()">Refresh Session</button>
+        <div id="refreshResult" class="result" style="display: none"></div>
+      </div>
+
+      <div class="test-section">
+        <h3>📊 Test Results Summary</h3>
+        <p>Overall test status and recommendations.</p>
+        <button onclick="runAllTests()">Run All Tests</button>
+        <button onclick="clearResults()">Clear Results</button>
+        <div id="summaryResult" class="result" style="display: none"></div>
+      </div>
     </div>
 
     <script>
-        // Configuration
-        const SERVER_URL = 'https://recently-viewed-products-pro.onrender.com';
-        let testResults = {};
+      // Configuration
+      const SERVER_URL =
+        'https://recently-viewed-products-pro-production.up.railway.app'
+      let testResults = {}
 
-        // Utility functions
-        function showResult(elementId, content, type = 'info') {
-            const element = document.getElementById(elementId);
-            element.style.display = 'block';
-            element.className = `result ${type}`;
-            element.textContent = content;
+      // Utility functions
+      function showResult(elementId, content, type = 'info') {
+        const element = document.getElementById(elementId)
+        element.style.display = 'block'
+        element.className = `result ${type}`
+        element.textContent = content
+      }
+
+      function updateConnectionStatus(connected) {
+        const statusElement = document.getElementById('connectionStatus')
+        if (connected) {
+          statusElement.textContent = '🟢 Connected'
+          statusElement.className = 'status connected'
+        } else {
+          statusElement.textContent = '🔴 Disconnected'
+          statusElement.className = 'status disconnected'
+        }
+      }
+
+      // Test functions
+      async function testServerConnection() {
+        try {
+          const response = await fetch(`${SERVER_URL}/health`)
+          const data = await response.json()
+
+          if (response.ok) {
+            showResult(
+              'connectionResult',
+              JSON.stringify(data, null, 2),
+              'success'
+            )
+            updateConnectionStatus(true)
+            testResults.connection = 'PASS'
+          } else {
+            showResult(
+              'connectionResult',
+              `Error: ${response.status} - ${JSON.stringify(data)}`,
+              'error'
+            )
+            testResults.connection = 'FAIL'
+            updateConnectionStatus(false)
+          }
+        } catch (error) {
+          showResult(
+            'connectionResult',
+            `Connection failed: ${error.message}`,
+            'error'
+          )
+          testResults.connection = 'FAIL'
+          updateConnectionStatus(false)
+        }
+      }
+
+      async function testSessionHealth() {
+        try {
+          const response = await fetch(`${SERVER_URL}/api/session/health`)
+          const data = await response.json()
+
+          if (response.ok) {
+            showResult(
+              'connectionResult',
+              `Session Service Health:\n${JSON.stringify(data, null, 2)}`,
+              'success'
+            )
+            testResults.sessionHealth = 'PASS'
+          } else {
+            showResult(
+              'connectionResult',
+              `Session Health Error: ${response.status} - ${JSON.stringify(
+                data
+              )}`,
+              'error'
+            )
+            testResults.sessionHealth = 'FAIL'
+          }
+        } catch (error) {
+          showResult(
+            'connectionResult',
+            `Session Health Failed: ${error.message}`,
+            'error'
+          )
+          testResults.sessionHealth = 'FAIL'
+        }
+      }
+
+      async function testSessionValidation() {
+        const token = document.getElementById('mockToken').value
+
+        if (!token) {
+          showResult(
+            'sessionResult',
+            'Please enter a mock token first.',
+            'error'
+          )
+          return
         }
 
-        function updateConnectionStatus(connected) {
-            const statusElement = document.getElementById('connectionStatus');
-            if (connected) {
-                statusElement.textContent = '🟢 Connected';
-                statusElement.className = 'status connected';
-            } else {
-                statusElement.textContent = '🔴 Disconnected';
-                statusElement.className = 'status disconnected';
-            }
+        try {
+          const response = await fetch(`${SERVER_URL}/api/session/validate`, {
+            method: 'GET',
+            headers: {
+              Authorization: `Bearer ${token}`,
+              'Content-Type': 'application/json',
+            },
+          })
+
+          const data = await response.json()
+
+          if (response.ok) {
+            showResult(
+              'sessionResult',
+              `✅ Token Validation Success:\n${JSON.stringify(data, null, 2)}`,
+              'success'
+            )
+            testResults.tokenValidation = 'PASS'
+          } else {
+            showResult(
+              'sessionResult',
+              `❌ Token Validation Failed:\n${JSON.stringify(data, null, 2)}`,
+              'error'
+            )
+            testResults.tokenValidation = 'FAIL'
+          }
+        } catch (error) {
+          showResult(
+            'sessionResult',
+            `Validation Error: ${error.message}`,
+            'error'
+          )
+          testResults.tokenValidation = 'FAIL'
+        }
+      }
+
+      async function testSessionInfo() {
+        const token = document.getElementById('mockToken').value
+
+        try {
+          const headers = {}
+          if (token) {
+            headers['Authorization'] = `Bearer ${token}`
+          }
+
+          const response = await fetch(`${SERVER_URL}/api/session/info`, {
+            method: 'GET',
+            headers: headers,
+          })
+
+          const data = await response.json()
+
+          if (response.ok) {
+            showResult(
+              'sessionResult',
+              `📋 Session Info:\n${JSON.stringify(data, null, 2)}`,
+              'info'
+            )
+            testResults.sessionInfo = 'PASS'
+          } else {
+            showResult(
+              'sessionResult',
+              `❌ Session Info Failed:\n${JSON.stringify(data, null, 2)}`,
+              'error'
+            )
+            testResults.sessionInfo = 'FAIL'
+          }
+        } catch (error) {
+          showResult(
+            'sessionResult',
+            `Session Info Error: ${error.message}`,
+            'error'
+          )
+          testResults.sessionInfo = 'FAIL'
+        }
+      }
+
+      async function testSessionRefresh() {
+        const shopDomain = document.getElementById('shopDomain').value
+        const userId = document.getElementById('userId').value
+
+        try {
+          const response = await fetch(`${SERVER_URL}/api/session/refresh`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              shop: shopDomain,
+              user: userId,
+            }),
+          })
+
+          const data = await response.json()
+
+          if (response.ok) {
+            showResult(
+              'refreshResult',
+              `🔄 Session Refresh Success:\n${JSON.stringify(data, null, 2)}`,
+              'success'
+            )
+            testResults.sessionRefresh = 'PASS'
+          } else {
+            showResult(
+              'refreshResult',
+              `❌ Session Refresh Failed:\n${JSON.stringify(data, null, 2)}`,
+              'error'
+            )
+            testResults.sessionRefresh = 'FAIL'
+          }
+        } catch (error) {
+          showResult(
+            'refreshResult',
+            `Refresh Error: ${error.message}`,
+            'error'
+          )
+          testResults.sessionRefresh = 'FAIL'
+        }
+      }
+
+      async function runAllTests() {
+        testResults = {}
+
+        showResult('summaryResult', '🚀 Running all tests...\n\n', 'info')
+
+        // Run tests sequentially
+        await testServerConnection()
+        await new Promise((resolve) => setTimeout(resolve, 1000))
+
+        await testSessionHealth()
+        await new Promise((resolve) => setTimeout(resolve, 1000))
+
+        await testSessionInfo()
+        await new Promise((resolve) => setTimeout(resolve, 1000))
+
+        await testSessionRefresh()
+        await new Promise((resolve) => setTimeout(resolve, 1000))
+
+        // Generate summary
+        const summary = generateTestSummary()
+        showResult('summaryResult', summary, 'info')
+      }
+
+      function generateTestSummary() {
+        const totalTests = Object.keys(testResults).length
+        const passedTests = Object.values(testResults).filter(
+          (result) => result === 'PASS'
+        ).length
+        const failedTests = totalTests - passedTests
+
+        let summary = `📊 Test Results Summary\n`
+        summary += `================================\n\n`
+
+        Object.entries(testResults).forEach(([test, result]) => {
+          const emoji = result === 'PASS' ? '✅' : '❌'
+          summary += `${emoji} ${test}: ${result}\n`
+        })
+
+        summary += `\n================================\n`
+        summary += `Total Tests: ${totalTests}\n`
+        summary += `Passed: ${passedTests}\n`
+        summary += `Failed: ${failedTests}\n`
+        summary += `Success Rate: ${
+          totalTests > 0 ? Math.round((passedTests / totalTests) * 100) : 0
+        }%\n\n`
+
+        if (failedTests === 0) {
+          summary += `🎉 All tests passed! Session tokens are working correctly.\n`
+          summary += `This should help resolve the "Using session tokens for user authentication" requirement.\n`
+        } else {
+          summary += `⚠️ Some tests failed. Please check the individual test results above.\n`
+          summary += `Failed tests may prevent the session token requirement from being met.\n`
         }
 
-        // Test functions
-        async function testServerConnection() {
-            try {
-                const response = await fetch(`${SERVER_URL}/health`);
-                const data = await response.json();
-                
-                if (response.ok) {
-                    showResult('connectionResult', JSON.stringify(data, null, 2), 'success');
-                    updateConnectionStatus(true);
-                    testResults.connection = 'PASS';
-                } else {
-                    showResult('connectionResult', `Error: ${response.status} - ${JSON.stringify(data)}`, 'error');
-                    testResults.connection = 'FAIL';
-                    updateConnectionStatus(false);
-                }
-            } catch (error) {
-                showResult('connectionResult', `Connection failed: ${error.message}`, 'error');
-                testResults.connection = 'FAIL';
-                updateConnectionStatus(false);
-            }
-        }
+        return summary
+      }
 
-        async function testSessionHealth() {
-            try {
-                const response = await fetch(`${SERVER_URL}/api/session/health`);
-                const data = await response.json();
-                
-                if (response.ok) {
-                    showResult('connectionResult', `Session Service Health:\n${JSON.stringify(data, null, 2)}`, 'success');
-                    testResults.sessionHealth = 'PASS';
-                } else {
-                    showResult('connectionResult', `Session Health Error: ${response.status} - ${JSON.stringify(data)}`, 'error');
-                    testResults.sessionHealth = 'FAIL';
-                }
-            } catch (error) {
-                showResult('connectionResult', `Session Health Failed: ${error.message}`, 'error');
-                testResults.sessionHealth = 'FAIL';
-            }
-        }
+      function clearResults() {
+        const resultElements = [
+          'connectionResult',
+          'sessionResult',
+          'refreshResult',
+          'summaryResult',
+        ]
+        resultElements.forEach((id) => {
+          const element = document.getElementById(id)
+          element.style.display = 'none'
+        })
+        testResults = {}
+      }
 
-        async function testSessionValidation() {
-            const token = document.getElementById('mockToken').value;
-            
-            if (!token) {
-                showResult('sessionResult', 'Please enter a mock token first.', 'error');
-                return;
-            }
+      // Initialize page
+      document.addEventListener('DOMContentLoaded', function () {
+        console.log('Session Token Test Page Loaded')
+        console.log('Server URL:', SERVER_URL)
 
-            try {
-                const response = await fetch(`${SERVER_URL}/api/session/validate`, {
-                    method: 'GET',
-                    headers: {
-                        'Authorization': `Bearer ${token}`,
-                        'Content-Type': 'application/json'
-                    }
-                });
-                
-                const data = await response.json();
-                
-                if (response.ok) {
-                    showResult('sessionResult', `✅ Token Validation Success:\n${JSON.stringify(data, null, 2)}`, 'success');
-                    testResults.tokenValidation = 'PASS';
-                } else {
-                    showResult('sessionResult', `❌ Token Validation Failed:\n${JSON.stringify(data, null, 2)}`, 'error');
-                    testResults.tokenValidation = 'FAIL';
-                }
-            } catch (error) {
-                showResult('sessionResult', `Validation Error: ${error.message}`, 'error');
-                testResults.tokenValidation = 'FAIL';
-            }
-        }
-
-        async function testSessionInfo() {
-            const token = document.getElementById('mockToken').value;
-            
-            try {
-                const headers = {};
-                if (token) {
-                    headers['Authorization'] = `Bearer ${token}`;
-                }
-                
-                const response = await fetch(`${SERVER_URL}/api/session/info`, {
-                    method: 'GET',
-                    headers: headers
-                });
-                
-                const data = await response.json();
-                
-                if (response.ok) {
-                    showResult('sessionResult', `📋 Session Info:\n${JSON.stringify(data, null, 2)}`, 'info');
-                    testResults.sessionInfo = 'PASS';
-                } else {
-                    showResult('sessionResult', `❌ Session Info Failed:\n${JSON.stringify(data, null, 2)}`, 'error');
-                    testResults.sessionInfo = 'FAIL';
-                }
-            } catch (error) {
-                showResult('sessionResult', `Session Info Error: ${error.message}`, 'error');
-                testResults.sessionInfo = 'FAIL';
-            }
-        }
-
-        async function testSessionRefresh() {
-            const shopDomain = document.getElementById('shopDomain').value;
-            const userId = document.getElementById('userId').value;
-            
-            try {
-                const response = await fetch(`${SERVER_URL}/api/session/refresh`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        shop: shopDomain,
-                        user: userId
-                    })
-                });
-                
-                const data = await response.json();
-                
-                if (response.ok) {
-                    showResult('refreshResult', `🔄 Session Refresh Success:\n${JSON.stringify(data, null, 2)}`, 'success');
-                    testResults.sessionRefresh = 'PASS';
-                } else {
-                    showResult('refreshResult', `❌ Session Refresh Failed:\n${JSON.stringify(data, null, 2)}`, 'error');
-                    testResults.sessionRefresh = 'FAIL';
-                }
-            } catch (error) {
-                showResult('refreshResult', `Refresh Error: ${error.message}`, 'error');
-                testResults.sessionRefresh = 'FAIL';
-            }
-        }
-
-        async function runAllTests() {
-            testResults = {};
-            
-            showResult('summaryResult', '🚀 Running all tests...\n\n', 'info');
-            
-            // Run tests sequentially
-            await testServerConnection();
-            await new Promise(resolve => setTimeout(resolve, 1000));
-            
-            await testSessionHealth();
-            await new Promise(resolve => setTimeout(resolve, 1000));
-            
-            await testSessionInfo();
-            await new Promise(resolve => setTimeout(resolve, 1000));
-            
-            await testSessionRefresh();
-            await new Promise(resolve => setTimeout(resolve, 1000));
-            
-            // Generate summary
-            const summary = generateTestSummary();
-            showResult('summaryResult', summary, 'info');
-        }
-
-        function generateTestSummary() {
-            const totalTests = Object.keys(testResults).length;
-            const passedTests = Object.values(testResults).filter(result => result === 'PASS').length;
-            const failedTests = totalTests - passedTests;
-            
-            let summary = `📊 Test Results Summary\n`;
-            summary += `================================\n\n`;
-            
-            Object.entries(testResults).forEach(([test, result]) => {
-                const emoji = result === 'PASS' ? '✅' : '❌';
-                summary += `${emoji} ${test}: ${result}\n`;
-            });
-            
-            summary += `\n================================\n`;
-            summary += `Total Tests: ${totalTests}\n`;
-            summary += `Passed: ${passedTests}\n`;
-            summary += `Failed: ${failedTests}\n`;
-            summary += `Success Rate: ${totalTests > 0 ? Math.round((passedTests / totalTests) * 100) : 0}%\n\n`;
-            
-            if (failedTests === 0) {
-                summary += `🎉 All tests passed! Session tokens are working correctly.\n`;
-                summary += `This should help resolve the "Using session tokens for user authentication" requirement.\n`;
-            } else {
-                summary += `⚠️ Some tests failed. Please check the individual test results above.\n`;
-                summary += `Failed tests may prevent the session token requirement from being met.\n`;
-            }
-            
-            return summary;
-        }
-
-        function clearResults() {
-            const resultElements = ['connectionResult', 'sessionResult', 'refreshResult', 'summaryResult'];
-            resultElements.forEach(id => {
-                const element = document.getElementById(id);
-                element.style.display = 'none';
-            });
-            testResults = {};
-        }
-
-        // Initialize page
-        document.addEventListener('DOMContentLoaded', function() {
-            console.log('Session Token Test Page Loaded');
-            console.log('Server URL:', SERVER_URL);
-            
-            // Auto-test connection on page load
-            setTimeout(testServerConnection, 1000);
-        });
+        // Auto-test connection on page load
+        setTimeout(testServerConnection, 1000)
+      })
     </script>
-</body>
+  </body>
 </html>
