@@ -46,6 +46,9 @@ app.get('/health', (req, res) => {
   res.status(200).json({ status: 'healthy', timestamp: new Date().toISOString() });
 });
 
+// Import session routes
+const sessionRoutes = require('./api/session');
+
 // Root endpoint
 app.get('/', (req, res) => {
   res.json({
@@ -54,6 +57,10 @@ app.get('/', (req, res) => {
     timestamp: new Date().toISOString(),
     endpoints: {
       '/health': 'Health check endpoint',
+      '/api/session/validate': 'Session token validation',
+      '/api/session/info': 'Session information',
+      '/api/session/refresh': 'Session refresh',
+      '/api/session/health': 'Session service health',
       '/webhooks/app/uninstalled': 'APP_UNINSTALLED webhook',
       '/webhooks/shop/update': 'SHOP_UPDATE webhook',
       '/webhooks/customers/data_request': 'CUSTOMERS_DATA_REQUEST webhook',
@@ -63,6 +70,9 @@ app.get('/', (req, res) => {
     }
   });
 });
+
+// Session routes
+app.use('/api/session', sessionRoutes);
 
 // APP_UNINSTALLED webhook
 app.post('/webhooks/app/uninstalled', (req, res) => {
