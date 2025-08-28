@@ -645,7 +645,11 @@ app.post('/webhooks/app/uninstalled', (req, res) => {
   console.log('Body:', req.body);
 
   // HMAC verification
-  const secret = process.env.SHOPIFY_API_SECRET || 'test_secret';
+  const secret = process.env.SHOPIFY_WEBHOOK_SECRET;
+  if (!secret) {
+    console.log('❌ SHOPIFY_WEBHOOK_SECRET environment variable not set');
+    return res.status(500).send('Webhook secret not configured');
+  }
   const isValid = verifyWebhook(req.body, hmacHeader, secret);
 
   if (isValid) {
@@ -669,7 +673,11 @@ app.post('/webhooks/shop/update', (req, res) => {
   console.log('Body:', req.body);
 
   // HMAC verification
-  const secret = process.env.SHOPIFY_API_SECRET || 'test_secret';
+  const secret = process.env.SHOPIFY_WEBHOOK_SECRET;
+  if (!secret) {
+    console.log('❌ SHOPIFY_WEBHOOK_SECRET environment variable not set');
+    return res.status(500).send('Webhook secret not configured');
+  }
   const isValid = verifyWebhook(req.body, hmacHeader, secret);
 
   if (isValid) {
@@ -693,7 +701,11 @@ app.post('/webhooks/customers/data_request', (req, res) => {
   console.log('Body:', req.body);
 
   // HMAC verification
-  const secret = process.env.SHOPIFY_API_SECRET || 'test_secret';
+  const secret = process.env.SHOPIFY_WEBHOOK_SECRET;
+  if (!secret) {
+    console.log('❌ SHOPIFY_WEBHOOK_SECRET environment variable not set');
+    return res.status(500).send('Webhook secret not configured');
+  }
   const isValid = verifyWebhook(req.body, hmacHeader, secret);
 
   if (isValid) {
@@ -717,7 +729,11 @@ app.post('/webhooks/customers/redact', (req, res) => {
   console.log('Body:', req.body);
 
   // HMAC verification
-  const secret = process.env.SHOPIFY_API_SECRET || 'test_secret';
+  const secret = process.env.SHOPIFY_WEBHOOK_SECRET;
+  if (!secret) {
+    console.log('❌ SHOPIFY_WEBHOOK_SECRET environment variable not set');
+    return res.status(500).send('Webhook secret not configured');
+  }
   const isValid = verifyWebhook(req.body, hmacHeader, secret);
 
   if (isValid) {
@@ -741,7 +757,11 @@ app.post('/webhooks/shop/redact', (req, res) => {
   console.log('Body:', req.body);
 
   // HMAC verification
-  const secret = process.env.SHOPIFY_API_SECRET || 'test_secret';
+  const secret = process.env.SHOPIFY_WEBHOOK_SECRET;
+  if (!secret) {
+    console.log('❌ SHOPIFY_WEBHOOK_SECRET environment variable not set');
+    return res.status(500).send('Webhook secret not configured');
+  }
   const isValid = verifyWebhook(req.body, hmacHeader, secret);
 
   if (isValid) {
