@@ -1,23 +1,27 @@
-import crypto from 'crypto';
+const crypto = require('crypto');
 
 /**
  * HMAC-SHA256 ile webhook imzasını doğrular
- * @param {string} body - Webhook body (raw string)
+ * Shopify'ın resmi dokümantasyonuna uygun
+ * @param {Buffer|string} body - Webhook body (raw buffer or string)
  * @param {string} hmacHeader - X-Shopify-Hmac-Sha256 header
  * @param {string} secret - App secret key
  * @returns {boolean} - İmza geçerli mi?
  */
-export function verifyWebhook(body, hmacHeader, secret) {
+function verifyWebhook(body, hmacHeader, secret) {
   if (!body || !hmacHeader || !secret) {
     console.error('HMAC verification: Missing required parameters');
     return false;
   }
 
   try {
-    // HMAC hesapla
+    // Body'yi buffer olarak al
+    const bodyBuffer = Buffer.isBuffer(body) ? body : Buffer.from(body, 'utf8');
+
+    // HMAC hesapla - Shopify'ın standardına uygun
     const calculatedHmac = crypto
       .createHmac('sha256', secret)
-      .update(body, 'utf8')
+      .update(bodyBuffer)
       .digest('base64');
 
     // Header'daki HMAC ile karşılaştır
@@ -27,6 +31,8 @@ export function verifyWebhook(body, hmacHeader, secret) {
     );
 
     console.log('HMAC verification:', isValid ? 'SUCCESS' : 'FAILED');
+    console.log('  - Calculated HMAC:', calculatedHmac);
+    console.log('  - Received HMAC:', hmacHeader);
     return isValid;
   } catch (error) {
     console.error('HMAC verification error:', error);
@@ -40,7 +46,7 @@ export function verifyWebhook(body, hmacHeader, secret) {
  * @param {string} secret - App secret
  * @returns {string} - HMAC hash
  */
-export function calculateHmac(body, secret) {
+function calculateHmac(body, secret) {
   return crypto
     .createHmac('sha256', secret)
     .update(body, 'utf8')
@@ -49,24 +55,28 @@ export function calculateHmac(body, secret) {
 
 /**
  * Webhook güvenlik kontrolü
+ * Shopify'ın resmi dokümantasyonuna uygun
  * @param {Object} req - Express request object
  * @param {string} secret - App secret
  * @returns {boolean} - Güvenli mi?
  */
-export function validateWebhookRequest(req, secret) {
-  const hmacHeader = req.get('X-Shopify-Hmac-Sha256');
-  const shopHeader = req.get('X-Shopify-Shop-Domain');
-  const topicHeader = req.get('X-Shopify-Topic');
+function validateWebhookRequest(req, secret) {
+  const hmacHeader = req.headers['x-shopify-hmac-sha256'];
+  const body = req.body; // Raw body from express.raw() middleware
 
-  // Gerekli header'ları kontrol et
-  if (!hmacHeader || !shopHeader || !topicHeader) {
-    console.error('Missing required webhook headers');
+  if (!hmacHeader || !body) {
+    console.error('Missing HMAC header or body');
+    console.error('HMAC Header:', hmacHeader);
+    console.error('Body type:', typeof body);
+    console.error('Body length:', body ? body.length : 'undefined');
     return false;
   }
 
-  // HMAC doğrulaması
-  const body = req.body;
-  const rawBody = typeof body === 'string' ? body : JSON.stringify(body);
-
-  return verifyWebhook(rawBody, hmacHeader, secret);
+  return verifyWebhook(body, hmacHeader, secret);
 }
+
+module.exports = {
+  verifyWebhook,
+  calculateHmac,
+  validateWebhookRequest
+};

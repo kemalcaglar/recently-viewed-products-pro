@@ -1,23 +1,23 @@
-import { validateWebhookRequest } from '../utils/hmac.js';
+const { validateWebhookRequest } = require('../utils/hmac.js');
 
 /**
  * Webhook authentication middleware
  * Tüm webhook request'lerini HMAC ile doğrular
  */
-export function webhookAuth(req, res, next) {
+function webhookAuth(req, res, next) {
   // Sadece webhook route'larında çalış
   if (!req.path.startsWith('/webhooks')) {
     return next();
   }
 
-  const secret = process.env.SHOPIFY_API_SECRET;
+  const secret = process.env.SHOPIFY_WEBHOOK_SECRET;
 
   if (!secret) {
-    console.error('SHOPIFY_API_SECRET environment variable not set');
+    console.error('SHOPIFY_WEBHOOK_SECRET environment variable not set');
     return res.status(500).json({ error: 'Server configuration error' });
   }
 
-  // HMAC doğrulaması
+  // HMAC doğrulaması - Raw body kullan
   if (!validateWebhookRequest(req, secret)) {
     console.error('Webhook HMAC verification failed');
     return res.status(401).json({ error: 'Unauthorized webhook request' });
@@ -25,10 +25,10 @@ export function webhookAuth(req, res, next) {
 
   // Webhook bilgilerini request'e ekle
   req.webhookData = {
-    shop: req.get('X-Shopify-Shop-Domain'),
-    topic: req.get('X-Shopify-Topic'),
-    hmac: req.get('X-Shopify-Hmac-Sha256'),
-    timestamp: req.get('X-Shopify-Shop-Domain'),
+    shop: req.headers['x-shopify-shop-domain'],
+    topic: req.headers['x-shopify-topic'],
+    hmac: req.headers['x-shopify-hmac-sha256'],
+    timestamp: req.headers['x-shopify-shop-domain'],
   };
 
   console.log('Webhook authenticated:', req.webhookData);
@@ -39,12 +39,12 @@ export function webhookAuth(req, res, next) {
  * Webhook rate limiting middleware
  * Aynı shop'tan gelen webhook'ları sınırlar
  */
-export function webhookRateLimit(req, res, next) {
+function webhookRateLimit(req, res, next) {
   if (!req.path.startsWith('/webhooks')) {
     return next();
   }
 
-  const shop = req.get('X-Shopify-Shop-Domain');
+  const shop = req.headers['x-shopify-shop-domain'];
   const now = Date.now();
 
   // Basit in-memory rate limiting
@@ -68,3 +68,8 @@ export function webhookRateLimit(req, res, next) {
   req.app.locals.webhookRateLimit.set(shop, shopLimits);
   next();
 }
+
+module.exports = {
+  webhookAuth,
+  webhookRateLimit
+};

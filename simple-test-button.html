@@ -130,6 +130,7 @@
 
       <div style="margin: 15px 0">
         <button onclick="testAppBridge()">Test App Bridge</button>
+        <button onclick="generateSessionToken()">Generate Token</button>
         <button onclick="testSessionToken()">Test Session Token</button>
         <button onclick="validateSession()">Validate Session</button>
         <button onclick="refreshSession()">Refresh Session</button>
@@ -306,6 +307,43 @@
           console.error('❌ Session validation failed:', error)
           showResult(
             '❌ Session validation failed:\n\n' + error.message,
+            'error'
+          )
+        }
+      }
+
+      // Generate session token
+      async function generateSessionToken() {
+        try {
+          showResult('🔑 Generating session token...', 'info')
+
+          const shop = window.Shopify?.shop || 'test-shop.myshopify.com'
+
+          const response = await fetch('/api/session/generate', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              shop: shop,
+              user: 'test-user-123',
+            }),
+          })
+
+          if (response.ok) {
+            const data = await response.json()
+            showResult(
+              '✅ Session token generated successfully!\n\nToken Data:\n' +
+                JSON.stringify(data, null, 2),
+              'success'
+            )
+          } else {
+            throw new Error(`HTTP ${response.status}: ${response.statusText}`)
+          }
+        } catch (error) {
+          console.error('❌ Session token generation failed:', error)
+          showResult(
+            '❌ Session token generation failed:\n\n' + error.message,
             'error'
           )
         }

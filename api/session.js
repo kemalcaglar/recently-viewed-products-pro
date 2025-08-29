@@ -1,7 +1,55 @@
 const express = require('express');
+const jwt = require('jsonwebtoken');
 const { validateSessionToken, optionalSessionValidation } = require('../src/middleware/sessionAuth');
 
 const router = express.Router();
+
+/**
+ * POST /api/session/generate
+ * Generates a new session token for testing purposes
+ */
+router.post('/generate', (req, res) => {
+  try {
+    const { shop, user } = req.body;
+
+    if (!shop) {
+      return res.status(400).json({
+        success: false,
+        error: 'Shop parameter is required'
+      });
+    }
+
+    // Mock session data
+    const sessionData = {
+      iss: 'recently-viewed-products-pro',
+      dest: shop,
+      aud: 'recently-viewed-products-pro',
+      sub: user || '123',
+      sid: `session_${Date.now()}`,
+      iat: Math.floor(Date.now() / 1000),
+      exp: Math.floor(Date.now() / 1000) + 3600 // 1 hour expiry
+    };
+
+    // Generate JWT token
+    const secret = process.env.JWT_SECRET || 'your-secret-key';
+    const token = jwt.sign(sessionData, secret, { algorithm: 'HS256' });
+
+    res.json({
+      success: true,
+      message: 'Session token generated successfully',
+      token: token,
+      sessionData: sessionData,
+      timestamp: new Date().toISOString()
+    });
+  } catch (error) {
+    console.error('❌ Session generation error:', error.message);
+    res.status(500).json({
+      success: false,
+      error: 'Session generation failed',
+      message: error.message
+    });
+  }
+});
 
 /**
  * GET /api/session/validate
