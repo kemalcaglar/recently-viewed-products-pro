@@ -285,4 +285,4 @@ karşılandı ve proje başarıyla tamamlandı.
 Geliştirici: Kemal
 Proje: Recently Viewed Products Pro
 Tarih: 2024
-Status: ✅ BAŞARILI - App Store Ready
+Status: ✅ BAŞARILI - App Store Readyy
