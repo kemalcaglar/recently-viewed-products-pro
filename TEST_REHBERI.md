@@ -96,7 +96,7 @@ Extension'ı Shopify'a deploy etmen gerekir; deploy edilmeden tema editöründe 
    shopify app config link
    ```  
    Açılan tarayıcıdan Partner hesabını ve **Recently Viewed Products Pro** uygulamasını seç. (Daha önce linklediysen bu adım atlanabilir.)
-
+git s
 3. **Theme App Extension'ı deploy et:**  
    ```bash
    shopify app deploy
@@ -108,7 +108,18 @@ Extension'ı Shopify'a deploy etmen gerekir; deploy edilmeden tema editöründe 
 
 **Not:** Deploy sadece extension'ı (widget kodunu) Shopify'a yükler; sunucu (Railway) ayrı çalışır. Deploy sonrası uygulama yüklü olan **tüm test mağazalarında** App embeds listesinde çıkar.
 
-**403 "You are not a member of the requested organization":** Giriş yaptığın Shopify hesabı, uygulamanın bağlı olduğu Partner organizasyonunda değil. Çözüm: (a) Uygulamanın sahibi olan Partner hesabıyla giriş yap (partners.shopify.com → sağ üstte hangi hesap/org görünüyor kontrol et), veya (b) O organizasyona seni "Staff" olarak eklesinler (Partner Dashboard → Settings → Users and permissions). Sonra `shopify auth logout` deyip tekrar `shopify app deploy` çalıştır.
+**403 "You are not a member of the requested organization":** Giriş yaptığın Shopify hesabı, uygulamanın bağlı olduğu Partner organizasyonunda değil. Çözüm: (a) Uygulamanın sahibi olan Partner hesabıyla giriş yap (partners.shopify.com → sağ üstte hangi hesap/org görünüyor kontrol et), veya (b) O organizasyona seni "Staff" olarak eklesinler (Partner Dashboard → Settings → Users and permissions). Sonra CLI’den çıkıp tekrar giriş yap:
+
+```bash
+shopify auth logout
+shopify app deploy
+```
+
+Açılan tarayıcıda **uygulamanın sahibi olan Partner hesabıyla** giriş yap.
+
+**"Couldn't find shopify.app.recently-viewed-products.toml":** Temizlikte bu dosya kaldırıldı (duplicate config). Projede sadece `shopify.app.toml` kullanılıyor; bu uyarıyı yok sayabilirsin.
+
+**403 doğru hesapla giriş yapıldığı halde devam ediyorsa:** Proje, giriş yaptığın organizasyondaki uygulamaya değil, başka bir organizasyondaki uygulamaya (shopify.app.toml içindeki `client_id`) bağlı olabilir. Yapılacaklar: (1) partners.shopify.com → sağ üstten **doğru organizasyonu** seç (uygulamanın bulunduğu hesap). (2) Terminalde: `shopify auth logout`, sonra `shopify app config link`. Tarayıcıda açıldığında **kendi organizasyonunu** ve **Recently Viewed Products Pro** (veya deploy etmek istediğin) uygulamasını seç. Link kendi uygulandaki uygulamaya döner; `shopify.app.toml` güncellenir. (3) Kendi organizasyonunda böyle bir uygulama yoksa: Partner Dashboard’da **Create app → Create app manually** ile yeni uygulama oluştur, sonra `shopify app config link` ile bu projeyi ona bağla.
 
 ---
 

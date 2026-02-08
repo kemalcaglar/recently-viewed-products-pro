@@ -44,574 +44,439 @@ app.get('/health', (req, res) => {
 app.get('/', (req, res) => {
     const apiKeyForBridge = process.env.SHOPIFY_API_KEY || 'your-api-key';
     res.send(`
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Recently Viewed Products Pro</title>
-        <script src="https://unpkg.com/@shopify/app-bridge@3.7.9/dist/index.global.js"></script>
-        <style>
-            body {
-                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-                margin: 0;
-                padding: 0;
-                background: #f6f6f7;
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recently Viewed Products Pro - Shopify Widget</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header {
+            background: white;
+            border-radius: 20px;
+            padding: 60px 40px;
+            text-align: center;
+            margin-bottom: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+            animation: fadeInDown 0.8s ease;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
             }
-            .header {
-                background: #004c3f;
-                color: white;
-                padding: 20px;
-                text-align: center;
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
             }
-            .header h1 {
-                margin: 0;
-                font-size: 28px;
-                font-weight: 600;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
             }
-            .header p {
-                margin: 10px 0 0 0;
-                opacity: 0.9;
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .logo {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 20px;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 36px;
+            color: white;
+        }
+
+        h1 {
+            color: #2d3748;
+            font-size: 42px;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .description {
+            color: #718096;
+            font-size: 18px;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 16px 48px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.5);
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+            animation: fadeInUp 0.8s ease 0.2s backwards;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            font-size: 40px;
+            margin-bottom: 15px;
+        }
+
+        .feature-title {
+            color: #2d3748;
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .feature-text {
+            color: #718096;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .gallery {
+            background: white;
+            border-radius: 20px;
+            padding: 50px 40px;
+            margin-bottom: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+            animation: fadeInUp 0.8s ease 0.4s backwards;
+        }
+
+        .gallery-title {
+            text-align: center;
+            color: #2d3748;
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 40px;
+        }
+
+        .demo-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .demo-image {
+            position: relative;
+            padding-bottom: 100%;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .demo-image:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .demo-image::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 48px;
+            opacity: 0.3;
+        }
+
+        .demo-image:nth-child(1)::before {
+            content: '🛍️';
+        }
+
+        .demo-image:nth-child(2)::before {
+            content: '👀';
+        }
+
+        .demo-image:nth-child(3)::before {
+            content: '⭐';
+        }
+
+        .demo-image:nth-child(4)::before {
+            content: '🎨';
+        }
+
+        .demo-image:nth-child(5)::before {
+            content: '📱';
+        }
+
+        .demo-image:nth-child(6)::before {
+            content: '💎';
+        }
+
+        .demo-image:nth-child(7)::before {
+            content: '🚀';
+        }
+
+        .demo-image:nth-child(8)::before {
+            content: '✨';
+        }
+
+        .demo-label {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            right: 10px;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 8px;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 600;
+            color: #2d3748;
+            text-align: center;
+        }
+
+        .support-section {
+            background: white;
+            border-radius: 20px;
+            padding: 50px 40px;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+            animation: fadeInUp 0.8s ease 0.6s backwards;
+        }
+
+        .support-icon {
+            font-size: 64px;
+            margin-bottom: 20px;
+        }
+
+        .support-title {
+            color: #2d3748;
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .support-text {
+            color: #718096;
+            font-size: 16px;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .support-button {
+            display: inline-block;
+            background: #48bb78;
+            color: white;
+            padding: 16px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(72, 187, 120, 0.3);
+        }
+
+        .support-button:hover {
+            background: #38a169;
+            transform: translateY(-2px);
+            box-shadow: 0 15px 40px rgba(72, 187, 120, 0.4);
+        }
+
+        .footer {
+            text-align: center;
+            padding: 30px 20px;
+            color: white;
+            font-size: 14px;
+            margin-top: 40px;
+            opacity: 0.9;
+        }
+
+        @media (max-width: 1024px) {
+            .demo-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 32px;
+            }
+
+            .description {
                 font-size: 16px;
             }
-            .container {
-                max-width: 1200px;
-                margin: 0 auto;
-                padding: 40px 20px;
+
+            .header,
+            .gallery,
+            .support-section {
+                padding: 40px 30px;
             }
-            .widget-section {
-                background: white;
-                border-radius: 12px;
-                padding: 30px;
-                margin-bottom: 30px;
-                box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            }
-            .widget-section h2 {
-                color: #004c3f;
-                margin-top: 0;
+
+            .gallery-title {
                 font-size: 24px;
-                font-weight: 600;
             }
-            .widget-section p {
-                color: #666;
-                line-height: 1.6;
-                margin-bottom: 20px;
+
+            .features {
+                grid-template-columns: 1fr;
             }
-            .settings-grid {
-                display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-                gap: 20px;
-                margin-top: 20px;
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 28px;
             }
-            .setting-group {
-                background: #f8f9fa;
-                padding: 20px;
-                border-radius: 8px;
-                border: 1px solid #e9ecef;
+
+            .header,
+            .gallery,
+            .support-section {
+                padding: 30px 20px;
             }
-            .setting-group h3 {
-                color: #495057;
-                margin-top: 0;
-                font-size: 18px;
-                font-weight: 600;
-            }
-            .setting-item {
-                margin-bottom: 15px;
-            }
-            .setting-item label {
-                display: block;
-                margin-bottom: 5px;
-                font-weight: 500;
-                color: #495057;
-            }
-            .setting-item input, .setting-item select {
-                width: 100%;
-                padding: 8px 12px;
-                border: 1px solid #ced4da;
-                border-radius: 4px;
-                font-size: 14px;
-            }
-            .setting-item input[type="color"] {
-                width: 60px;
-                height: 40px;
-                padding: 2px;
-            }
-            .test-button {
-                position: fixed;
-                top: 20px;
-                right: 20px;
-                background: #008060;
-                color: white;
-                border: none;
-                padding: 15px 25px;
-                border-radius: 8px;
-                cursor: pointer;
+
+            .cta-button,
+            .support-button {
+                padding: 14px 32px;
                 font-size: 16px;
-                font-weight: bold;
-                z-index: 1000;
-                box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-                transition: all 0.3s ease;
             }
-            .test-button:hover {
-                background: #006b52;
-                transform: translateY(-2px);
-                box-shadow: 0 6px 16px rgba(0,0,0,0.2);
-            }
-            .status-bar {
-                background: #e7f3ff;
-                border: 1px solid #b3d9ff;
-                padding: 15px;
-                border-radius: 8px;
-                margin-top: 20px;
-                text-align: center;
-            }
-            .status-bar.success {
-                background: #d4edda;
-                border-color: #c3e6cb;
-                color: #155724;
-            }
-            .status-bar.error {
-                background: #f8d7da;
-                border-color: #f5c6cb;
-                color: #721c24;
-            }
-        </style>
-    </head>
-    <body>
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header Section -->
         <div class="header">
-            <h1>🔍 Recently Viewed Products Pro</h1>
-            <p>Highly customizable Recently Viewed Products Widget for Shopify</p>
+            <div class="logo">👁️</div>
+            <h1>Recently Viewed Products Pro</h1>
+            <p class="description">
+                Highly customizable Recently Viewed Products Widget for Shopify.<br>
+                Boost conversions by showing customers what they've been browsing.
+            </p>
+            <a href="/app/onboarding" class="cta-button">Go to onboarding</a>
         </div>
 
-        <div class="container">
-            <div class="widget-section">
-                <h2>🎨 Widget Customization</h2>
-                <p>Customize the appearance of your Recently Viewed Products widget. All changes will be applied to your store's frontend.</p>
-                
-                <div class="settings-grid">
-                    <div class="setting-group">
-                        <h3>Close Button Settings</h3>
-                        <div class="setting-item">
-                            <label for="closeButtonText">Button Text:</label>
-                            <input type="text" id="closeButtonText" value="Kapat" placeholder="Button text">
-                        </div>
-                        <div class="setting-item">
-                            <label for="closeButtonColor">Text Color:</label>
-                            <input type="color" id="closeButtonColor" value="#000000">
-                        </div>
-                        <div class="setting-item">
-                            <label for="closeButtonBackground">Background Color:</label>
-                            <input type="color" id="closeButtonBackground" value="#ffffff">
-                        </div>
-                        <div class="setting-item">
-                            <label for="closeButtonFontSize">Font Size:</label>
-                            <select id="closeButtonFontSize">
-                                <option value="12px">12px</option>
-                                <option value="14px" selected>14px</option>
-                                <option value="16px">16px</option>
-                                <option value="18px">18px</option>
-                                <option value="20px">20px</option>
-                            </select>
-                        </div>
-                        <div class="setting-item">
-                            <label for="closeButtonFontWeight">Font Weight:</label>
-                            <select id="closeButtonFontWeight">
-                                <option value="normal">Normal</option>
-                                <option value="bold" selected>Bold</option>
-                                <option value="600">600</option>
-                                <option value="700">700</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="setting-group">
-                        <h3>Product Name Settings</h3>
-                        <div class="setting-item">
-                            <label for="productNameColor">Text Color:</label>
-                            <input type="color" id="productNameColor" value="#333333">
-                        </div>
-                        <div class="setting-item">
-                            <label for="productNameBackground">Background Color:</label>
-                            <input type="color" id="productNameBackground" value="#ffffff">
-                        </div>
-                        <div class="setting-item">
-                            <label for="productNameFontSize">Font Size:</label>
-                            <select id="productNameFontSize">
-                                <option value="12px">12px</option>
-                                <option value="14px" selected>14px</option>
-                                <option value="16px">16px</option>
-                                <option value="18px">18px</option>
-                                <option value="20px">20px</option>
-                            </select>
-                        </div>
-                        <div class="setting-item">
-                            <label for="productNameFontWeight">Font Weight:</label>
-                            <select id="productNameFontWeight">
-                                <option value="normal">Normal</option>
-                                <option value="bold" selected>Bold</option>
-                                <option value="600">600</option>
-                                <option value="700">700</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="setting-group">
-                        <h3>Price Settings</h3>
-                        <div class="setting-item">
-                            <label for="priceColor">Text Color:</label>
-                            <input type="color" id="priceColor" value="#008060">
-                        </div>
-                        <div class="setting-item">
-                            <label for="priceBackground">Background Color:</label>
-                            <input type="color" id="priceBackground" value="#ffffff">
-                        </div>
-                        <div class="setting-item">
-                            <label for="priceFontSize">Font Size:</label>
-                            <select id="priceFontSize">
-                                <option value="12px">12px</option>
-                                <option value="14px" selected>14px</option>
-                                <option value="16px">16px</option>
-                                <option value="18px">18px</option>
-                                <option value="20px">20px</option>
-                            </select>
-                        </div>
-                        <div class="setting-item">
-                            <label for="priceFontWeight">Font Weight:</label>
-                            <select id="priceFontWeight">
-                                <option value="normal">Normal</option>
-                                <option value="bold" selected>Bold</option>
-                                <option value="600">600</option>
-                                <option value="700">700</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-
-                <div style="text-align: center; margin-top: 30px;">
-                    <button onclick="saveSettings()" style="background: #008060; color: white; border: none; padding: 15px 30px; border-radius: 8px; cursor: pointer; font-size: 16px; font-weight: bold; margin: 0 10px;">
-                        💾 Save Settings
-                    </button>
-                    <button onclick="resetSettings()" style="background: #6c757d; color: white; border: none; padding: 15px 30px; border-radius: 8px; cursor: pointer; font-size: 16px; font-weight: bold; margin: 0 10px;">
-                        🔄 Reset to Default
-                    </button>
-                </div>
-
-                <div id="statusBar" class="status-bar" style="display: none;"></div>
+        <!-- Features Section -->
+        <div class="features">
+            <div class="feature-card">
+                <div class="feature-icon">⚡</div>
+                <div class="feature-title">Lightning Fast</div>
+                <div class="feature-text">Optimized performance with minimal load time impact</div>
             </div>
+            <div class="feature-card">
+                <div class="feature-icon">🎨</div>
+                <div class="feature-title">Fully Customizable</div>
+                <div class="feature-text">Match your store's design perfectly with custom styles</div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📱</div>
+                <div class="feature-title">Mobile Responsive</div>
+                <div class="feature-text">Looks great on all devices and screen sizes</div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🔧</div>
+                <div class="feature-title">Easy Setup</div>
+                <div class="feature-text">Get started in minutes with our simple onboarding</div>
+            </div>
+        </div>
 
-            <div class="widget-section">
-                <h2>📱 Widget Preview</h2>
-                <p>Preview how your widget will look with the current settings.</p>
-                <div id="widgetPreview" style="background: #f8f9fa; border: 1px solid #dee2e6; padding: 20px; border-radius: 8px; text-align: center;">
-                    <div style="margin-bottom: 15px;">
-                        <button id="previewCloseButton" style="padding: 8px 16px; border: none; border-radius: 4px; cursor: pointer;">
-                            Kapat
-                        </button>
-                    </div>
-                    <div style="margin-bottom: 15px;">
-                        <div id="previewProductName" style="padding: 10px; border-radius: 4px;">
-                            Sample Product Name
-                        </div>
-                    </div>
-                    <div>
-                        <div id="previewPrice" style="padding: 10px; border-radius: 4px;">
-                            $29.99
-                        </div>
-                    </div>
+        <!-- Gallery Section -->
+        <div class="gallery">
+            <h2 class="gallery-title">Widget Showcase</h2>
+            <div class="demo-grid">
+                <div class="demo-image">
+                    <div class="demo-label">Default Theme</div>
+                </div>
+                <div class="demo-image">
+                    <div class="demo-label">Dark Mode</div>
+                </div>
+                <div class="demo-image">
+                    <div class="demo-label">Minimal Style</div>
+                </div>
+                <div class="demo-image">
+                    <div class="demo-label">Colorful</div>
+                </div>
+            </div>
+            <div class="demo-grid">
+                <div class="demo-image">
+                    <div class="demo-label">Mobile View</div>
+                </div>
+                <div class="demo-image">
+                    <div class="demo-label">Grid Layout</div>
+                </div>
+                <div class="demo-image">
+                    <div class="demo-label">Slider Style</div>
+                </div>
+                <div class="demo-image">
+                    <div class="demo-label">Custom Colors</div>
                 </div>
             </div>
         </div>
 
-        <!-- Test Button -->
-        <button class="test-button" onclick="window.showTestPage()">
-            🧪 Test Session Tokens
-        </button>
+        <!-- Support Section -->
+        <div class="support-section">
+            <div class="support-icon">💬</div>
+            <h2 class="support-title">Support</h2>
+            <p class="support-text">
+                Questions, design request, feedback? Our team is happy to help.
+            </p>
+            <a href="mailto:caglarkemalofficial@gmail.com" class="support-button">Send email to support</a>
+        </div>
 
-        <script>
-            // Auth header: Dogru = 'Bearer ' + token  (backtick kullanma, SyntaxError olur)
-            let appBridge = null;
-            let isBridgeReady = false;
+        <!-- Footer -->
+        <div class="footer">
+            <p>© 2026 Recently Viewed Products Pro. All rights reserved.</p>
+        </div>
+    </div>
+</body>
 
-            // Initialize when page loads
-            document.addEventListener('DOMContentLoaded', function() {
-                console.log('🚀 Recently Viewed Products Pro App Loading...');
-                initializeAppBridge();
-                updatePreview();
-            });
-
-            // Initialize Shopify App Bridge
-            async function initializeAppBridge() {
-                try {
-                    console.log('🔄 Initializing App Bridge...');
-
-                    // Check if we're in Shopify admin context
-                    if (typeof window.Shopify === 'undefined') {
-                        console.log('ℹ️ Not in Shopify admin context');
-                        return;
-                    }
-
-                    // Get Shopify context
-                    const urlParams = new URLSearchParams(window.location.search);
-                    const host = urlParams.get('host');
-
-                    if (!host) {
-                        console.log('ℹ️ Missing host parameter');
-                        return;
-                    }
-
-                    // Initialize App Bridge (apiKey = Shopify client_id)
-                    appBridge = window.createApp({
-                        apiKey: '${apiKeyForBridge}',
-                        host: host,
-                        forceRedirect: false
-                    });
-
-                    console.log('✅ App Bridge initialized:', appBridge);
-                    isBridgeReady = true;
-
-                } catch (error) {
-                    console.error('❌ App Bridge initialization failed:', error);
-                }
-            }
-
-            // Update preview
-            function updatePreview() {
-                const closeButton = document.getElementById('previewCloseButton');
-                const productName = document.getElementById('previewProductName');
-                const price = document.getElementById('previewPrice');
-
-                // Close button
-                closeButton.style.color = document.getElementById('closeButtonColor').value;
-                closeButton.style.backgroundColor = document.getElementById('closeButtonBackground').value;
-                closeButton.style.fontSize = document.getElementById('closeButtonFontSize').value;
-                closeButton.style.fontWeight = document.getElementById('closeButtonFontWeight').value;
-
-                // Product name
-                productName.style.color = document.getElementById('productNameColor').value;
-                productName.style.backgroundColor = document.getElementById('productNameBackground').value;
-                productName.style.fontSize = document.getElementById('productNameFontSize').value;
-                productName.style.fontWeight = document.getElementById('productNameFontWeight').value;
-
-                // Price
-                price.style.color = document.getElementById('priceColor').value;
-                price.style.backgroundColor = document.getElementById('priceBackground').value;
-                price.style.fontSize = document.getElementById('priceFontSize').value;
-                price.style.fontWeight = document.getElementById('priceFontWeight').value;
-            }
-
-            // Save settings
-            function saveSettings() {
-                const settings = {
-                    closeButton: {
-                        text: document.getElementById('closeButtonText').value,
-                        color: document.getElementById('closeButtonColor').value,
-                        background: document.getElementById('closeButtonBackground').value,
-                        fontSize: document.getElementById('closeButtonFontSize').value,
-                        fontWeight: document.getElementById('closeButtonFontWeight').value
-                    },
-                    productName: {
-                        color: document.getElementById('productNameColor').value,
-                        background: document.getElementById('productNameBackground').value,
-                        fontSize: document.getElementById('productNameFontSize').value,
-                        fontWeight: document.getElementById('productNameFontWeight').value
-                    },
-                    price: {
-                        color: document.getElementById('priceColor').value,
-                        background: document.getElementById('priceBackground').value,
-                        fontSize: document.getElementById('priceFontSize').value,
-                        fontWeight: document.getElementById('priceFontWeight').value
-                    }
-                };
-
-                // Save to localStorage (in real app, this would save to Shopify)
-                localStorage.setItem('recentlyViewedWidgetSettings', JSON.stringify(settings));
-                
-                showStatus('✅ Settings saved successfully!', 'success');
-                updatePreview();
-            }
-
-            // Reset settings
-            function resetSettings() {
-                document.getElementById('closeButtonText').value = 'Kapat';
-                document.getElementById('closeButtonColor').value = '#000000';
-                document.getElementById('closeButtonBackground').value = '#ffffff';
-                document.getElementById('closeButtonFontSize').value = '14px';
-                document.getElementById('closeButtonFontWeight').value = 'bold';
-                
-                document.getElementById('productNameColor').value = '#333333';
-                document.getElementById('productNameBackground').value = '#ffffff';
-                document.getElementById('productNameFontSize').value = '14px';
-                document.getElementById('productNameFontWeight').value = 'bold';
-                
-                document.getElementById('priceColor').value = '#008060';
-                document.getElementById('priceBackground').value = '#ffffff';
-                document.getElementById('priceFontSize').value = '14px';
-                document.getElementById('priceFontWeight').value = 'bold';
-                
-                updatePreview();
-                showStatus('🔄 Settings reset to default!', 'success');
-            }
-
-            // Show status
-            function showStatus(message, type = 'success') {
-                const statusBar = document.getElementById('statusBar');
-                statusBar.textContent = message;
-                statusBar.className = 'status-bar ' + type;
-                statusBar.style.display = 'block';
-                
-                setTimeout(() => {
-                    statusBar.style.display = 'none';
-                }, 3000);
-            }
-
-            // Show test page - Make it global
-            window.showTestPage = function() {
-                if (!appBridge) {
-                    alert('App Bridge not initialized. Please wait for initialization to complete.');
-                    return;
-                }
-                
-                // Create test page content
-                const testContent = '<div style="padding: 20px; max-width: 900px; margin: 0 auto; font-family: -apple-system, BlinkMacSystemFont, \'Segoe UI\', Roboto, sans-serif;">' +
-                    '<h1 style="color: #004c3f; text-align: center;">🔐 App Bridge Session Token Test</h1>' +
-                    '<p style="text-align: center; color: #666;">Recently Viewed Products Pro - Session Token Testing</p>' +
-                    
-                    '<div style="background: #e7f3ff; border: 1px solid #b3d9ff; padding: 15px; border-radius: 6px; margin: 20px 0;">' +
-                        '<h4 style="margin-top: 0; color: #0066cc;">📊 App Status:</h4>' +
-                        '<pre style="background: #f8f9fa; padding: 10px; border-radius: 4px; overflow-x: auto;">App Bridge: ' + (isBridgeReady ? 'Ready' : 'Not Ready') + '</pre>' +
-                    '</div>' +
-
-                    '<div style="margin: 20px 0; text-align: center;">' +
-                        '<button onclick="window.testSessionToken()" style="background: #008060; color: white; border: none; padding: 12px 24px; border-radius: 6px; margin: 8px; cursor: pointer; font-size: 14px; font-weight: bold;">' +
-                            '🧪 Test Session Token' +
-                        '</button>' +
-                        '<button onclick="window.validateSession()" style="background: #008060; color: white; border: none; padding: 12px 24px; border-radius: 6px; margin: 8px; cursor: pointer; font-size: 14px; font-weight: bold;">' +
-                            '✅ Validate Session' +
-                        '</button>' +
-                        '<button onclick="window.refreshSession()" style="background: #008060; color: white; border: none; padding: 12px 24px; border-radius: 6px; margin: 8px; cursor: pointer; font-size: 14px; font-weight: bold;">' +
-                            '🔄 Refresh Session' +
-                        '</button>' +
-                    '</div>' +
-
-                    '<div id="testResults" style="background: #f8f9fa; border: 1px solid #dee2e6; padding: 20px; border-radius: 8px; margin: 20px 0; display: none;">' +
-                        '<h4 style="margin-top: 0; color: #2c3e50;">Test Results:</h4>' +
-                        '<div id="resultContent" style="font-family: monospace; font-size: 13px; white-space: pre-wrap; max-height: 300px; overflow-y: auto;"></div>' +
-                    '</div>' +
-
-                    '<div style="text-align: center; margin-top: 30px;">' +
-                        '<button onclick="window.location.reload()" style="background: #6c757d; color: white; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer;">' +
-                            '← Back to App' +
-                        '</button>' +
-                    '</div>' +
-                '</div>';
-
-                // Replace current content with test page
-                document.body.innerHTML = testContent;
-                
-                // Make functions globally available
-                window.testSessionToken = testSessionToken;
-                window.validateSession = validateSession;
-                window.refreshSession = refreshSession;
-            };
-
-            // Test session token - Make it global
-            window.testSessionToken = async function() {
-                try {
-                    const resultElement = document.getElementById('resultContent');
-                    resultElement.textContent = '🧪 Testing session token...';
-                    document.getElementById('testResults').style.display = 'block';
-
-                    const response = await appBridge.authenticatedFetch('/api/session/info');
-                    
-                    if (response.ok) {
-                        const data = await response.json();
-                        resultElement.textContent = '✅ Session token test successful!\n\nToken Data:\n' + JSON.stringify(data, null, 2);
-                        resultElement.style.color = '#155724';
-                        resultElement.style.background = '#d4edda';
-                    } else {
-                        throw new Error('HTTP ' + response.status + ': ' + response.statusText);
-                    }
-                } catch (error) {
-                    const resultElement = document.getElementById('resultContent');
-                    resultElement.textContent = '❌ Session token test failed:\n\n' + error.message;
-                    resultElement.style.color = '#721c24';
-                    resultElement.style.background = '#f8d7da';
-                    document.getElementById('testResults').style.display = 'block';
-                }
-            };
-
-            // Validate session - Make it global
-            window.validateSession = async function() {
-                try {
-                    const resultElement = document.getElementById('resultContent');
-                    resultElement.textContent = '🧪 Validating session...';
-                    document.getElementById('testResults').style.display = 'block';
-
-                    const response = await appBridge.authenticatedFetch('/api/session/validate');
-                    
-                    if (response.ok) {
-                        const data = await response.json();
-                        resultElement.textContent = '✅ Session validation successful!\n\nResponse:\n' + JSON.stringify(data, null, 2);
-                        resultElement.style.color = '#155724';
-                        resultElement.style.background = '#d4edda';
-                    } else {
-                        throw new Error('HTTP ' + response.status + ': ' + response.statusText);
-                    }
-                } catch (error) {
-                    const resultElement = document.getElementById('resultContent');
-                    resultElement.textContent = '❌ Session validation failed:\n\n' + error.message;
-                    resultElement.style.color = '#721c24';
-                    resultElement.style.background = '#f8d7da';
-                    document.getElementById('testResults').style.display = 'block';
-                }
-            };
-
-            // Refresh session - Make it global
-            window.refreshSession = async function() {
-                try {
-                    const resultElement = document.getElementById('resultContent');
-                    resultElement.textContent = '🔄 Refreshing session...';
-                    document.getElementById('testResults').style.display = 'block';
-
-                    const response = await appBridge.authenticatedFetch('/api/session/refresh', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify({
-                            shop: window.Shopify?.shop || 'unknown',
-                            user: 'current'
-                        })
-                    });
-
-                    if (response.ok) {
-                        const data = await response.json();
-                        resultElement.textContent = '✅ Session refresh successful!\n\nNew Session Data:\n' + JSON.stringify(data, null, 2);
-                        resultElement.style.color = '#155724';
-                        resultElement.style.background = '#d4edda';
-                    } else {
-                        throw new Error('HTTP ' + response.status + ': ' + response.statusText);
-                    }
-                } catch (error) {
-                    const resultElement = document.getElementById('resultContent');
-                    resultElement.textContent = '❌ Session refresh failed:\n\n' + error.message;
-                    resultElement.style.color = '#721c24';
-                    resultElement.style.background = '#f8d7da';
-                    document.getElementById('testResults').style.display = 'block';
-                }
-            };
-
-            // Add event listeners for real-time preview
-            document.addEventListener('DOMContentLoaded', function() {
-                const inputs = document.querySelectorAll('input, select');
-                inputs.forEach(input => {
-                    input.addEventListener('change', updatePreview);
-                    input.addEventListener('input', updatePreview);
-                });
-            });
-        </script>
-    </body>
-    </html>
+</html>
   `);
 });
 
