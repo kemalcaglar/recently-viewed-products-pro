@@ -1,254 +1,71 @@
-# 📁 Proje Yapısı
+# Proje Yapısı
+
+Güncel yapı (gereksiz dosyalar temizlendi).
 
 ```
-shopifyAppv2/
-├── 📄 README.md                           # Proje açıklaması ve dokümantasyon
-├── 📄 INSTALL.md                          # Detaylı kurulum talimatları
-├── 📄 PROJECT_STRUCTURE.md                # Bu dosya - proje yapısı
-├── 📄 package.json                        # Node.js bağımlılıkları ve scriptler
-├── 📄 shopify.app.toml                    # Shopify app konfigürasyonu
-├── 📄 .env.example                        # Environment variables örneği
-├── 📄 .gitignore                          # Git ignore dosyası
+recently-viewed-products-pro/
+├── webhook-server.js              # Ana sunucu (Express): /, /health, /auth, billing, webhooks, admin UI
+├── package.json
+├── shopify.app.toml               # Shopify app config (client_id, URL, webhooks, scopes)
+├── railway.json                   # Railway deploy (healthcheck)
+├── nixpacks.toml                  # Build (npm install --omit=dev)
+├── .env / env.example
+├── .gitignore, .npmrc
 │
-├── 📁 src/                                # Kaynak kod dosyaları
-│   ├── 📁 components/                     # React bileşenleri
-│   │   ├── 📄 RecentlyViewedWidget.jsx    # Ana widget bileşeni
-│   │   ├── 📄 RecentlyViewedWidget.css    # Widget CSS stilleri
-│   │   ├── 📄 AdminPanel.jsx              # Admin panel bileşeni
-│   │   └── 📄 SettingsForm.jsx            # Ayarlar formu
-│   │
-│   ├── 📁 pages/                          # Sayfa bileşenleri
-│   │   ├── 📄 App.jsx                     # Ana uygulama sayfası
-│   │   ├── 📄 Dashboard.jsx               # Dashboard sayfası
-│   │   └── 📄 Settings.jsx                # Ayarlar sayfası
-│   │
-│   ├── 📁 hooks/                          # Custom React hooks
-│   │   ├── 📄 useWidgetConfig.js          # Widget konfigürasyon hook'u
-│   │   ├── 📄 useProductTracker.js        # Ürün takip hook'u
-│   │   └── 📄 useShopifyAPI.js            # Shopify API hook'u
-│   │
-│   ├── 📁 utils/                          # Yardımcı fonksiyonlar
-│   │   ├── 📄 productTracker.js           # Ürün takip sistemi
-│   │   ├── 📄 shopifyHelpers.js           # Shopify yardımcı fonksiyonları
-│   │   ├── 📄 analytics.js                # Analitik fonksiyonları
-│   │   └── 📄 constants.js                # Sabit değerler
-│   │
-│   ├── 📁 styles/                         # Global CSS/SCSS dosyaları
-│   │   ├── 📄 global.css                  # Global stiller
-│   │   ├── 📄 variables.css               # CSS değişkenleri
-│   │   └── 📄 responsive.css              # Responsive tasarım
-│   │
-│   ├── 📁 assets/                         # Statik dosyalar
-│   │   ├── 📁 images/                     # Resimler
-│   │   ├── 📁 icons/                      # İkonlar
-│   │   └── 📁 fonts/                      # Fontlar
-│   │
-│   ├── 📁 services/                       # API servisleri
-│   │   ├── 📄 shopifyService.js           # Shopify API servisi
-│   │   ├── 📄 widgetService.js            # Widget API servisi
-│   │   └── 📄 analyticsService.js         # Analitik servisi
-│   │
-│   └── 📄 index.js                        # Ana giriş noktası
+├── api/                           # Backend API modülleri
+│   ├── session.js                 # /api/session (session token doğrulama)
+│   ├── oauth.js                   # OAuth (token exchange, /auth)
+│   └── billing.js                 # Billing API (abonelik durumu, subscribe)
 │
-├── 📁 public/                             # Statik dosyalar
-│   ├── 📄 index.html                      # Ana HTML dosyası
-│   ├── 📄 favicon.ico                     # Favicon
-│   └── 📁 assets/                         # Public assets
+├── src/
+│   ├── middleware/
+│   │   ├── sessionAuth.js         # Session token validation (api/session için)
+│   │   └── webhookAuth.js         # Webhook HMAC + rate limit
+│   └── utils/
+│       └── hmac.js                # Webhook HMAC doğrulama (webhookAuth tarafından kullanılır)
 │
-├── 📁 shopify/                            # Shopify app konfigürasyonu
-│   ├── 📁 extensions/                     # App extensions
-│   ├── 📁 webhooks/                       # Webhook handlers
-│   └── 📁 functions/                      # Shopify Functions
+├── extensions/                    # Theme App Extension (tüm temalarda App embed)
+│   └── recently-viewed-theme/
+│       ├── shopify.extension.toml
+│       ├── blocks/
+│       │   └── recently_viewed_embed.liquid
+│       ├── assets/
+│       │   ├── recently-viewed-embed.css
+│       │   └── recently-viewed-embed.js
+│       └── locales/
 │
-├── 📁 snippets/                           # Shopify Liquid snippet'leri
-│   ├── 📄 recently-viewed-products.liquid # Ana widget snippet'i
-│   └── 📄 widget-config.liquid            # Widget konfigürasyon snippet'i
+├── layout/                        # (Opsiyonel) Özel tema: theme.liquid
+├── sections/                      # (Opsiyonel) Tema section'ları
+├── snippets/                      # (Opsiyonel) global-recently-viewed-widget.liquid vb.
+├── templates/                     # (Opsiyonel) Tema şablonları
+├── config/                        # (Opsiyonel) Tema settings
+├── locales/                       # (Opsiyonel) Tema çevirileri
+├── assets/                        # (Opsiyonel) Tema asset'leri
 │
-├── 📁 assets/                             # Shopify tema assets
-│   ├── 📄 recently-viewed-products.css    # Widget CSS (tema için)
-│   ├── 📄 recently-viewed-products.js     # Widget JS (tema için)
-│   └── 📁 images/                         # Tema resimleri
-│
-├── 📁 docs/                               # Dokümantasyon
-│   ├── 📄 API.md                          # API dokümantasyonu
-│   ├── 📄 THEMING.md                      # Tema entegrasyonu
-│   ├── 📄 DEPLOYMENT.md                   # Deployment rehberi
-│   └── 📄 TROUBLESHOOTING.md              # Sorun giderme
-│
-├── 📁 tests/                              # Test dosyaları
-│   ├── 📁 unit/                           # Unit testler
-│   ├── 📁 integration/                    # Integration testler
-│   └── 📁 e2e/                            # End-to-end testler
-│
-├── 📁 scripts/                            # Build ve deployment scriptleri
-│   ├── 📄 build.js                        # Build scripti
-│   ├── 📄 deploy.js                       # Deployment scripti
-│   └── 📄 setup.js                        # Kurulum scripti
-│
-└── 📁 config/                             # Konfigürasyon dosyaları
-    ├── 📄 webpack.config.js                # Webpack konfigürasyonu
-    ├── 📄 babel.config.js                  # Babel konfigürasyonu
-    ├── 📄 eslint.config.js                 # ESLint konfigürasyonu
-    └── 📄 prettier.config.js               # Prettier konfigürasyonu
+└── Dokümantasyon
+    ├── README.md
+    ├── TEST_REHBERI.md
+    ├── NGROK_REHBERI.md
+    ├── DEPLOY_FIX.md
+    ├── APP_STORE_LISTING.md
+    ├── APP_STORE_VE_TEMA_INCELEME_RAPORU.md
+    ├── INSTALL.md
+    └── PROJECT_STRUCTURE.md       # Bu dosya
 ```
 
-## 🔄 Veri Akışı
+## Kullanılan bileşenler
 
-```
-Müşteri → Ürün Sayfası → Product Tracker → localStorage → Widget → Görüntüleme
-   ↓
-Shopify API → Admin Panel → Konfigürasyon → Widget Ayarları → Tema Entegrasyonu
-```
+- **webhook-server.js**: Ana sayfa (admin UI HTML), `/health`, `/auth`, `/api/billing/*`, `/webhooks`, `/api/session` route’ları.
+- **api/session.js**: Session token bilgisi ve doğrulama (App Bridge ile kullanılır).
+- **api/oauth.js**: Kurulum sonrası OAuth akışı.
+- **api/billing.js**: Abonelik durumu ve onay URL’i.
+- **src/middleware/webhookAuth.js**: Webhook isteklerinde HMAC doğrulama ve rate limit.
+- **src/utils/hmac.js**: HMAC hesaplama (webhookAuth tarafından kullanılır).
+- **extensions/recently-viewed-theme**: Mağaza ön yüzünde “Recently Viewed” widget’ı (App embeds ile tüm temalarda).
 
-## 🎯 Ana Bileşenler
+## Kaldırılan / kullanılmayan (temizlik)
 
-### 1. **RecentlyViewedWidget** (`src/components/`)
-
-- Ana widget bileşeni
-- Kapalı ve açık durumları
-- Responsive tasarım
-- Özelleştirilebilir tema
-
-### 2. **Product Tracker** (`src/utils/`)
-
-- Ürün görüntüleme takibi
-- localStorage yönetimi
-- Analytics veri toplama
-- Event handling
-
-### 3. **Admin Panel** (`src/pages/`)
-
-- Widget konfigürasyonu
-- Tema ayarları
-- Analytics dashboard
-- Kullanıcı arayüzü
-
-### 4. **Shopify Integration** (`snippets/`, `assets/`)
-
-- Liquid snippet'leri
-- Tema entegrasyonu
-- CSS/JS dosyaları
-- Konfigürasyon yönetimi
-
-## 🚀 Geliştirme Workflow
-
-### 1. **Local Development**
-
-```bash
-npm run dev                    # Development server başlat
-npm run shopify:app:dev       # Shopify app development
-npm run build                  # Production build
-```
-
-### 2. **Testing**
-
-```bash
-npm run test                   # Unit testler
-npm run test:integration       # Integration testler
-npm run test:e2e               # End-to-end testler
-```
-
-### 3. **Deployment**
-
-```bash
-npm run shopify:app:deploy    # Shopify app deploy
-npm run shopify theme push     # Tema dosyalarını push
-npm run shopify theme pull     # Tema dosyalarını pull
-```
-
-## 🔧 Teknoloji Stack
-
-### **Frontend**
-
-- React 18.2.0
-- Shopify Polaris UI
-- CSS3 + CSS Variables
-- Responsive Design
-
-### **Backend**
-
-- Node.js 18+
-- Express.js
-- Shopify API
-- Webhooks
-
-### **Tools**
-
-- Shopify CLI 3.0
-- Vite (Build tool)
-- ESLint + Prettier
-- TypeScript (Opsiyonel)
-
-### **Storage**
-
-- localStorage (Client-side)
-- Shopify Metafields
-- Session Storage
-- Analytics Database
-
-## 📱 Responsive Breakpoints
-
-- **Desktop**: 1200px+
-- **Tablet**: 768px - 1199px
-- **Mobile**: 320px - 767px
-- **Small Mobile**: < 320px
-
-## 🎨 Tema Sistemi
-
-### **CSS Variables**
-
-```css
-:root {
-  --primary-color: #000000;
-  --background-color: #ffffff;
-  --font-size: 14px;
-  --font-family: Arial, sans-serif;
-  --border-radius: 8px;
-  --shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  --transition: all 0.3s ease;
-}
-```
-
-### **Tema Özelleştirme**
-
-- Renk paleti
-- Typography
-- Spacing
-- Animations
-- Dark mode support
-
-## 🔒 Güvenlik
-
-### **API Security**
-
-- Shopify OAuth
-- API key validation
-- Rate limiting
-- CORS configuration
-
-### **Data Privacy**
-
-- GDPR compliance
-- Cookie consent
-- Data encryption
-- User consent management
-
-## 📊 Analytics & Monitoring
-
-### **Performance Metrics**
-
-- Widget load time
-- User interactions
-- Product view tracking
-- Conversion rates
-
-### **Error Tracking**
-
-- JavaScript errors
-- API failures
-- User feedback
-- Performance issues
-
----
-
-Bu yapı, modern Shopify app development best practice'lerine uygun olarak tasarlanmıştır ve ölçeklenebilir bir mimari sunar.
+- `api/auth.js`, `api/webhooks/*` (sunucu kendi webhook handler’larını kullanıyor)
+- `src/routes/webhooks.js`, `src/app.js`, `src/app-bridge.js`, `src/pages/App.jsx`, `src/components/*`, `src/locales/*`, `src/utils/analytics.js`, `i18n.js`, `productTracker.js`
+- Test dosyaları: `app-bridge-test.html`, `session-test.html`, `test-button.html`, `simple-test-button.html`, `test-hmac.js`, `test-webhook.js`, `test-correct-hmac.js`, `create-webhooks-manual.js`
+- `gitignore` (duplicate), `shopify.app.recently-viewed-products.toml`, `vercel.json`, `index.html`
