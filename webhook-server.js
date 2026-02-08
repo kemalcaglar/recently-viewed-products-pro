@@ -6,7 +6,7 @@ const oauth = require('./api/oauth');
 const billing = require('./api/billing');
 
 const app = express();
-const PORT = process.env.PORT || 8080;
+const PORT = parseInt(process.env.PORT, 10) || 8080;
 
 // Middleware
 // IMPORTANT: Raw body parsing for webhooks (must come before JSON parsing)
@@ -32,6 +32,11 @@ app.use((req, res, next) => {
 
 // Import session routes
 app.use('/api/session', sessionRoutes);
+
+// Health check - Railway/deploy healthcheck için (en hafif endpoint, erken tanımlı)
+app.get('/health', (req, res) => {
+    res.status(200).json({ status: 'healthy', timestamp: new Date().toISOString() });
+});
 
 // Ana sayfa - App'in ana sayfası
 app.get('/', (req, res) => {
@@ -610,11 +615,6 @@ app.get('/', (req, res) => {
 // HMAC verification function - Using middleware instead
 // This function is now handled by webhookAuth middleware
 
-// Health check endpoint
-app.get('/health', (req, res) => {
-    res.status(200).json({ status: 'healthy', timestamp: new Date().toISOString() });
-});
-
 // Webhook authentication middleware - MUST come before webhook routes
 app.use(webhookAuth);
 app.use(webhookRateLimit);
@@ -777,8 +777,8 @@ app.use((req, res) => {
     res.status(404).json({ error: 'Endpoint not found' });
 });
 
-// Start server
-app.listen(PORT, '0.0.0.0', () => {
+// Start server (0.0.0.0 = Railway/container içinden erişilebilir)
+const server = app.listen(PORT, '0.0.0.0', () => {
     console.log(`🚀 Webhook server running on port ${PORT}`);
     console.log(`📡 Compliance Webhook endpoints (Shopify App Store Required):`);
     console.log(`   - HEALTH: http://0.0.0.0:${PORT}/health`);
@@ -789,6 +789,10 @@ app.listen(PORT, '0.0.0.0', () => {
     console.log(`   - AUTH: http://0.0.0.0:${PORT}/auth`);
     console.log(`🌍 Server listening on all interfaces`);
     console.log(`✅ Shopify App Store Compliance Requirements: MET`);
+});
+server.on('error', (err) => {
+    console.error('❌ Server listen error:', err);
+    process.exit(1);
 });
 
 // Graceful shutdown
