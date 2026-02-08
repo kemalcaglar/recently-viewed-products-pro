@@ -2,6 +2,8 @@ const express = require('express');
 const crypto = require('crypto');
 const sessionRoutes = require('./api/session');
 const { webhookAuth, webhookRateLimit } = require('./src/middleware/webhookAuth');
+const oauth = require('./api/oauth');
+const billing = require('./api/billing');
 
 const app = express();
 const PORT = process.env.PORT || 8080;
@@ -349,9 +351,9 @@ app.get('/', (req, res) => {
                         return;
                     }
 
-                    // Initialize App Bridge
+                    // Initialize App Bridge (apiKey = Shopify client_id)
                     appBridge = window.createApp({
-                        apiKey: 'your-api-key', // Will be replaced by Shopify
+                        apiKey: '${process.env.SHOPIFY_API_KEY || 'your-api-key'}',
                         host: host,
                         forceRedirect: false
                     });
@@ -689,14 +691,79 @@ app.post('/webhooks/shop/redact', (req, res) => {
     });
 });
 
-// Auth endpoint for Shopify OAuth
+// Shopify OAuth - Kurulumdan hemen sonra kimlik doğrulama (App Store 2.3.2, 2.3.4)
+function getAppBaseUrl(req) {
+    const url = process.env.SHOPIFY_APP_URL;
+    if (url) return url.replace(/\/$/, '');
+    const proto = req.get('x-forwarded-proto') || req.protocol || 'https';
+    const host = req.get('x-forwarded-host') || req.get('host') || '';
+    return proto + '://' + host;
+}
+
 app.get('/auth', (req, res) => {
-    console.log('🔐 Auth endpoint accessed');
-    res.json({
-        message: 'Auth endpoint for Recently Viewed Products Pro',
-        status: 'ready',
-        timestamp: new Date().toISOString()
-    });
+    const shop = (req.query.shop || '').toString().toLowerCase().replace(/^https?:\/\//, '').split('/')[0];
+    const host = (req.query.host || '').toString();
+    const code = req.query.code;
+
+    if (!shop || !shop.includes('myshopify.com')) {
+        res.status(400).send('Missing or invalid shop parameter. Install the app from Shopify Admin or App Store.');
+        return;
+    }
+
+    const baseUrl = getAppBaseUrl(req);
+
+    if (code) {
+        oauth.exchangeCodeForToken(shop, code, baseUrl)
+            .then(() => {
+                const redirectTo = baseUrl + '/?shop=' + encodeURIComponent(shop) + '&host=' + encodeURIComponent(host);
+                res.redirect(302, redirectTo);
+            })
+            .catch((err) => {
+                console.error('OAuth token exchange failed:', err);
+                res.status(500).send('Authentication failed. Please try again.');
+            });
+        return;
+    }
+
+    try {
+        const authUrl = oauth.getAuthRedirectUrl(shop, host, baseUrl);
+        res.redirect(302, authUrl);
+    } catch (err) {
+        console.error('OAuth redirect failed:', err);
+        res.status(500).send('Authentication configuration error.');
+    }
+});
+
+// Billing API - Abonelik durumu ve onay sayfası yönlendirmesi
+app.get('/api/billing/status', (req, res) => {
+    const shop = (req.query.shop || '').toString().toLowerCase().replace(/^https?:\/\//, '').split('/')[0];
+    if (!shop || !shop.includes('myshopify.com')) {
+        return res.status(400).json({ error: 'Missing or invalid shop' });
+    }
+    billing.getSubscriptionStatus(shop)
+        .then((result) => res.json(result))
+        .catch((err) => {
+            console.error('Billing status error:', err);
+            res.status(500).json({ hasSubscription: false, error: err.message });
+        });
+});
+
+app.get('/api/billing/subscribe', (req, res) => {
+    const shop = (req.query.shop || '').toString().toLowerCase().replace(/^https?:\/\//, '').split('/')[0];
+    const host = (req.query.host || '').toString();
+    if (!shop || !shop.includes('myshopify.com')) {
+        return res.status(400).send('Missing or invalid shop');
+    }
+    const baseUrl = getAppBaseUrl(req);
+    const returnUrl = baseUrl + '/?shop=' + encodeURIComponent(shop) + '&host=' + encodeURIComponent(host);
+    billing.createSubscription(shop, returnUrl)
+        .then(({ confirmationUrl }) => {
+            res.redirect(302, confirmationUrl);
+        })
+        .catch((err) => {
+            console.error('Billing subscribe error:', err);
+            res.status(500).send('Could not create subscription: ' + err.message);
+        });
 });
 
 // Error handling middleware

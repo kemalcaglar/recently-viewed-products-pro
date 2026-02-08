@@ -1515,22 +1515,20 @@ const App = () => {
                 <Stack distribution="equalSpacing">
                   <Button
                     variant="primary"
-                    onClick={() =>
-                      window.open(
-                        'https://recentlyviewedproducts.myshopify.com',
-                        '_blank'
-                      )
-                    }>
+                    onClick={() => {
+                      const shop = (typeof window !== 'undefined' && (window.Shopify?.shop || new URLSearchParams(window.location.search).get('shop'))) || '';
+                      const storeUrl = shop ? 'https://' + shop.replace(/^https?:\/\//, '').split('/')[0] : '#';
+                      window.open(storeUrl, '_blank');
+                    }}>
                     Visit Store
                   </Button>
                   <Button
                     variant="secondary"
-                    onClick={() =>
-                      window.open(
-                        'https://recentlyviewedproducts.myshopify.com/admin/themes/180276658541/editor',
-                        '_blank'
-                      )
-                    }>
+                    onClick={() => {
+                      const shop = (typeof window !== 'undefined' && (window.Shopify?.shop || new URLSearchParams(window.location.search).get('shop'))) || '';
+                      const themeEditorUrl = shop ? 'https://' + shop.replace(/^https?:\/\//, '').split('/')[0] + '/admin/themes/current/editor' : '#';
+                      window.open(themeEditorUrl, '_blank');
+                    }}>
                     Theme Editor
                   </Button>
                 </Stack>

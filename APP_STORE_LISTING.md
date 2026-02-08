@@ -97,27 +97,20 @@ Public App
 - Minimal resource kullanımı
 - SEO dostu yapı
 
-## 📊 Kullanım İstatistikleri
+## 📊 Hedef Kitle
 
-### **Hedef Kitle**
+### **Örnek kullanıcılar**
 
 - E-ticaret mağaza sahipleri
 - Online perakendeciler
 - Dijital ürün satıcıları
 - B2B mağazalar
 
-### **Beklenen Kullanım**
-
-- 1000+ aktif mağaza
-- 95% müşteri memnuniyeti
-- 4.8/5 ortalama puan
-
 ## 🚀 Pazarlama Stratejisi
 
-### **Ana Mesajlar**
+### **Ana Mesajlar (Kanıtlanamayan iddialar listing'de kullanılmamalı)**
 
 - "Müşteri deneyimini artırın"
-- "Satışları %25'e kadar artırın"
 - "Profesyonel görünüm kazanın"
 
 ### **Rekabet Avantajları**

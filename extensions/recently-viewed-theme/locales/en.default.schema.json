@@ -1,0 +1,20 @@
+{
+  "recently_viewed_embed": {
+    "title": {
+      "label": "Widget title"
+    },
+    "position": {
+      "label": "Position",
+      "options": {
+        "left": "Left",
+        "right": "Right"
+      }
+    },
+    "vertical_position": {
+      "label": "Vertical position"
+    },
+    "max_products": {
+      "label": "Max products to show"
+    }
+  }
+}

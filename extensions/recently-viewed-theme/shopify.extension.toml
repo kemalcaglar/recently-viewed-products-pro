@@ -1,0 +1,9 @@
+# Theme App Extension - Recently Viewed Products Pro
+# Tüm temalarda çalışır; mağaza Theme Settings > App embeds'den etkinleştirir.
+
+api_version = "2024-01"
+
+[[extensions]]
+type = "theme"
+name = "Recently Viewed Products"
+handle = "recently-viewed-theme"

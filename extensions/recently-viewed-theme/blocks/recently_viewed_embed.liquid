@@ -1,0 +1,69 @@
+{% comment %}
+  Recently Viewed Products - App Embed
+  Tüm temalarda çalışır. Theme Settings > App embeds'den etkinleştirin.
+  Checkout sayfalarında otomatik devre dışıdır.
+{% endcomment %}
+<div
+  id="recently-viewed-app-embed"
+  class="recently-viewed-embed"
+  data-position="{{ block.settings.position }}"
+  data-title="{{ block.settings.title | escape }}"
+  data-vertical="{{ block.settings.vertical_position }}"
+  data-max-products="{{ block.settings.max_products }}"
+  data-product-id="{% if product %}{{ product.id }}{% endif %}"
+  data-product-title="{% if product %}{{ product.title | escape }}{% endif %}"
+  data-product-image="{% if product %}{{ product.featured_image | img_url: '300x300' }}{% endif %}"
+  data-product-url="{% if product %}{{ product.url }}{% endif %}"
+  data-product-price="{% if product %}{{ product.price | money_without_currency }}{% endif %}"
+  style="display: none;"
+  {{ block.shopify_attributes }}
+></div>
+
+{% schema %}
+{
+  "name": "Recently Viewed Products",
+  "target": "body",
+  "stylesheet": "recently-viewed-embed.css",
+  "javascript": "recently-viewed-embed.js",
+  "disabled_on": {
+    "groups": ["checkout"]
+  },
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Widget title",
+      "default": "Recently Viewed"
+    },
+    {
+      "type": "select",
+      "id": "position",
+      "label": "Position",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "right"
+    },
+    {
+      "type": "range",
+      "id": "vertical_position",
+      "min": 10,
+      "max": 90,
+      "step": 5,
+      "unit": "%",
+      "label": "Vertical position",
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "max_products",
+      "min": 3,
+      "max": 15,
+      "step": 1,
+      "label": "Max products to show",
+      "default": 5
+    }
+  ]
+}
+{% endschema %}

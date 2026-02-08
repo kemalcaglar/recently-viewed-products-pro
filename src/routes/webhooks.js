@@ -72,8 +72,8 @@ router.post('/customers/data_request', (req, res) => {
 
     // GDPR uyumluluğu için müşteri verilerini hazırla
     // - Ürün görüntüleme geçmişi
-    - Analytics verileri
-      - Widget ayarları
+    // - Analytics verileri
+    // - Widget ayarları
 
     res.status(200).json({ success: true });
   } catch (error) {

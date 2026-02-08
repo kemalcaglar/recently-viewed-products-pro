@@ -1,0 +1,11 @@
+/* Recently Viewed Products - Theme App Extension */
+.rv-embed-closed { font-family: inherit; }
+.rv-embed-title { -webkit-user-select: none; user-select: none; }
+.rv-embed-thumbnails a { transition: opacity 0.2s; }
+.rv-embed-thumbnails a:hover { opacity: 0.85; }
+.rv-embed-popup .swiper-slide a { text-decoration: none; color: inherit; }
+.rv-embed-popup .swiper-pagination-bullet { width: 8px; height: 8px; }
+@media (max-width: 768px) {
+  .rv-embed-closed { min-height: 180px; }
+  .rv-embed-title { font-size: 12px !important; }
+}
