@@ -1,0 +1,26 @@
+# Learn more about configuring your app at https://shopify.dev/docs/apps/tools/cli/configuration
+
+client_id = "5f8825be7e37b906b0e3c02242648d42"
+name = "recently-viewed-products"
+application_url = "https://recently-viewed-products-pro-production.up.railway.app"
+embedded = true
+handle = "recently-viewed-products-14"
+
+[webhooks]
+api_version = "2025-04"
+
+[access_scopes]
+# Learn more at https://shopify.dev/docs/apps/tools/cli/configuration#access_scopes
+scopes = "write_products"
+optional_scopes = [ ]
+use_legacy_install_flow = false
+
+[auth]
+redirect_urls = [
+  "https://recently-viewed-products-pro-production.up.railway.app/auth"
+]
+
+[app_proxy]
+url = "https://ca82-176-42-141-162.ngrok-free.app/proxy/settings"
+subpath = "smartview-settings"
+prefix = "apps"

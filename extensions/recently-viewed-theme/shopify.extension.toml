@@ -4,6 +4,9 @@
 api_version = "2024-01"
 
 [[extensions]]
+
+uid = "066b14a2-114a-849a-2657-4191eede46e200a46a52"
+
 type = "theme"
 name = "Recently Viewed Products"
 handle = "recently-viewed-theme"

@@ -70,7 +70,6 @@
 
     trackCurrentProduct(config);
     var recent = getRecentProducts();
-    if (recent.length === 0) return;
 
     var root = document.getElementById('recently-viewed-app-embed');
     root.style.display = '';
@@ -113,16 +112,26 @@
 
     function renderThumbnails() {
       var list = getRecentProducts();
+      if (list.length === 0) {
+        thumbnails.innerHTML = '<span style="font-size:11px;color:#888;padding:8px;text-align:center;">Visit a product</span>';
+        return;
+      }
       thumbnails.innerHTML = list.slice(0, 5).map(function(p) {
-        return '<a href="' + p.url + '" style="width:50px;height:50px;border-radius:4px;overflow:hidden;display:block;"><img src="' + p.image + '" alt="" style="width:100%;height:100%;object-fit:cover;"></a>';
+        return '<a href="' + p.url + '" style="width:50px;height:50px;border-radius:4px;overflow:hidden;display:block;"><img src="' + (p.image || '') + '" alt="" style="width:100%;height:100%;object-fit:cover;"></a>';
       }).join('');
     }
 
     function openPopup() {
       loadSwiper(function() {
         var list = getRecentProducts();
+        if (list.length === 0) {
+          wrapper.innerHTML = '<div style="padding:24px;text-align:center;color:#666;font-size:14px;">No recently viewed products yet. Visit a product page to see it here.</div>';
+          if (window.rvSwiper) window.rvSwiper.destroy(true, true);
+          popup.style.display = 'flex';
+          return;
+        }
         wrapper.innerHTML = list.map(function(p) {
-          return '<div class="swiper-slide" style="text-align:center;"><a href="' + p.url + '" style="display:block;padding:8px;"><img src="' + p.image + '" alt="" style="width:100%;max-height:140px;object-fit:contain;"><div style="font-size:12px;margin-top:6px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">' + p.title + '</div>' + (p.price ? '<div style="font-size:13px;font-weight:600;">' + p.price + '</div>' : '') + '</a></div>';
+          return '<div class="swiper-slide" style="text-align:center;"><a href="' + p.url + '" style="display:block;padding:8px;"><img src="' + (p.image || '') + '" alt="" style="width:100%;max-height:140px;object-fit:contain;"><div style="font-size:12px;margin-top:6px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">' + (p.title || '') + '</div>' + (p.price ? '<div style="font-size:13px;font-weight:600;">' + p.price + '</div>' : '') + '</a></div>';
         }).join('');
         if (window.rvSwiper) window.rvSwiper.destroy(true, true);
         window.rvSwiper = new window.Swiper('.rv-swiper', {

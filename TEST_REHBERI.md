@@ -68,6 +68,50 @@ veya Partner Dashboard üzerinden extension’ı yayına al.
 
 ---
 
+### Sitede widget / ürün görünmüyorsa
+
+1. **Extension deploy edildi mi?**  
+   App embeds listesinde "Recently Viewed Products" **yoksa**, extension henüz deploy edilmemiştir. Aşağıdaki "App embeds'te görünmüyorsa" adımlarını uygula.
+
+2. **App embed açık mı?**  
+   **Online Store** → **Themes** → **Customize** → sol panel **App embeds** → **Recently Viewed Products** → **Enable** → **Save**.
+
+3. **En az bir ürün sayfası ziyaret edildi mi?**  
+   Widget, ziyaret edilen ürünleri tarayıcıda (localStorage) tutar. Önce mağaza ön yüzünde **bir ürün sayfasına** gir (örn. bir ürüne tıkla), sonra ana sayfaya veya başka sayfaya dön. Kenarda "Recently Viewed" çubuğu ve az önce baktığın ürün görünmeli. Hiç ürün sayfası açılmadıysa liste boş kalır (çubuk yine görünür, "Visit a product" yazabilir).
+
+4. **Hangi tema kullanılıyor?**  
+   Uygulama **tüm temalarda** Theme App Extension (App embed) ile çalışır. "test-data" dışındaki temalarda (Dawn vb.) widget'ı **sadece** App embeds'ten etkinleştirirsen görürsün; tema dosyasında snippet yoktur.
+
+#### App embeds'te "Recently Viewed Products" görünmüyorsa
+
+Extension'ı Shopify'a deploy etmen gerekir; deploy edilmeden tema editöründe listeye eklenmez.
+
+1. **Shopify CLI kurulu mu?**  
+   Terminalde: `shopify version`  
+   Yoksa: https://shopify.dev/docs/apps/tools/cli/installation (örn. `npm install -g @shopify/cli @shopify/theme` veya Windows için Shopify CLI indir).
+
+2. **Proje klasörüne gir ve uygulamaya bağlan:**  
+   ```bash
+   cd c:\Users\kemal\Desktop\SMPL\shopifyAppv2\recently-viewed-products-pro
+   shopify app config link
+   ```  
+   Açılan tarayıcıdan Partner hesabını ve **Recently Viewed Products Pro** uygulamasını seç. (Daha önce linklediysen bu adım atlanabilir.)
+
+3. **Theme App Extension'ı deploy et:**  
+   ```bash
+   shopify app deploy
+   ```  
+   Sorulursa "Deploy to production?" için **Yes** de. İşlem bittiğinde "Deployed to Shopify" benzeri bir mesaj görmelisin.
+
+4. **Tema editörünü yenile:**  
+   Shopify Admin → **Online Store** → **Themes** → **Customize**. Sol panelde **App embeds**'e tekrar gir; listede **Recently Viewed Products** (veya **Recently Viewed**) artık görünmeli. Enable → Save.
+
+**Not:** Deploy sadece extension'ı (widget kodunu) Shopify'a yükler; sunucu (Railway) ayrı çalışır. Deploy sonrası uygulama yüklü olan **tüm test mağazalarında** App embeds listesinde çıkar.
+
+**403 "You are not a member of the requested organization":** Giriş yaptığın Shopify hesabı, uygulamanın bağlı olduğu Partner organizasyonunda değil. Çözüm: (a) Uygulamanın sahibi olan Partner hesabıyla giriş yap (partners.shopify.com → sağ üstte hangi hesap/org görünüyor kontrol et), veya (b) O organizasyona seni "Staff" olarak eklesinler (Partner Dashboard → Settings → Users and permissions). Sonra `shopify auth logout` deyip tekrar `shopify app deploy` çalıştır.
+
+---
+
 ## 4. Billing API Testi
 
 **Amaç:** $2.99/ay plan ve 3 gün denemenin oluşturulduğunu ve onay sayfasına gidildiğini görmek.

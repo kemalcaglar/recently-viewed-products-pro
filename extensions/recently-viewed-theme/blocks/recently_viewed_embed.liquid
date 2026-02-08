@@ -12,7 +12,7 @@
   data-max-products="{{ block.settings.max_products }}"
   data-product-id="{% if product %}{{ product.id }}{% endif %}"
   data-product-title="{% if product %}{{ product.title | escape }}{% endif %}"
-  data-product-image="{% if product %}{{ product.featured_image | img_url: '300x300' }}{% endif %}"
+  data-product-image="{% if product %}{{ product.featured_image | image_url: width: 300 }}{% endif %}"
   data-product-url="{% if product %}{{ product.url }}{% endif %}"
   data-product-price="{% if product %}{{ product.price | money_without_currency }}{% endif %}"
   style="display: none;"
@@ -25,9 +25,6 @@
   "target": "body",
   "stylesheet": "recently-viewed-embed.css",
   "javascript": "recently-viewed-embed.js",
-  "disabled_on": {
-    "groups": ["checkout"]
-  },
   "settings": [
     {
       "type": "text",
