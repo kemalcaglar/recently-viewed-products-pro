@@ -1,0 +1,3250 @@
+[
+  {
+    "message": "Starting Container",
+    "attributes": {
+      "level": "info"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:30.000000000Z"
+  },
+  {
+    "message": "npm warn config production Use `--omit=dev` instead.",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:31.860095192Z"
+  },
+  {
+    "message": "",
+    "attributes": {
+      "level": "info"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:31.860101506Z"
+  },
+  {
+    "message": "> recently-viewed-products-pro@1.0.0 start",
+    "attributes": {
+      "level": "info"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:31.860107481Z"
+  },
+  {
+    "message": "> node webhook-server.js",
+    "attributes": {
+      "level": "info"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:31.860113870Z"
+  },
+  {
+    "message": "",
+    "attributes": {
+      "level": "info"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:31.860125491Z"
+  },
+  {
+    "message": "/app/webhook-server.js:141",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:31.860133366Z"
+  },
+  {
+    "message": "                                'Authorization': `Bearer ${ sessionToken }`",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:31.860139203Z"
+  },
+  {
+    "message": "                                                  ^^^^^^",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:31.860148340Z"
+  },
+  {
+    "message": "",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:31.860162292Z"
+  },
+  {
+    "message": "SyntaxError: Unexpected identifier 'Bearer'",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:31.860172519Z"
+  },
+  {
+    "message": "    at wrapSafe (node:internal/modules/cjs/loader:1469:18)",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:31.860177801Z"
+  },
+  {
+    "message": "    at Module._compile (node:internal/modules/cjs/loader:1491:20)",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:31.860183556Z"
+  },
+  {
+    "message": "    at Object..js (node:internal/modules/cjs/loader:1689:10)",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:31.860189171Z"
+  },
+  {
+    "message": "    at Module.load (node:internal/modules/cjs/loader:1318:32)",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:31.860194764Z"
+  },
+  {
+    "message": "    at Function._load (node:internal/modules/cjs/loader:1128:12)",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:31.860200309Z"
+  },
+  {
+    "message": "    at TracingChannel.traceSync (node:diagnostics_channel:315:14)",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:31.860206197Z"
+  },
+  {
+    "message": "    at wrapModuleLoad (node:internal/modules/cjs/loader:218:24)",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:31.860212171Z"
+  },
+  {
+    "message": "    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:170:5)",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:31.860218110Z"
+  },
+  {
+    "message": "    at node:internal/main/run_main_module:36:49",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:31.860224994Z"
+  },
+  {
+    "message": "",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:31.860230896Z"
+  },
+  {
+    "message": "Node.js v22.11.0",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:31.860236636Z"
+  },
+  {
+    "message": "    at Module._compile (node:internal/modules/cjs/loader:1491:20)",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:33.221208806Z"
+  },
+  {
+    "message": "    at Object..js (node:internal/modules/cjs/loader:1689:10)",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:33.221221176Z"
+  },
+  {
+    "message": "/app/webhook-server.js:141",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:33.221598946Z"
+  },
+  {
+    "message": "                                'Authorization': `Bearer ${ sessionToken }`",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:33.221605658Z"
+  },
+  {
+    "message": "                                                  ^^^^^^",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:33.221612610Z"
+  },
+  {
+    "message": "",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:33.221618970Z"
+  },
+  {
+    "message": "npm warn config production Use `--omit=dev` instead.",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:33.221637935Z"
+  },
+  {
+    "message": "",
+    "attributes": {
+      "level": "info"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:33.221644982Z"
+  },
+  {
+    "message": "> recently-viewed-products-pro@1.0.0 start",
+    "attributes": {
+      "level": "info"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:33.221651007Z"
+  },
+  {
+    "message": "> node webhook-server.js",
+    "attributes": {
+      "level": "info"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:33.221656806Z"
+  },
+  {
+    "message": "",
+    "attributes": {
+      "level": "info"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:33.221663036Z"
+  },
+  {
+    "message": "SyntaxError: Unexpected identifier 'Bearer'",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:33.221672831Z"
+  },
+  {
+    "message": "    at wrapSafe (node:internal/modules/cjs/loader:1469:18)",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:33.221680790Z"
+  },
+  {
+    "message": "    at Module.load (node:internal/modules/cjs/loader:1318:32)",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:33.224175772Z"
+  },
+  {
+    "message": "    at Function._load (node:internal/modules/cjs/loader:1128:12)",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:33.224187724Z"
+  },
+  {
+    "message": "    at TracingChannel.traceSync (node:diagnostics_channel:315:14)",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:33.224193387Z"
+  },
+  {
+    "message": "    at wrapModuleLoad (node:internal/modules/cjs/loader:218:24)",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:33.224198473Z"
+  },
+  {
+    "message": "    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:170:5)",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:33.224203559Z"
+  },
+  {
+    "message": "    at node:internal/main/run_main_module:36:49",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:33.224208942Z"
+  },
+  {
+    "message": "",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:33.224214114Z"
+  },
+  {
+    "message": "Node.js v22.11.0",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:33.224218717Z"
+  },
+  {
+    "message": "npm warn config production Use `--omit=dev` instead.",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:34.884444418Z"
+  },
+  {
+    "message": "",
+    "attributes": {
+      "level": "info"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:34.884450748Z"
+  },
+  {
+    "message": "> recently-viewed-products-pro@1.0.0 start",
+    "attributes": {
+      "level": "info"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:34.884456627Z"
+  },
+  {
+    "message": "> node webhook-server.js",
+    "attributes": {
+      "level": "info"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:34.884462449Z"
+  },
+  {
+    "message": "",
+    "attributes": {
+      "level": "info"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:34.884469187Z"
+  },
+  {
+    "message": "/app/webhook-server.js:141",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:34.884475969Z"
+  },
+  {
+    "message": "                                'Authorization': `Bearer ${ sessionToken }`",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:34.884481649Z"
+  },
+  {
+    "message": "                                                  ^^^^^^",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:34.884487608Z"
+  },
+  {
+    "message": "",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:34.884493812Z"
+  },
+  {
+    "message": "SyntaxError: Unexpected identifier 'Bearer'",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:34.884499678Z"
+  },
+  {
+    "message": "    at wrapSafe (node:internal/modules/cjs/loader:1469:18)",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:34.884505441Z"
+  },
+  {
+    "message": "    at Module._compile (node:internal/modules/cjs/loader:1491:20)",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:34.884511426Z"
+  },
+  {
+    "message": "    at Object..js (node:internal/modules/cjs/loader:1689:10)",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:34.884517668Z"
+  },
+  {
+    "message": "    at Module.load (node:internal/modules/cjs/loader:1318:32)",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:34.884523305Z"
+  },
+  {
+    "message": "    at Function._load (node:internal/modules/cjs/loader:1128:12)",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:34.884540157Z"
+  },
+  {
+    "message": "    at TracingChannel.traceSync (node:diagnostics_channel:315:14)",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:34.884547041Z"
+  },
+  {
+    "message": "    at wrapModuleLoad (node:internal/modules/cjs/loader:218:24)",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:34.884553100Z"
+  },
+  {
+    "message": "    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:170:5)",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:34.884559442Z"
+  },
+  {
+    "message": "    at node:internal/main/run_main_module:36:49",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:34.884565141Z"
+  },
+  {
+    "message": "",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:34.884571105Z"
+  },
+  {
+    "message": "Node.js v22.11.0",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:34.884577061Z"
+  },
+  {
+    "message": "npm warn config production Use `--omit=dev` instead.",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:36.420313595Z"
+  },
+  {
+    "message": "",
+    "attributes": {
+      "level": "info"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:36.420321274Z"
+  },
+  {
+    "message": "> recently-viewed-products-pro@1.0.0 start",
+    "attributes": {
+      "level": "info"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:36.420428295Z"
+  },
+  {
+    "message": "> node webhook-server.js",
+    "attributes": {
+      "level": "info"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:36.420436698Z"
+  },
+  {
+    "message": "",
+    "attributes": {
+      "level": "info"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:36.420443618Z"
+  },
+  {
+    "message": "/app/webhook-server.js:141",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:36.420453110Z"
+  },
+  {
+    "message": "                                'Authorization': `Bearer ${ sessionToken }`",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:36.420459533Z"
+  },
+  {
+    "message": "                                                  ^^^^^^",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:36.420466253Z"
+  },
+  {
+    "message": "",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:36.420471865Z"
+  },
+  {
+    "message": "SyntaxError: Unexpected identifier 'Bearer'",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:36.420479067Z"
+  },
+  {
+    "message": "    at wrapSafe (node:internal/modules/cjs/loader:1469:18)",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:36.420485811Z"
+  },
+  {
+    "message": "    at Module._compile (node:internal/modules/cjs/loader:1491:20)",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:36.420492256Z"
+  },
+  {
+    "message": "    at Object..js (node:internal/modules/cjs/loader:1689:10)",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:36.420498757Z"
+  },
+  {
+    "message": "    at Module.load (node:internal/modules/cjs/loader:1318:32)",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:36.420505509Z"
+  },
+  {
+    "message": "    at Function._load (node:internal/modules/cjs/loader:1128:12)",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:36.420511892Z"
+  },
+  {
+    "message": "    at TracingChannel.traceSync (node:diagnostics_channel:315:14)",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:36.420519054Z"
+  },
+  {
+    "message": "    at wrapModuleLoad (node:internal/modules/cjs/loader:218:24)",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:36.420524715Z"
+  },
+  {
+    "message": "    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:170:5)",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:36.420549798Z"
+  },
+  {
+    "message": "    at node:internal/main/run_main_module:36:49",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:36.420557202Z"
+  },
+  {
+    "message": "",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:36.420564496Z"
+  },
+  {
+    "message": "Node.js v22.11.0",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:36.420570706Z"
+  },
+  {
+    "message": "npm warn config production Use `--omit=dev` instead.",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:39.378179290Z"
+  },
+  {
+    "message": "",
+    "attributes": {
+      "level": "info"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:39.378188614Z"
+  },
+  {
+    "message": "> recently-viewed-products-pro@1.0.0 start",
+    "attributes": {
+      "level": "info"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:39.378196124Z"
+  },
+  {
+    "message": "> node webhook-server.js",
+    "attributes": {
+      "level": "info"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:39.378204581Z"
+  },
+  {
+    "message": "",
+    "attributes": {
+      "level": "info"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:39.378211575Z"
+  },
+  {
+    "message": "/app/webhook-server.js:141",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:39.378218665Z"
+  },
+  {
+    "message": "                                'Authorization': `Bearer ${ sessionToken }`",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:39.378225614Z"
+  },
+  {
+    "message": "                                                  ^^^^^^",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:39.378232291Z"
+  },
+  {
+    "message": "",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:39.378239163Z"
+  },
+  {
+    "message": "SyntaxError: Unexpected identifier 'Bearer'",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:39.378246299Z"
+  },
+  {
+    "message": "    at wrapSafe (node:internal/modules/cjs/loader:1469:18)",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:39.378253704Z"
+  },
+  {
+    "message": "    at Module._compile (node:internal/modules/cjs/loader:1491:20)",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:39.378260744Z"
+  },
+  {
+    "message": "    at Object..js (node:internal/modules/cjs/loader:1689:10)",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:39.378269004Z"
+  },
+  {
+    "message": "    at Module.load (node:internal/modules/cjs/loader:1318:32)",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:39.378275813Z"
+  },
+  {
+    "message": "    at Function._load (node:internal/modules/cjs/loader:1128:12)",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:39.378282586Z"
+  },
+  {
+    "message": "    at TracingChannel.traceSync (node:diagnostics_channel:315:14)",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:39.378288935Z"
+  },
+  {
+    "message": "    at wrapModuleLoad (node:internal/modules/cjs/loader:218:24)",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:39.378295593Z"
+  },
+  {
+    "message": "    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:170:5)",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:39.378302881Z"
+  },
+  {
+    "message": "    at node:internal/main/run_main_module:36:49",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:39.378309991Z"
+  },
+  {
+    "message": "",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:39.378316570Z"
+  },
+  {
+    "message": "Node.js v22.11.0",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:39.378323388Z"
+  },
+  {
+    "message": "npm warn config production Use `--omit=dev` instead.",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:40.745370364Z"
+  },
+  {
+    "message": "",
+    "attributes": {
+      "level": "info"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:40.745378683Z"
+  },
+  {
+    "message": "> recently-viewed-products-pro@1.0.0 start",
+    "attributes": {
+      "level": "info"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:40.745384742Z"
+  },
+  {
+    "message": "> node webhook-server.js",
+    "attributes": {
+      "level": "info"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:40.745392049Z"
+  },
+  {
+    "message": "",
+    "attributes": {
+      "level": "info"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:40.745400600Z"
+  },
+  {
+    "message": "/app/webhook-server.js:141",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:40.745410043Z"
+  },
+  {
+    "message": "                                'Authorization': `Bearer ${ sessionToken }`",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:40.745419339Z"
+  },
+  {
+    "message": "                                                  ^^^^^^",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:40.745425325Z"
+  },
+  {
+    "message": "",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:40.745432905Z"
+  },
+  {
+    "message": "SyntaxError: Unexpected identifier 'Bearer'",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:40.745443124Z"
+  },
+  {
+    "message": "    at wrapSafe (node:internal/modules/cjs/loader:1469:18)",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:40.745451120Z"
+  },
+  {
+    "message": "    at Module._compile (node:internal/modules/cjs/loader:1491:20)",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:40.745457794Z"
+  },
+  {
+    "message": "    at Object..js (node:internal/modules/cjs/loader:1689:10)",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:40.745468304Z"
+  },
+  {
+    "message": "    at Module.load (node:internal/modules/cjs/loader:1318:32)",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:40.745477615Z"
+  },
+  {
+    "message": "    at Function._load (node:internal/modules/cjs/loader:1128:12)",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:40.745484037Z"
+  },
+  {
+    "message": "    at TracingChannel.traceSync (node:diagnostics_channel:315:14)",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:40.745490891Z"
+  },
+  {
+    "message": "    at wrapModuleLoad (node:internal/modules/cjs/loader:218:24)",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:40.745497937Z"
+  },
+  {
+    "message": "    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:170:5)",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:40.745504708Z"
+  },
+  {
+    "message": "    at node:internal/main/run_main_module:36:49",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:40.745529109Z"
+  },
+  {
+    "message": "",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:40.745535905Z"
+  },
+  {
+    "message": "Node.js v22.11.0",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:40.745543316Z"
+  },
+  {
+    "message": "npm warn config production Use `--omit=dev` instead.",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:42.610576431Z"
+  },
+  {
+    "message": "",
+    "attributes": {
+      "level": "info"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:42.610583152Z"
+  },
+  {
+    "message": "> recently-viewed-products-pro@1.0.0 start",
+    "attributes": {
+      "level": "info"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:42.610589489Z"
+  },
+  {
+    "message": "> node webhook-server.js",
+    "attributes": {
+      "level": "info"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:42.610595734Z"
+  },
+  {
+    "message": "",
+    "attributes": {
+      "level": "info"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:42.610601164Z"
+  },
+  {
+    "message": "/app/webhook-server.js:141",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:42.610607246Z"
+  },
+  {
+    "message": "                                'Authorization': `Bearer ${ sessionToken }`",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:42.610613648Z"
+  },
+  {
+    "message": "                                                  ^^^^^^",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:42.610619930Z"
+  },
+  {
+    "message": "",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:42.610627171Z"
+  },
+  {
+    "message": "SyntaxError: Unexpected identifier 'Bearer'",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:42.610634108Z"
+  },
+  {
+    "message": "    at wrapSafe (node:internal/modules/cjs/loader:1469:18)",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:42.610640243Z"
+  },
+  {
+    "message": "    at Module._compile (node:internal/modules/cjs/loader:1491:20)",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:42.610648017Z"
+  },
+  {
+    "message": "    at Object..js (node:internal/modules/cjs/loader:1689:10)",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:42.610655127Z"
+  },
+  {
+    "message": "    at Module.load (node:internal/modules/cjs/loader:1318:32)",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:42.610662532Z"
+  },
+  {
+    "message": "    at Function._load (node:internal/modules/cjs/loader:1128:12)",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:42.610670913Z"
+  },
+  {
+    "message": "    at TracingChannel.traceSync (node:diagnostics_channel:315:14)",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:42.610677645Z"
+  },
+  {
+    "message": "    at wrapModuleLoad (node:internal/modules/cjs/loader:218:24)",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:42.610683958Z"
+  },
+  {
+    "message": "    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:170:5)",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:42.610690655Z"
+  },
+  {
+    "message": "    at node:internal/main/run_main_module:36:49",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:42.610697426Z"
+  },
+  {
+    "message": "",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:42.610704583Z"
+  },
+  {
+    "message": "Node.js v22.11.0",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:42.610712081Z"
+  },
+  {
+    "message": "npm warn config production Use `--omit=dev` instead.",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:44.957639687Z"
+  },
+  {
+    "message": "",
+    "attributes": {
+      "level": "info"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:44.957647612Z"
+  },
+  {
+    "message": "> recently-viewed-products-pro@1.0.0 start",
+    "attributes": {
+      "level": "info"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:44.957653686Z"
+  },
+  {
+    "message": "> node webhook-server.js",
+    "attributes": {
+      "level": "info"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:44.957660626Z"
+  },
+  {
+    "message": "",
+    "attributes": {
+      "level": "info"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:44.957666577Z"
+  },
+  {
+    "message": "/app/webhook-server.js:141",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:44.957673639Z"
+  },
+  {
+    "message": "                                'Authorization': `Bearer ${ sessionToken }`",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:44.957680075Z"
+  },
+  {
+    "message": "                                                  ^^^^^^",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:44.957687152Z"
+  },
+  {
+    "message": "",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:44.957693335Z"
+  },
+  {
+    "message": "SyntaxError: Unexpected identifier 'Bearer'",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:44.957699728Z"
+  },
+  {
+    "message": "    at wrapSafe (node:internal/modules/cjs/loader:1469:18)",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:44.957705882Z"
+  },
+  {
+    "message": "    at Module._compile (node:internal/modules/cjs/loader:1491:20)",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:44.962357654Z"
+  },
+  {
+    "message": "    at Object..js (node:internal/modules/cjs/loader:1689:10)",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:44.962371924Z"
+  },
+  {
+    "message": "    at Module.load (node:internal/modules/cjs/loader:1318:32)",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:44.962379036Z"
+  },
+  {
+    "message": "    at Function._load (node:internal/modules/cjs/loader:1128:12)",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:44.962384766Z"
+  },
+  {
+    "message": "    at TracingChannel.traceSync (node:diagnostics_channel:315:14)",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:44.962390470Z"
+  },
+  {
+    "message": "    at wrapModuleLoad (node:internal/modules/cjs/loader:218:24)",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:44.962396616Z"
+  },
+  {
+    "message": "    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:170:5)",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:44.962484029Z"
+  },
+  {
+    "message": "    at node:internal/main/run_main_module:36:49",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:44.962488233Z"
+  },
+  {
+    "message": "",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:44.962492545Z"
+  },
+  {
+    "message": "Node.js v22.11.0",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:44.962497276Z"
+  },
+  {
+    "message": "npm warn config production Use `--omit=dev` instead.",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:46.955035708Z"
+  },
+  {
+    "message": "",
+    "attributes": {
+      "level": "info"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:46.955045024Z"
+  },
+  {
+    "message": "> recently-viewed-products-pro@1.0.0 start",
+    "attributes": {
+      "level": "info"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:46.955062056Z"
+  },
+  {
+    "message": "> node webhook-server.js",
+    "attributes": {
+      "level": "info"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:46.955069764Z"
+  },
+  {
+    "message": "",
+    "attributes": {
+      "level": "info"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:46.955085812Z"
+  },
+  {
+    "message": "/app/webhook-server.js:141",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:46.955093506Z"
+  },
+  {
+    "message": "                                'Authorization': `Bearer ${ sessionToken }`",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:46.955101209Z"
+  },
+  {
+    "message": "                                                  ^^^^^^",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:46.955108606Z"
+  },
+  {
+    "message": "",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:46.957012325Z"
+  },
+  {
+    "message": "SyntaxError: Unexpected identifier 'Bearer'",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:46.957054166Z"
+  },
+  {
+    "message": "    at wrapSafe (node:internal/modules/cjs/loader:1469:18)",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:46.957061983Z"
+  },
+  {
+    "message": "    at Module._compile (node:internal/modules/cjs/loader:1491:20)",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:46.957071266Z"
+  },
+  {
+    "message": "    at Object..js (node:internal/modules/cjs/loader:1689:10)",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:46.957079102Z"
+  },
+  {
+    "message": "    at Module.load (node:internal/modules/cjs/loader:1318:32)",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:46.957087547Z"
+  },
+  {
+    "message": "    at Function._load (node:internal/modules/cjs/loader:1128:12)",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:46.957101680Z"
+  },
+  {
+    "message": "    at TracingChannel.traceSync (node:diagnostics_channel:315:14)",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:46.957110339Z"
+  },
+  {
+    "message": "    at wrapModuleLoad (node:internal/modules/cjs/loader:218:24)",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:46.957118065Z"
+  },
+  {
+    "message": "    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:170:5)",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:46.957128386Z"
+  },
+  {
+    "message": "    at node:internal/main/run_main_module:36:49",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:46.957135254Z"
+  },
+  {
+    "message": "",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:46.957141577Z"
+  },
+  {
+    "message": "Node.js v22.11.0",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:46.957151016Z"
+  },
+  {
+    "message": "    at node:internal/main/run_main_module:36:49",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:48.668462208Z"
+  },
+  {
+    "message": "",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:48.668477540Z"
+  },
+  {
+    "message": "Node.js v22.11.0",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:48.668488082Z"
+  },
+  {
+    "message": "npm warn config production Use `--omit=dev` instead.",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:48.668769136Z"
+  },
+  {
+    "message": "",
+    "attributes": {
+      "level": "info"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:48.668786463Z"
+  },
+  {
+    "message": "> recently-viewed-products-pro@1.0.0 start",
+    "attributes": {
+      "level": "info"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:48.668793894Z"
+  },
+  {
+    "message": "> node webhook-server.js",
+    "attributes": {
+      "level": "info"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:48.668801216Z"
+  },
+  {
+    "message": "",
+    "attributes": {
+      "level": "info"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:48.668807633Z"
+  },
+  {
+    "message": "/app/webhook-server.js:141",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:48.668813833Z"
+  },
+  {
+    "message": "                                'Authorization': `Bearer ${ sessionToken }`",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:48.668820779Z"
+  },
+  {
+    "message": "                                                  ^^^^^^",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:48.668826944Z"
+  },
+  {
+    "message": "",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:48.668832862Z"
+  },
+  {
+    "message": "SyntaxError: Unexpected identifier 'Bearer'",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:48.668838396Z"
+  },
+  {
+    "message": "    at wrapSafe (node:internal/modules/cjs/loader:1469:18)",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:48.668844105Z"
+  },
+  {
+    "message": "    at Module._compile (node:internal/modules/cjs/loader:1491:20)",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:48.668849830Z"
+  },
+  {
+    "message": "    at Object..js (node:internal/modules/cjs/loader:1689:10)",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:48.668855979Z"
+  },
+  {
+    "message": "    at Module.load (node:internal/modules/cjs/loader:1318:32)",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:48.668866285Z"
+  },
+  {
+    "message": "    at Function._load (node:internal/modules/cjs/loader:1128:12)",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:48.668874834Z"
+  },
+  {
+    "message": "    at TracingChannel.traceSync (node:diagnostics_channel:315:14)",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:48.668880857Z"
+  },
+  {
+    "message": "    at wrapModuleLoad (node:internal/modules/cjs/loader:218:24)",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:48.668886667Z"
+  },
+  {
+    "message": "    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:170:5)",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:48.668892201Z"
+  },
+  {
+    "message": "npm warn config production Use `--omit=dev` instead.",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:51.640836894Z"
+  },
+  {
+    "message": "",
+    "attributes": {
+      "level": "info"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:51.640850638Z"
+  },
+  {
+    "message": "Node.js v22.11.0",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:51.640870031Z"
+  },
+  {
+    "message": "    at Module._compile (node:internal/modules/cjs/loader:1491:20)",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:51.640876904Z"
+  },
+  {
+    "message": "    at Module.load (node:internal/modules/cjs/loader:1318:32)",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:51.640886110Z"
+  },
+  {
+    "message": "",
+    "attributes": {
+      "level": "info"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:51.640894587Z"
+  },
+  {
+    "message": "    at Function._load (node:internal/modules/cjs/loader:1128:12)",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:51.640895551Z"
+  },
+  {
+    "message": "    at Object..js (node:internal/modules/cjs/loader:1689:10)",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:51.640899947Z"
+  },
+  {
+    "message": "    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:170:5)",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:51.640904574Z"
+  },
+  {
+    "message": "/app/webhook-server.js:141",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:51.640906124Z"
+  },
+  {
+    "message": "    at node:internal/main/run_main_module:36:49",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:51.640914351Z"
+  },
+  {
+    "message": "                                'Authorization': `Bearer ${ sessionToken }`",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:51.640915827Z"
+  },
+  {
+    "message": "    at TracingChannel.traceSync (node:diagnostics_channel:315:14)",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:51.640916725Z"
+  },
+  {
+    "message": "> recently-viewed-products-pro@1.0.0 start",
+    "attributes": {
+      "level": "info"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:51.640922065Z"
+  },
+  {
+    "message": "SyntaxError: Unexpected identifier 'Bearer'",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:51.640923264Z"
+  },
+  {
+    "message": "",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:51.640925640Z"
+  },
+  {
+    "message": "    at wrapModuleLoad (node:internal/modules/cjs/loader:218:24)",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:51.640929678Z"
+  },
+  {
+    "message": "> node webhook-server.js",
+    "attributes": {
+      "level": "info"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:51.640932434Z"
+  },
+  {
+    "message": "    at wrapSafe (node:internal/modules/cjs/loader:1469:18)",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:51.640933000Z"
+  },
+  {
+    "message": "                                                  ^^^^^^",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:51.641178710Z"
+  },
+  {
+    "message": "",
+    "attributes": {
+      "level": "error"
+    },
+    "tags": {
+      "project": "9fbee062-1e78-4705-9f24-b8ad3a5d4344",
+      "environment": "cfcd12ad-2714-451d-b70b-60e3f01b9520",
+      "service": "b8ae4108-3020-43c9-bbd7-9e0a5454cf20",
+      "deployment": "be1f3890-bd02-4e01-99e0-e3a680c23560",
+      "replica": "257a208a-0a35-4e3f-9134-ebd59c5f34b4"
+    },
+    "timestamp": "2026-02-08T11:58:51.641193708Z"
+  }
+]

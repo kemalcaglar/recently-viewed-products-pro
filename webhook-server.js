@@ -39,7 +39,10 @@ app.get('/health', (req, res) => {
 });
 
 // Ana sayfa - App'in ana sayfası
+// UYARI: res.send() icindeki string template literal (backtick). Iceride backtick (`) veya
+// 'Authorization': `Bearer ${ sessionToken }` GIBI bir satir KULLANMA - SyntaxError olur.
 app.get('/', (req, res) => {
+    const apiKeyForBridge = process.env.SHOPIFY_API_KEY || 'your-api-key';
     res.send(`
     <!DOCTYPE html>
     <html lang="en">
@@ -325,7 +328,7 @@ app.get('/', (req, res) => {
         </button>
 
         <script>
-            // Initialize App Bridge
+            // Auth header: Dogru = 'Bearer ' + token  (backtick kullanma, SyntaxError olur)
             let appBridge = null;
             let isBridgeReady = false;
 
@@ -358,7 +361,7 @@ app.get('/', (req, res) => {
 
                     // Initialize App Bridge (apiKey = Shopify client_id)
                     appBridge = window.createApp({
-                        apiKey: '${process.env.SHOPIFY_API_KEY || 'your-api-key'}',
+                        apiKey: '${apiKeyForBridge}',
                         host: host,
                         forceRedirect: false
                     });
