@@ -43,6 +43,8 @@ app.get('/health', (req, res) => {
 // iceren template literal KULLANMA - SyntaxError: Unexpected identifier 'Bearer' olur.
 app.get('/', (req, res) => {
     const apiKeyForBridge = process.env.SHOPIFY_API_KEY || 'your-api-key';
+    const shop = (req.query.shop || '').toString();
+    const host = (req.query.host || '').toString();
     res.send(`
 <!DOCTYPE html>
 <html lang="en">
@@ -399,7 +401,7 @@ app.get('/', (req, res) => {
                 Highly customizable Recently Viewed Products Widget for Shopify.<br>
                 Boost conversions by showing customers what they've been browsing.
             </p>
-            <a href="/app/onboarding" class="cta-button">Go to onboarding</a>
+            <a href="#" id="btn-onboarding" class="cta-button" role="button">Go to onboarding</a>
         </div>
 
         <!-- Features Section -->
@@ -466,7 +468,7 @@ app.get('/', (req, res) => {
             <p class="support-text">
                 Questions, design request, feedback? Our team is happy to help.
             </p>
-            <a href="mailto:caglarkemalofficial@gmail.com" class="support-button">Send email to support</a>
+            <a href="#" id="btn-support" class="support-button" role="button">Send email to support</a>
         </div>
 
         <!-- Footer -->
@@ -474,6 +476,62 @@ app.get('/', (req, res) => {
             <p>© 2026 Recently Viewed Products Pro. All rights reserved.</p>
         </div>
     </div>
+    <script src="https://unpkg.com/@shopify/app-bridge@3/dist/index.global.js"></script>
+    <script>
+        (function() {
+            var shop = ${JSON.stringify(shop)};
+            var host = ${JSON.stringify(host)};
+            var apiKey = ${JSON.stringify(apiKeyForBridge)};
+            var supportEmail = 'caglarkemalofficial@gmail.com';
+
+            function initButtons() {
+                var btnOnboarding = document.getElementById('btn-onboarding');
+                var btnSupport = document.getElementById('btn-support');
+                if (btnOnboarding) {
+                    btnOnboarding.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        var appUrl = window.location.origin + window.location.pathname;
+                        if (shop) appUrl += '?shop=' + encodeURIComponent(shop);
+                        if (host) appUrl += (shop ? '&' : '?') + 'host=' + encodeURIComponent(host);
+                        if (typeof window.Shopify !== 'undefined' && host && window.createApp) {
+                            try {
+                                var app = window.createApp({ apiKey: apiKey, host: host });
+                                if (app && typeof app.redirect !== 'undefined' && app.redirect.dispatch) {
+                                    app.redirect.dispatch(app.redirect.Action.APP, appUrl);
+                                } else {
+                                    window.location.href = appUrl;
+                                }
+                            } catch (err) {
+                                window.location.href = appUrl;
+                            }
+                        } else {
+                            window.location.href = appUrl;
+                        }
+                    });
+                }
+                if (btnSupport) {
+                    btnSupport.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        try {
+                            var mailto = 'mailto:' + supportEmail + '?subject=Recently%20Viewed%20Products%20Pro%20Support';
+                            if (window.top && window.top !== window) {
+                                window.top.location.href = mailto;
+                            } else {
+                                window.location.href = mailto;
+                            }
+                        } catch (err) {
+                            window.open('mailto:' + supportEmail, '_blank');
+                        }
+                    });
+                }
+            }
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', initButtons);
+            } else {
+                initButtons();
+            }
+        })();
+    </script>
 </body>
 
 </html>
