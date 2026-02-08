@@ -1,0 +1,9 @@
+# Railway/Nixpacks build - npm uyarisini azaltmak icin
+[phases.setup]
+nixPkgs = ["nodejs_22"]
+
+[phases.install]
+cmds = ["npm install --omit=dev"]
+
+[variables]
+NODE_ENV = "production"

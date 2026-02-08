@@ -39,8 +39,8 @@ app.get('/health', (req, res) => {
 });
 
 // Ana sayfa - App'in ana sayfası
-// UYARI: res.send() icindeki string template literal (backtick). Iceride backtick (`) veya
-// 'Authorization': `Bearer ${ sessionToken }` GIBI bir satir KULLANMA - SyntaxError olur.
+// UYARI: res.send() icindeki string icinde backtick veya Authorization Bearer sessionToken
+// iceren template literal KULLANMA - SyntaxError: Unexpected identifier 'Bearer' olur.
 app.get('/', (req, res) => {
     const apiKeyForBridge = process.env.SHOPIFY_API_KEY || 'your-api-key';
     res.send(`
