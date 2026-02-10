@@ -1,10 +1,120 @@
 /**
- * Recently Viewed Products - Theme App Extension
- * Tüm temalarda çalışır; localStorage key: recentlyViewedProducts
+ * KEDA Recently Viewed Products - Theme App Extension
+ * Tüm temalarda çalışır; localStorage key: kedaRecentlyViewedProducts
  */
-(function() {
-  const STORAGE_KEY = 'recentlyViewedProducts';
+(function () {
+  const STORAGE_KEY = 'kedaRecentlyViewedProducts';
   const MAX_PRODUCTS = 10;
+  const SCENARIO_NAME = 'keda-recently-viewed';
+
+  // Utility object for event tracking and storage management
+  const kedaObj = {
+    scenarioClass: `.${SCENARIO_NAME}`,
+    scenarioName: SCENARIO_NAME,
+
+    setCookie: function (cname, cvalue, min) {
+      const d = new Date();
+      d.setTime(d.getTime() + min * 60 * 1000);
+      const expires = "expires=" + d.toUTCString();
+      document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+    },
+
+    getCookie: function (name) {
+      const nameEQ = name + "=";
+      const ca = document.cookie.split(";");
+      for (let i = 0; i < ca.length; i++) {
+        let c = ca[i];
+        while (c.charAt(0) === " ") c = c.substring(1, c.length);
+        if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
+      }
+      return null;
+    },
+
+    debounce: function (func, timeout) {
+      let timer;
+      return function (...args) {
+        const context = this;
+        clearTimeout(timer);
+        timer = setTimeout(() => func.apply(context, args), timeout);
+      };
+    },
+
+    getSessionId: function () {
+      const storageKey = "keda_global_sessionId";
+      const sessionTimeout = 30 * 60 * 1000; // 30 dakika
+
+      try {
+        const sessionData = localStorage.getItem(storageKey);
+        let sessionId = null;
+        let sessionStartTime = null;
+
+        if (sessionData) {
+          try {
+            const parsed = JSON.parse(sessionData);
+            sessionId = parsed.sessionId;
+            sessionStartTime = parsed.startTime;
+          } catch (e) {
+            sessionId = sessionData;
+            sessionStartTime = Date.now();
+          }
+        }
+
+        const now = Date.now();
+        const isSessionExpired = sessionStartTime && (now - sessionStartTime > sessionTimeout);
+
+        if (!sessionId || sessionId === '' || sessionId === null || sessionId === undefined || isSessionExpired) {
+          sessionId = 'keda-' + Math.random().toString(36).substr(2, 9) + '-' + Date.now().toString(36);
+          sessionStartTime = now;
+
+          localStorage.setItem(storageKey, JSON.stringify({
+            sessionId: sessionId,
+            startTime: sessionStartTime
+          }));
+        }
+
+        return sessionId;
+      } catch (e) {
+        console.warn('localStorage kullanılamıyor, sessionStorage kullanılıyor:', e);
+        let sessionId = sessionStorage.getItem("kedaSessionId");
+        if (!sessionId) {
+          sessionId = 'keda-' + Math.random().toString(36).substr(2, 9) + '-' + Date.now().toString(36);
+          sessionStorage.setItem("kedaSessionId", sessionId);
+        }
+        return sessionId;
+      }
+    },
+
+    addRobustEventListener: function (element, callback) {
+      if (!element) return;
+
+      element.addEventListener('click', (e) => {
+        if (e.button === 0) {
+          callback(e);
+        }
+      });
+
+      element.addEventListener('auxclick', (e) => {
+        if (e.button === 1) {
+          callback(e);
+        }
+      });
+
+      let mousedownTime = 0;
+      element.addEventListener('mousedown', (e) => {
+        mousedownTime = Date.now();
+      });
+
+      element.addEventListener('mouseup', (e) => {
+        if (Date.now() - mousedownTime < 100) {
+          callback(e);
+        }
+      });
+
+      element.addEventListener('touchend', (e) => {
+        callback(e);
+      });
+    }
+  };
 
   function getConfig() {
     const el = document.getElementById('recently-viewed-app-embed');
@@ -18,7 +128,23 @@
       productTitle: el.dataset.productTitle || '',
       productImage: el.dataset.productImage || '',
       productUrl: el.dataset.productUrl || '',
-      productPrice: el.dataset.productPrice || ''
+      productPrice: el.dataset.productPrice || '',
+      buttonColor: el.dataset.buttonColor || '#ec621d',
+      buttonHoverColor: el.dataset.buttonHoverColor || '#000000',
+      textSize: parseInt(el.dataset.textSize, 10) || 13,
+      textColor: el.dataset.textColor || '#000000',
+      textBackgroundColor: el.dataset.textBackgroundColor || '#ffffff',
+      textFontWeight: el.dataset.textFontWeight || '600',
+      triggerLeftBoxShadow: el.dataset.triggerLeftBoxShadow || '0px 7px 29px 0px rgba(100, 100, 111, 0.2)',
+      triggerRightBoxShadow: el.dataset.triggerRightBoxShadow || '0px 7px 29px 0px rgba(100, 100, 111, 0.2)',
+      sliderBackgroundColor: el.dataset.sliderBackgroundColor || '#ffffff',
+      triggerSliderBoxShadow: el.dataset.triggerSliderBoxShadow || '0px 2px 8px 0px rgba(99, 99, 99, 0.2)',
+      closeIcon: el.dataset.closeIcon || '',
+      upIcon: el.dataset.upIcon || '',
+      downIcon: el.dataset.downIcon || '',
+      expandIcon: el.dataset.expandIcon || '',
+      collapseIcon: el.dataset.collapseIcon || '',
+      closeShowTime: parseInt(el.dataset.closeShowTime, 10) || 1440 // minutes
     };
   }
 
@@ -42,125 +168,375 @@
       image: config.productImage,
       url: config.productUrl,
       price: config.productPrice,
+      compare_at_price: config.productComparePrice || '',
       timestamp: new Date().toISOString()
     };
-    const list = getRecentProducts().filter(function(p) { return p.id !== current.id; });
+    const list = getRecentProducts().filter(function (p) { return p.id !== current.id; });
     list.unshift(current);
     saveRecentProducts(list);
   }
 
-  function loadSwiper(callback) {
-    if (window.Swiper) {
-      callback();
-      return;
+  const setLocalStorageWithExpiry = (key, value, expiryInMinutes) => {
+    const now = new Date();
+    const item = {
+      value: value,
+      expiry: now.getTime() + expiryInMinutes * 60 * 1000,
+    };
+    localStorage.setItem(key, JSON.stringify(item));
+  };
+
+  const getLocalStorageWithExpiry = (key) => {
+    const itemStr = localStorage.getItem(key);
+    if (!itemStr) return null;
+    const item = JSON.parse(itemStr);
+    const now = new Date();
+    if (now.getTime() > item.expiry) {
+      localStorage.removeItem(key);
+      return null;
     }
-    var link = document.createElement('link');
-    link.rel = 'stylesheet';
-    link.href = 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css';
-    document.head.appendChild(link);
-    var script = document.createElement('script');
-    script.src = 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js';
-    script.onload = callback;
-    document.head.appendChild(script);
-  }
+    return item.value;
+  };
+
+  // HTML generation functions
+  const html = {
+    init: function (products, config) {
+      return (`
+        <div class="${SCENARIO_NAME}">
+          ${this.trigger(products, config)}
+          ${this.popup(products, config)}
+        </div>
+      `);
+    },
+    trigger: function (products, config) {
+      return (`
+        <div class="${SCENARIO_NAME}_trigger">
+          <span class="keda-recently_close">
+            <img src="${config.closeIcon}" alt="close" />
+          </span>
+          <div class="keda-recently_content">
+            ${this.triggerLeft(config)}
+            <div class="keda-recently_right">
+              <div class="keda-recently_trigger_slider">
+                ${this.triggerRight(products)}
+              </div>
+            </div>
+          </div>
+        </div>
+      `);
+    },
+    triggerRight: function (products) {
+      let html = '';
+      products.forEach((product, i) => {
+        if (product === undefined) return;
+        html += (`
+          <div class="keda-recently_trigger_product">
+            <a href="${product.url}" target="_blank">
+              <img src="${product.image}" alt="${product.title}" />
+            </a>
+          </div>
+        `);
+      });
+      return html;
+    },
+    triggerLeft: function (config) {
+      const {
+        title,
+        upIcon,
+        downIcon,
+        expandIcon,
+      } = config;
+      return (`
+        <div class="keda-recently_left">
+          <div class="keda-recently_title">
+            ${title}
+          </div>
+          <div class="keda-recently_actions">
+            <span class="keda-recently_expand">
+              <img src="/extensions/recently-viewed-theme/assets/img/expandButton.png" alt="expand" />
+            </span>
+            <span class="keda-recently_up">
+              <img src="/extensions/recently-viewed-theme/assets/img/upButton.png" alt="up" />
+            </span>
+            <span class="keda-recently_down">
+              <img src="/extensions/recently-viewed-theme/assets/img/downButton.png" alt="down" />
+            </span>
+          </div>
+        </div>
+      `);
+    },
+    popup: function (products, config) {
+      const { title } = config;
+      return (`
+        <div class="${SCENARIO_NAME}_popup">
+          <div class="keda-recently_content">
+            <div class="keda-recently_recommend">
+              <div class="keda-recently_title">
+                <span>${title}</span>
+                <span class="keda-recently_close">Kapat</span>
+              </div>
+              <div class="keda-recently_products owl-carousel">
+                ${this.popupProducts(products)}
+              </div>
+            </div>
+          </div>
+        </div>
+      `);
+    },
+    popupProducts: function (products) {
+      let html = '';
+      products.forEach((product, i) => {
+        if (product === undefined) return;
+        let {
+          title,
+          image,
+          price,
+          compare_at_price,
+          url
+        } = product;
+        const hasDiscount =
+          compare_at_price &&
+          Number(compare_at_price) > Number(price);
+        html += (`
+          <div class="keda-recently_product">
+            <a href="${url}" target="_blank">
+              <img src="${image}" alt="${title}" />
+            </a>
+            <div class="keda-recently_product_info">
+              <a href="${url}" target="_blank">
+                <div class="keda-recently_product_title">${title}</div>
+              </a>
+               <div class="keda-recently_price_container">
+                ${hasDiscount ? `<div class="keda-recently_discount_price">${compare_at_price} TL</div>` : ``}
+                <div class="keda-recently_price">${price} TL</div>
+              </div>
+            </div>
+          </div>
+        `);
+      });
+      return html;
+    },
+  };
+
+  const navigation = (direction, config) => {
+    const target = document.querySelector(`${kedaObj.scenarioClass}_trigger`)
+      .classList.contains("active") ? 1 : 2;
+    if (target === 1) {
+      const dots = document.querySelectorAll(`${kedaObj.scenarioClass}_popup .owl-dot`);
+      const activeIndex = Array.from(dots).findIndex((dot) => dot.classList.contains('active'));
+      if (activeIndex !== -1) {
+        let target_index = 0;
+        if (direction == "prev" && activeIndex == 0) {
+          target_index = dots.length - 1;
+        } else if (direction == "next" && activeIndex == dots.length - 1) {
+          target_index = 0;
+        } else {
+          target_index = direction == "next" ? activeIndex + 1 : activeIndex - 1;
+        }
+        dots[target_index].click();
+      }
+    } else if (target === 2) {
+      const container = document.querySelector(`${kedaObj.scenarioClass}_trigger .keda-recently_trigger_slider`);
+      const containerHeight = container.scrollHeight;
+      const containerScroll = container.scrollTop;
+      const sliceHeight = 242;
+
+      if (direction === 'prev') {
+        if (containerScroll >= sliceHeight) {
+          container.scrollTop -= sliceHeight;
+        } else {
+          container.scrollTop = container.scrollHeight - container.clientHeight;
+        }
+      } else if (
+        direction === 'next'
+        && (containerHeight - containerScroll <= container.getBoundingClientRect().height + 10)
+      ) {
+        container.scrollTop = 0;
+      } else {
+        container.scrollTop += sliceHeight;
+      }
+    }
+  };
+
+  const triggerEvents = (config) => {
+    const main = document.querySelector(kedaObj.scenarioClass);
+    const trigger = document.querySelector(`${kedaObj.scenarioClass}_trigger`);
+    const popup = document.querySelector(`${kedaObj.scenarioClass}_popup`);
+    const close = trigger.querySelector('.keda-recently_close');
+    const expand = trigger.querySelector('.keda-recently_expand');
+    const up = trigger.querySelector('.keda-recently_up');
+    const down = trigger.querySelector('.keda-recently_down');
+    const title = trigger.querySelector(".keda-recently_title");
+
+    const isCloseName = `keda_${kedaObj.scenarioName}_close`;
+
+    close.addEventListener('click', () => {
+      main.remove();
+      setLocalStorageWithExpiry(isCloseName, true, config.closeShowTime);
+    });
+
+    expand.addEventListener('click', () => {
+      trigger.classList.toggle('active');
+      popup.classList.toggle('active');
+      expand.querySelector('img').src =
+        trigger.classList.contains('active')
+          ? config.collapseIcon
+          : config.expandIcon;
+    });
+
+    title.addEventListener('click', () => {
+      trigger.classList.toggle('active');
+      popup.classList.toggle('active');
+      expand.querySelector('img').src =
+        trigger.classList.contains('active')
+          ? config.collapseIcon
+          : config.expandIcon;
+    });
+
+    up.addEventListener('click', () => {
+      navigation('prev', config);
+    });
+
+    down.addEventListener('click', () => {
+      navigation('next', config);
+    });
+  };
+
+  const triggerStart = (shownProducts, config) => {
+    document.body.insertAdjacentHTML('beforeend', html.init(shownProducts, config));
+    triggerEvents(config);
+  };
+
+  const popupStart = (config) => {
+    const main = document.querySelector(kedaObj.scenarioClass);
+    const popup = document.querySelector(`${kedaObj.scenarioClass}_popup`);
+    const slider = popup.querySelector('.keda-recently_products');
+    const links = popup.querySelectorAll('.keda-recently_product a');
+    const images = popup.querySelectorAll('.keda-recently_product img');
+
+    const popupOwlSettings = {
+      items: 1,
+      loop: true,
+      margin: 0,
+      nav: false,
+      dots: true,
+      autoplay: false,
+      autoplayTimeout: 3000,
+      autoplayHoverPause: true,
+      dotsEach: window.innerWidth <= 768 ? 1 : 3,
+      responsive: {
+        0: {
+          items: 1,
+          margin: 0,
+        },
+        768: {
+          items: 3,
+          margin: 10,
+        },
+      },
+    };
+
+    jQuery(slider).owlCarousel(popupOwlSettings);
+
+    const close = popup.querySelector('.keda-recently_close');
+    const isCloseName = `keda_${kedaObj.scenarioName}_close`;
+
+    close.addEventListener('click', () => {
+      main.remove();
+      setLocalStorageWithExpiry(isCloseName, true, config.closeShowTime);
+    });
+
+    links.forEach((link) => {
+      link.addEventListener('click', () => {
+        console.log('Product clicked');
+      });
+    });
+
+    images.forEach((image) => {
+      image.addEventListener('click', () => {
+        console.log('Product image clicked');
+      });
+    });
+  };
+
+  const checkOwlCarousel = (config) => {
+    const start = () => {
+      const recent = getRecentProducts();
+      if (recent.length === 0) return;
+
+      const isCloseName = `keda_${kedaObj.scenarioName}_close`;
+      const closeTime = getLocalStorageWithExpiry(isCloseName);
+      if (closeTime) return;
+
+      triggerStart(recent, config);
+      popupStart(config);
+    };
+
+    if (window.jQuery && window.jQuery.fn.owlCarousel) {
+      start();
+    } else {
+      const loadScript = (src) => {
+        return new Promise((resolve, reject) => {
+          const script = document.createElement('script');
+          script.src = src;
+          script.classList.add('keda-recently-owl-carousel');
+          script.onload = () => resolve(script);
+          script.onerror = () => reject(new Error(`Script load error: ${src}`));
+          document.head.appendChild(script);
+        });
+      };
+
+      loadScript('https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js')
+        .then(() => {
+          const link = document.createElement('link');
+          link.rel = 'stylesheet';
+          link.href = 'https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.css';
+          document.head.appendChild(link);
+          start();
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    }
+  };
+
+  const checkJquery = (config) => {
+    if (window.jQuery) {
+      checkOwlCarousel(config);
+      return true;
+    } else {
+      const loadScript = (src) => {
+        return new Promise((resolve, reject) => {
+          const script = document.createElement('script');
+          script.src = src;
+          script.classList.add('keda-recently-jquery');
+          script.onload = () => resolve(script);
+          script.onerror = () => reject(new Error(`Script load error: ${src}`));
+          document.head.appendChild(script);
+        });
+      };
+
+      loadScript('https://code.jquery.com/jquery-3.6.4.min.js')
+        .then(() => {
+          checkOwlCarousel(config);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    }
+  };
 
   function init() {
-    var config = getConfig();
+    const config = getConfig();
     if (!config) return;
 
     trackCurrentProduct(config);
-    var recent = getRecentProducts();
+    checkJquery(config);
 
-    var root = document.getElementById('recently-viewed-app-embed');
-    root.style.display = '';
-
-    var isLeft = config.position === 'left';
-    var posCss = isLeft ? 'left: 0' : 'right: 0';
-    var flexDir = isLeft ? 'row-reverse' : 'row';
-
-    var closedHtml =
-      '<div id="rv-embed-closed" class="rv-embed-closed" style="position:fixed;' + posCss + ';top:' + config.vertical + '%;transform:translateY(-50%);z-index:1000;display:flex;' + (isLeft ? 'flex-direction:row-reverse' : 'flex-direction:row') + ';align-items:stretch;min-height:220px;box-shadow:0 4px 12px rgba(0,0,0,0.15);">' +
-      '<div class="rv-embed-side" style="display:flex;flex-direction:column;align-items:center;background:#000;min-height:220px;">' +
-      '<div class="rv-embed-title" style="writing-mode:vertical-rl;text-orientation:mixed;padding:1rem 0;color:#fff;font-size:14px;font-weight:600;">' + (config.title || 'Recently Viewed') + '</div>' +
-      '<div style="display:flex;flex-direction:column;">' +
-      '<button type="button" id="rv-embed-expand" style="background:#000;border:none;color:#fff;padding:8px;cursor:pointer;" title="Expand">&#9654;</button>' +
-      '<button type="button" id="rv-embed-up" style="background:#000;border:none;color:#fff;padding:4px;cursor:pointer;">&#9650;</button>' +
-      '<button type="button" id="rv-embed-down" style="background:#000;border:none;color:#fff;padding:4px;cursor:pointer;">&#9660;</button>' +
-      '</div></div>' +
-      '<div id="rv-embed-thumbnails" class="rv-embed-thumbnails" style="display:flex;flex-direction:column;gap:6px;background:#f5f5f5;padding:8px;min-width:70px;align-items:center;justify-content:center;"></div>' +
-      '</div>';
-
-    var popupHtml =
-      '<div id="rv-embed-popup" class="rv-embed-popup" style="display:none;position:fixed;top:50%;' + (isLeft ? 'left' : 'right') + ':10px;transform:translateY(-50%);width:min(90vw,400px);max-height:360px;background:#fff;z-index:10001;box-shadow:0 4px 20px rgba(0,0,0,0.2);border-radius:8px;overflow:hidden;flex-direction:column;">' +
-      '<div style="display:flex;justify-content:space-between;align-items:center;padding:12px 16px;border-bottom:1px solid #eee;">' +
-      '<h3 style="margin:0;font-size:16px;">' + (config.title || 'Recently Viewed') + '</h3>' +
-      '<button type="button" id="rv-embed-close-popup" style="background:none;border:none;cursor:pointer;text-decoration:underline;font-size:14px;">Close</button>' +
-      '</div>' +
-      '<div class="swiper rv-swiper" style="flex:1;padding:12px;height:260px;">' +
-      '<div class="swiper-wrapper" id="rv-swiper-wrapper"></div>' +
-      '<div class="swiper-pagination" id="rv-swiper-pagination"></div>' +
-      '</div></div>';
-
-    root.insertAdjacentHTML('afterend', closedHtml + popupHtml);
-
-    var closed = document.getElementById('rv-embed-closed');
-    var popup = document.getElementById('rv-embed-popup');
-    var thumbnails = document.getElementById('rv-embed-thumbnails');
-    var wrapper = document.getElementById('rv-swiper-wrapper');
-    var slideIndex = 0;
-    var maxVisible = 3;
-
-    function renderThumbnails() {
-      var list = getRecentProducts();
-      if (list.length === 0) {
-        thumbnails.innerHTML = '<span style="font-size:11px;color:#888;padding:8px;text-align:center;">Visit a product</span>';
-        return;
+    // Listen for storage changes
+    window.addEventListener('storage', function (e) {
+      if (e.key === STORAGE_KEY) {
+        // Reload the widget if needed
       }
-      thumbnails.innerHTML = list.slice(0, 5).map(function(p) {
-        return '<a href="' + p.url + '" style="width:50px;height:50px;border-radius:4px;overflow:hidden;display:block;"><img src="' + (p.image || '') + '" alt="" style="width:100%;height:100%;object-fit:cover;"></a>';
-      }).join('');
-    }
-
-    function openPopup() {
-      loadSwiper(function() {
-        var list = getRecentProducts();
-        if (list.length === 0) {
-          wrapper.innerHTML = '<div style="padding:24px;text-align:center;color:#666;font-size:14px;">No recently viewed products yet. Visit a product page to see it here.</div>';
-          if (window.rvSwiper) window.rvSwiper.destroy(true, true);
-          popup.style.display = 'flex';
-          return;
-        }
-        wrapper.innerHTML = list.map(function(p) {
-          return '<div class="swiper-slide" style="text-align:center;"><a href="' + p.url + '" style="display:block;padding:8px;"><img src="' + (p.image || '') + '" alt="" style="width:100%;max-height:140px;object-fit:contain;"><div style="font-size:12px;margin-top:6px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">' + (p.title || '') + '</div>' + (p.price ? '<div style="font-size:13px;font-weight:600;">' + p.price + '</div>' : '') + '</a></div>';
-        }).join('');
-        if (window.rvSwiper) window.rvSwiper.destroy(true, true);
-        window.rvSwiper = new window.Swiper('.rv-swiper', {
-          slidesPerView: 2,
-          spaceBetween: 10,
-          pagination: { el: '#rv-swiper-pagination', clickable: true },
-          breakpoints: { 480: { slidesPerView: 2 }, 768: { slidesPerView: 3 } }
-        });
-        popup.style.display = 'flex';
-      });
-    }
-
-    function closePopup() {
-      popup.style.display = 'none';
-    }
-
-    document.getElementById('rv-embed-expand').addEventListener('click', openPopup);
-    document.getElementById('rv-embed-close-popup').addEventListener('click', closePopup);
-
-    document.getElementById('rv-embed-up').addEventListener('click', function() {
-      if (window.rvSwiper && popup.style.display === 'flex') window.rvSwiper.slidePrev();
-    });
-    document.getElementById('rv-embed-down').addEventListener('click', function() {
-      if (window.rvSwiper && popup.style.display === 'flex') window.rvSwiper.slideNext();
-    });
-
-    renderThumbnails();
-    window.addEventListener('storage', function(e) {
-      if (e.key === STORAGE_KEY) renderThumbnails();
     });
   }
 
