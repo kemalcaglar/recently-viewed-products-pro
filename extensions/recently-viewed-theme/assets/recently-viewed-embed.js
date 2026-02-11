@@ -8,112 +8,9 @@
   const SCENARIO_NAME = 'keda-recently-viewed';
 
   // Utility object for event tracking and storage management
-  const kedaObj = {
+  const recentlyViewedObj = {
     scenarioClass: `.${SCENARIO_NAME}`,
-    scenarioName: SCENARIO_NAME,
-
-    setCookie: function (cname, cvalue, min) {
-      const d = new Date();
-      d.setTime(d.getTime() + min * 60 * 1000);
-      const expires = "expires=" + d.toUTCString();
-      document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
-    },
-
-    getCookie: function (name) {
-      const nameEQ = name + "=";
-      const ca = document.cookie.split(";");
-      for (let i = 0; i < ca.length; i++) {
-        let c = ca[i];
-        while (c.charAt(0) === " ") c = c.substring(1, c.length);
-        if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
-      }
-      return null;
-    },
-
-    debounce: function (func, timeout) {
-      let timer;
-      return function (...args) {
-        const context = this;
-        clearTimeout(timer);
-        timer = setTimeout(() => func.apply(context, args), timeout);
-      };
-    },
-
-    getSessionId: function () {
-      const storageKey = "keda_global_sessionId";
-      const sessionTimeout = 30 * 60 * 1000; // 30 dakika
-
-      try {
-        const sessionData = localStorage.getItem(storageKey);
-        let sessionId = null;
-        let sessionStartTime = null;
-
-        if (sessionData) {
-          try {
-            const parsed = JSON.parse(sessionData);
-            sessionId = parsed.sessionId;
-            sessionStartTime = parsed.startTime;
-          } catch (e) {
-            sessionId = sessionData;
-            sessionStartTime = Date.now();
-          }
-        }
-
-        const now = Date.now();
-        const isSessionExpired = sessionStartTime && (now - sessionStartTime > sessionTimeout);
-
-        if (!sessionId || sessionId === '' || sessionId === null || sessionId === undefined || isSessionExpired) {
-          sessionId = 'keda-' + Math.random().toString(36).substr(2, 9) + '-' + Date.now().toString(36);
-          sessionStartTime = now;
-
-          localStorage.setItem(storageKey, JSON.stringify({
-            sessionId: sessionId,
-            startTime: sessionStartTime
-          }));
-        }
-
-        return sessionId;
-      } catch (e) {
-        console.warn('localStorage kullanılamıyor, sessionStorage kullanılıyor:', e);
-        let sessionId = sessionStorage.getItem("kedaSessionId");
-        if (!sessionId) {
-          sessionId = 'keda-' + Math.random().toString(36).substr(2, 9) + '-' + Date.now().toString(36);
-          sessionStorage.setItem("kedaSessionId", sessionId);
-        }
-        return sessionId;
-      }
-    },
-
-    addRobustEventListener: function (element, callback) {
-      if (!element) return;
-
-      element.addEventListener('click', (e) => {
-        if (e.button === 0) {
-          callback(e);
-        }
-      });
-
-      element.addEventListener('auxclick', (e) => {
-        if (e.button === 1) {
-          callback(e);
-        }
-      });
-
-      let mousedownTime = 0;
-      element.addEventListener('mousedown', (e) => {
-        mousedownTime = Date.now();
-      });
-
-      element.addEventListener('mouseup', (e) => {
-        if (Date.now() - mousedownTime < 100) {
-          callback(e);
-        }
-      });
-
-      element.addEventListener('touchend', (e) => {
-        callback(e);
-      });
-    }
+    scenarioName: SCENARIO_NAME
   };
 
   function getConfig() {
@@ -144,7 +41,31 @@
       downIcon: el.dataset.downIcon || '',
       expandIcon: el.dataset.expandIcon || '',
       collapseIcon: el.dataset.collapseIcon || '',
-      closeShowTime: parseInt(el.dataset.closeShowTime, 10) || 1440 // minutes
+      closeShowTime: parseInt(el.dataset.closeShowTime, 10) || 1440, // minutes
+      // Popup settings
+      popupBgColor: el.dataset.popupBgColor || '#ffffff',
+      popupBoxShadow: el.dataset.popupBoxShadow || '0px 7px 29px 0px rgba(100, 100, 111, 0.2)',
+      popupTitleSize: el.dataset.popupTitleSize || '18px',
+      popupTitleWeight: el.dataset.popupTitleWeight || '600',
+      popupTitleColor: el.dataset.popupTitleColor || '#000000',
+      popupCloseSize: el.dataset.popupCloseSize || '14px',
+      popupCloseWeight: el.dataset.popupCloseWeight || '400',
+      popupCloseColor: el.dataset.popupCloseColor || '#666666',
+      popupProductTitleSize: el.dataset.popupProductTitleSize || '14px',
+      popupProductTitleWeight: el.dataset.popupProductTitleWeight || '400',
+      popupProductTitleColor: el.dataset.popupProductTitleColor || '#000000',
+      popupProductTitleLines: el.dataset.popupProductTitleLines || '2',
+      popupPriceSize: el.dataset.popupPriceSize || '16px',
+      popupPriceWeight: el.dataset.popupPriceWeight || '600',
+      popupPriceColor: el.dataset.popupPriceColor || '#ec621d',
+      popupDiscountedPriceSize: el.dataset.popupDiscountedPriceSize || '12px',
+      popupDiscountedPriceWeight: el.dataset.popupDiscountedPriceWeight || '400',
+      popupDiscountedPriceColor: el.dataset.popupDiscountedPriceColor || '#999999',
+      popupDotWidth: el.dataset.popupDotWidth || '8px',
+      popupDotHeight: el.dataset.popupDotHeight || '8px',
+      popupDotColor: el.dataset.popupDotColor || '#dddddd',
+      popupDotActiveColor: el.dataset.popupDotActiveColor || '#ec621d',
+      popupDotRadius: el.dataset.popupDotRadius || '50%'
     };
   }
 
@@ -252,13 +173,13 @@
           </div>
           <div class="keda-recently_actions">
             <span class="keda-recently_expand">
-              <img src="/extensions/recently-viewed-theme/assets/img/expandButton.png" alt="expand" />
+              <img src="${expandIcon}" alt="expand" />
             </span>
             <span class="keda-recently_up">
-              <img src="/extensions/recently-viewed-theme/assets/img/upButton.png" alt="up" />
+              <img src="${upIcon}" alt="up" />
             </span>
             <span class="keda-recently_down">
-              <img src="/extensions/recently-viewed-theme/assets/img/downButton.png" alt="down" />
+              <img src="${downIcon}" alt="down" />
             </span>
           </div>
         </div>
@@ -318,10 +239,10 @@
   };
 
   const navigation = (direction, config) => {
-    const target = document.querySelector(`${kedaObj.scenarioClass}_trigger`)
+    const target = document.querySelector(`${recentlyViewedObj.scenarioClass}_trigger`)
       .classList.contains("active") ? 1 : 2;
     if (target === 1) {
-      const dots = document.querySelectorAll(`${kedaObj.scenarioClass}_popup .owl-dot`);
+      const dots = document.querySelectorAll(`${recentlyViewedObj.scenarioClass}_popup .owl-dot`);
       const activeIndex = Array.from(dots).findIndex((dot) => dot.classList.contains('active'));
       if (activeIndex !== -1) {
         let target_index = 0;
@@ -335,7 +256,7 @@
         dots[target_index].click();
       }
     } else if (target === 2) {
-      const container = document.querySelector(`${kedaObj.scenarioClass}_trigger .keda-recently_trigger_slider`);
+      const container = document.querySelector(`${recentlyViewedObj.scenarioClass}_trigger .keda-recently_trigger_slider`);
       const containerHeight = container.scrollHeight;
       const containerScroll = container.scrollTop;
       const sliceHeight = 242;
@@ -358,16 +279,16 @@
   };
 
   const triggerEvents = (config) => {
-    const main = document.querySelector(kedaObj.scenarioClass);
-    const trigger = document.querySelector(`${kedaObj.scenarioClass}_trigger`);
-    const popup = document.querySelector(`${kedaObj.scenarioClass}_popup`);
+    const main = document.querySelector(recentlyViewedObj.scenarioClass);
+    const trigger = document.querySelector(`${recentlyViewedObj.scenarioClass}_trigger`);
+    const popup = document.querySelector(`${recentlyViewedObj.scenarioClass}_popup`);
     const close = trigger.querySelector('.keda-recently_close');
     const expand = trigger.querySelector('.keda-recently_expand');
     const up = trigger.querySelector('.keda-recently_up');
     const down = trigger.querySelector('.keda-recently_down');
     const title = trigger.querySelector(".keda-recently_title");
 
-    const isCloseName = `keda_${kedaObj.scenarioName}_close`;
+    const isCloseName = `keda_${recentlyViewedObj.scenarioName}_close`;
 
     close.addEventListener('click', () => {
       main.remove();
@@ -407,8 +328,8 @@
   };
 
   const popupStart = (config) => {
-    const main = document.querySelector(kedaObj.scenarioClass);
-    const popup = document.querySelector(`${kedaObj.scenarioClass}_popup`);
+    const main = document.querySelector(recentlyViewedObj.scenarioClass);
+    const popup = document.querySelector(`${recentlyViewedObj.scenarioClass}_popup`);
     const slider = popup.querySelector('.keda-recently_products');
     const links = popup.querySelectorAll('.keda-recently_product a');
     const images = popup.querySelectorAll('.keda-recently_product img');
@@ -438,7 +359,7 @@
     jQuery(slider).owlCarousel(popupOwlSettings);
 
     const close = popup.querySelector('.keda-recently_close');
-    const isCloseName = `keda_${kedaObj.scenarioName}_close`;
+    const isCloseName = `keda_${recentlyViewedObj.scenarioName}_close`;
 
     close.addEventListener('click', () => {
       main.remove();
@@ -463,7 +384,7 @@
       const recent = getRecentProducts();
       if (recent.length === 0) return;
 
-      const isCloseName = `keda_${kedaObj.scenarioName}_close`;
+      const isCloseName = `keda_${recentlyViewedObj.scenarioName}_close`;
       const closeTime = getLocalStorageWithExpiry(isCloseName);
       if (closeTime) return;
 
@@ -528,6 +449,46 @@
   function init() {
     const config = getConfig();
     if (!config) return;
+
+    // Set CSS custom properties from config
+    const root = document.documentElement;
+
+    // Trigger settings
+    root.style.setProperty('--keda-trigger-button-color', config.buttonColor);
+    root.style.setProperty('--keda-trigger-button-hover-color', config.buttonHoverColor);
+    root.style.setProperty('--keda-trigger-text-color', config.textColor);
+    root.style.setProperty('--keda-trigger-text-bg-color', config.textBackgroundColor);
+    root.style.setProperty('--keda-trigger-text-size', config.textSize + 'px');
+    root.style.setProperty('--keda-trigger-text-weight', config.textFontWeight);
+    root.style.setProperty('--keda-trigger-left-box-shadow', config.triggerLeftBoxShadow);
+    root.style.setProperty('--keda-trigger-right-box-shadow', config.triggerRightBoxShadow);
+    root.style.setProperty('--keda-trigger-slider-bg-color', config.sliderBackgroundColor);
+    root.style.setProperty('--keda-trigger-slider-box-shadow', config.triggerSliderBoxShadow);
+
+    // Popup settings
+    root.style.setProperty('--keda-popup-bg-color', config.popupBgColor);
+    root.style.setProperty('--keda-popup-box-shadow', config.popupBoxShadow);
+    root.style.setProperty('--keda-popup-title-size', config.popupTitleSize);
+    root.style.setProperty('--keda-popup-title-weight', config.popupTitleWeight);
+    root.style.setProperty('--keda-popup-title-color', config.popupTitleColor);
+    root.style.setProperty('--keda-popup-close-size', config.popupCloseSize);
+    root.style.setProperty('--keda-popup-close-weight', config.popupCloseWeight);
+    root.style.setProperty('--keda-popup-close-color', config.popupCloseColor);
+    root.style.setProperty('--keda-popup-product-title-size', config.popupProductTitleSize);
+    root.style.setProperty('--keda-popup-product-title-weight', config.popupProductTitleWeight);
+    root.style.setProperty('--keda-popup-product-title-color', config.popupProductTitleColor);
+    root.style.setProperty('--keda-popup-product-title-lines', config.popupProductTitleLines);
+    root.style.setProperty('--keda-popup-price-size', config.popupPriceSize);
+    root.style.setProperty('--keda-popup-price-weight', config.popupPriceWeight);
+    root.style.setProperty('--keda-popup-price-color', config.popupPriceColor);
+    root.style.setProperty('--keda-popup-discounted-price-size', config.popupDiscountedPriceSize);
+    root.style.setProperty('--keda-popup-discounted-price-weight', config.popupDiscountedPriceWeight);
+    root.style.setProperty('--keda-popup-discounted-price-color', config.popupDiscountedPriceColor);
+    root.style.setProperty('--keda-popup-dot-width', config.popupDotWidth);
+    root.style.setProperty('--keda-popup-dot-height', config.popupDotHeight);
+    root.style.setProperty('--keda-popup-dot-color', config.popupDotColor);
+    root.style.setProperty('--keda-popup-dot-active-color', config.popupDotActiveColor);
+    root.style.setProperty('--keda-popup-dot-radius', config.popupDotRadius);
 
     trackCurrentProduct(config);
     checkJquery(config);

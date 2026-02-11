@@ -3,6 +3,16 @@
   Tüm temalarda çalışır. Theme Settings > App embeds'den etkinleştirin.
   Checkout sayfalarında otomatik devre dışıdır.
 {% endcomment %}
+
+{% comment %} Box shadow değerlerini oluştur {% endcomment %}
+{% assign trigger_left_shadow = '0px 7px 29px 0px ' | append: block.settings.trigger_left_shadow_color %}
+{% assign trigger_right_shadow = '0px 7px 29px 0px ' | append: block.settings.trigger_right_shadow_color %}
+{% assign trigger_slider_shadow = '0px 2px 8px 0px ' | append: block.settings.trigger_slider_shadow_color %}
+{% assign popup_shadow = '0px 7px 29px 0px ' | append: block.settings.popup_shadow_color %}
+
+{% comment %} Saat değerini dakikaya çevir {% endcomment %}
+{% assign close_show_minutes = block.settings.close_show_time | times: 60 %}
+
 <div
   id="recently-viewed-app-embed"
   class="recently-viewed-embed"
@@ -16,15 +26,45 @@
   data-text-color="{{ block.settings.text_color }}"
   data-text-background-color="{{ block.settings.text_background_color }}"
   data-text-font-weight="{{ block.settings.text_font_weight }}"
-  data-trigger-left-box-shadow="{{ block.settings.trigger_left_box_shadow | escape }}"
-  data-trigger-right-box-shadow="{{ block.settings.trigger_right_box_shadow | escape }}"
+  data-trigger-left-box-shadow="{{ trigger_left_shadow | escape }}"
+  data-trigger-right-box-shadow="{{ trigger_right_shadow | escape }}"
   data-slider-background-color="{{ block.settings.slider_background_color }}"
-  data-trigger-slider-box-shadow="{{ block.settings.trigger_slider_box_shadow | escape }}"
+  data-trigger-slider-box-shadow="{{ trigger_slider_shadow | escape }}"
+  data-close-show-time="{{ close_show_minutes }}"
+  data-close-icon="{{ 'xButton.png' | asset_url }}"
+  data-expand-icon="{{ 'expandButton.png' | asset_url }}"
+  data-collapse-icon="{{ 'collapseButton.png' | asset_url }}"
+  data-up-icon="{{ 'upButton.png' | asset_url }}"
+  data-down-icon="{{ 'downButton.png' | asset_url }}"
+  data-popup-bg-color="{{ block.settings.popup_bg_color }}"
+  data-popup-box-shadow="{{ popup_shadow | escape }}"
+  data-popup-title-size="{{ block.settings.popup_title_size }}px"
+  data-popup-title-weight="{{ block.settings.popup_title_weight }}"
+  data-popup-title-color="{{ block.settings.popup_title_color }}"
+  data-popup-close-size="{{ block.settings.popup_close_size }}px"
+  data-popup-close-weight="{{ block.settings.popup_close_weight }}"
+  data-popup-close-color="{{ block.settings.popup_close_color }}"
+  data-popup-product-title-size="{{ block.settings.popup_product_title_size }}px"
+  data-popup-product-title-weight="{{ block.settings.popup_product_title_weight }}"
+  data-popup-product-title-color="{{ block.settings.popup_product_title_color }}"
+  data-popup-product-title-lines="{{ block.settings.popup_product_title_lines }}"
+  data-popup-price-size="{{ block.settings.popup_price_size }}px"
+  data-popup-price-weight="{{ block.settings.popup_price_weight }}"
+  data-popup-price-color="{{ block.settings.popup_price_color }}"
+  data-popup-discounted-price-size="{{ block.settings.popup_discounted_price_size }}px"
+  data-popup-discounted-price-weight="{{ block.settings.popup_discounted_price_weight }}"
+  data-popup-discounted-price-color="{{ block.settings.popup_discounted_price_color }}"
+  data-popup-dot-width="{{ block.settings.popup_dot_width }}px"
+  data-popup-dot-height="{{ block.settings.popup_dot_height }}px"
+  data-popup-dot-color="{{ block.settings.popup_dot_color }}"
+  data-popup-dot-active-color="{{ block.settings.popup_dot_active_color }}"
+  data-popup-dot-radius="{{ block.settings.popup_dot_radius }}"
   data-product-id="{% if product %}{{ product.id }}{% endif %}"
   data-product-title="{% if product %}{{ product.title | escape }}{% endif %}"
   data-product-image="{% if product %}{{ product.featured_image | image_url: width: 300 }}{% endif %}"
   data-product-url="{% if product %}{{ product.url }}{% endif %}"
   data-product-price="{% if product %}{{ product.price | money_without_currency }}{% endif %}"
+  data-product-compare-price="{% if product and product.compare_at_price %}{{ product.compare_at_price | money_without_currency }}{% endif %}"
   style="display: none;"
   {{ block.shopify_attributes }}
 ></div>
@@ -37,10 +77,58 @@
   "javascript": "recently-viewed-embed.js",
   "settings": [
     {
+      "type": "header",
+      "content": "General Settings"
+    },
+    {
       "type": "text",
       "id": "title",
-      "label": "Widget title",
+      "label": "Widget Title",
       "default": "Recently Viewed"
+    },
+    {
+      "type": "select",
+      "id": "position",
+      "label": "Position",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "range",
+      "id": "vertical_position",
+      "min": 10,
+      "max": 90,
+      "step": 5,
+      "unit": "%",
+      "label": "Vertical Position",
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "max_products",
+      "min": 3,
+      "max": 15,
+      "step": 1,
+      "label": "Max Products to Show",
+      "default": 5
+    },
+    {
+      "type": "range",
+      "id": "close_show_time",
+      "min": 1,
+      "max": 72,
+      "step": 1,
+      "unit": "hrs",
+      "label": "Show Again After Close",
+      "default": 24,
+      "info": "Hours until widget shows again after user closes it (default: 24 hours)"
+    },
+    {
+      "type": "header",
+      "content": "Trigger (Tab) Settings"
     },
     {
       "type": "color",
@@ -89,18 +177,18 @@
       "default": "600"
     },
     {
-      "type": "text",
-      "id": "trigger_left_box_shadow",
-      "label": "Trigger Left Box Shadow",
-      "default": "0px 7px 29px 0px rgba(100, 100, 111, 0.2)",
-      "info": "CSS box-shadow value when position is left"
+      "type": "color",
+      "id": "trigger_left_shadow_color",
+      "label": "Left Shadow Color",
+      "default": "rgba(100, 100, 111, 0.2)",
+      "info": "Shadow: 0px 7px 29px 0px [color]"
     },
     {
-      "type": "text",
-      "id": "trigger_right_box_shadow",
-      "label": "Trigger Right Box Shadow",
-      "default": "0px 7px 29px 0px rgba(100, 100, 111, 0.2)",
-      "info": "CSS box-shadow value when position is right"
+      "type": "color",
+      "id": "trigger_right_shadow_color",
+      "label": "Right Shadow Color",
+      "default": "rgba(100, 100, 111, 0.2)",
+      "info": "Shadow: 0px 7px 29px 0px [color]"
     },
     {
       "type": "color",
@@ -109,40 +197,228 @@
       "default": "#ffffff"
     },
     {
-      "type": "text",
-      "id": "trigger_slider_box_shadow",
-      "label": "Trigger Slider Box Shadow",
-      "default": "0px 2px 8px 0px rgba(99, 99, 99, 0.2)",
-      "info": "CSS box-shadow for the trigger/slider bar"
+      "type": "color",
+      "id": "trigger_slider_shadow_color",
+      "label": "Slider Shadow Color",
+      "default": "rgba(99, 99, 99, 0.2)",
+      "info": "Shadow: 0px 2px 8px 0px [color]"
+    },
+    {
+      "type": "header",
+      "content": "Popup Settings"
+    },
+    {
+      "type": "color",
+      "id": "popup_bg_color",
+      "label": "Popup Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "popup_shadow_color",
+      "label": "Popup Shadow Color",
+      "default": "rgba(100, 100, 111, 0.2)",
+      "info": "Shadow: 0px 7px 29px 0px [color]"
+    },
+    {
+      "type": "range",
+      "id": "popup_title_size",
+      "min": 12,
+      "max": 28,
+      "step": 1,
+      "unit": "px",
+      "label": "Title Size",
+      "default": 18
     },
     {
       "type": "select",
-      "id": "position",
-      "label": "Position",
+      "id": "popup_title_weight",
+      "label": "Title Font Weight",
       "options": [
-        { "value": "left", "label": "Left" },
-        { "value": "right", "label": "Right" }
+        { "value": "normal", "label": "Normal" },
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semi Bold" },
+        { "value": "bold", "label": "Bold" }
       ],
-      "default": "right"
+      "default": "600"
+    },
+    {
+      "type": "color",
+      "id": "popup_title_color",
+      "label": "Title Color",
+      "default": "#000000"
     },
     {
       "type": "range",
-      "id": "vertical_position",
+      "id": "popup_close_size",
       "min": 10,
-      "max": 90,
-      "step": 5,
-      "unit": "%",
-      "label": "Vertical position",
-      "default": 50
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Close Button Size",
+      "default": 14
+    },
+    {
+      "type": "select",
+      "id": "popup_close_weight",
+      "label": "Close Button Font Weight",
+      "options": [
+        { "value": "normal", "label": "Normal" },
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semi Bold" },
+        { "value": "bold", "label": "Bold" }
+      ],
+      "default": "normal"
+    },
+    {
+      "type": "color",
+      "id": "popup_close_color",
+      "label": "Close Button Color",
+      "default": "#666666"
+    },
+    {
+      "type": "header",
+      "content": "Product Display Settings"
     },
     {
       "type": "range",
-      "id": "max_products",
-      "min": 3,
-      "max": 15,
+      "id": "popup_product_title_size",
+      "min": 10,
+      "max": 20,
       "step": 1,
-      "label": "Max products to show",
-      "default": 5
+      "unit": "px",
+      "label": "Product Title Size",
+      "default": 14
+    },
+    {
+      "type": "select",
+      "id": "popup_product_title_weight",
+      "label": "Product Title Font Weight",
+      "options": [
+        { "value": "normal", "label": "Normal" },
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semi Bold" },
+        { "value": "bold", "label": "Bold" }
+      ],
+      "default": "normal"
+    },
+    {
+      "type": "color",
+      "id": "popup_product_title_color",
+      "label": "Product Title Color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "popup_product_title_lines",
+      "min": 1,
+      "max": 4,
+      "step": 1,
+      "label": "Product Title Max Lines",
+      "default": 2
+    },
+    {
+      "type": "range",
+      "id": "popup_price_size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Price Size",
+      "default": 16
+    },
+    {
+      "type": "select",
+      "id": "popup_price_weight",
+      "label": "Price Font Weight",
+      "options": [
+        { "value": "normal", "label": "Normal" },
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semi Bold" },
+        { "value": "bold", "label": "Bold" }
+      ],
+      "default": "600"
+    },
+    {
+      "type": "color",
+      "id": "popup_price_color",
+      "label": "Price Color",
+      "default": "#ec621d"
+    },
+    {
+      "type": "range",
+      "id": "popup_discounted_price_size",
+      "min": 10,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Discounted Price Size",
+      "default": 12
+    },
+    {
+      "type": "select",
+      "id": "popup_discounted_price_weight",
+      "label": "Discounted Price Font Weight",
+      "options": [
+        { "value": "normal", "label": "Normal" },
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semi Bold" },
+        { "value": "bold", "label": "Bold" }
+      ],
+      "default": "normal"
+    },
+    {
+      "type": "color",
+      "id": "popup_discounted_price_color",
+      "label": "Discounted Price Color",
+      "default": "#999999"
+    },
+    {
+      "type": "header",
+      "content": "Carousel Dots Settings"
+    },
+    {
+      "type": "range",
+      "id": "popup_dot_width",
+      "min": 4,
+      "max": 16,
+      "step": 1,
+      "unit": "px",
+      "label": "Dot Width",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "popup_dot_height",
+      "min": 4,
+      "max": 16,
+      "step": 1,
+      "unit": "px",
+      "label": "Dot Height",
+      "default": 8
+    },
+    {
+      "type": "color",
+      "id": "popup_dot_color",
+      "label": "Dot Color (Inactive)",
+      "default": "#dddddd"
+    },
+    {
+      "type": "color",
+      "id": "popup_dot_active_color",
+      "label": "Dot Color (Active)",
+      "default": "#ec621d"
+    },
+    {
+      "type": "select",
+      "id": "popup_dot_radius",
+      "label": "Dot Shape",
+      "options": [
+        { "value": "50%", "label": "Circle" },
+        { "value": "4px", "label": "Rounded Square" },
+        { "value": "0", "label": "Square" }
+      ],
+      "default": "50%"
     }
   ]
 }
