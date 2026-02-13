@@ -23,12 +23,13 @@
   user-select: none;
 }
 
-.keda-recently-viewed_trigger[data-position='left'] {
+#recently-viewed-app-embed[data-position='left'] {
   left: 0;
 }
-.keda-recently-viewed_trigger[data-position='right'] {
+#recently-viewed-app-embed[data-position='right'] {
   right: 0;
 }
+
 .keda-recently-viewed_trigger .keda-recently_close {
   position: absolute;
   left: auto;
@@ -44,11 +45,11 @@
   transition: all 0.5s ease;
 }
 
-.keda-recently-viewed_trigger[data-position='left'] .keda-recently_close {
+#recently-viewed-app-embed[data-position='left'] .keda-recently_close {
   right: 0;
   border-top-right-radius: 10px;
 }
-.keda-recently-viewed_trigger[data-position='right'] .keda-recently_close {
+#recently-viewed-app-embed[data-position='right'] .keda-recently_close {
   left: 0;
   border-top-left-radius: 10px;
 }
@@ -67,10 +68,10 @@
   height: 100%;
 }
 
-.keda-recently-viewed_trigger[data-position='left'] .keda-recently_content {
+#recently-viewed-app-embed[data-position='left'] .keda-recently_content {
   flex-direction: row-reverse;
 }
-.keda-recently-viewed_trigger[data-position='right'] .keda-recently_content {
+#recently-viewed-app-embed[data-position='right'] .keda-recently_content {
   flex-direction: row;
 }
 
@@ -107,11 +108,11 @@
   cursor: pointer;
 }
 
-.keda-recently-viewed_trigger[data-position='left'] .keda-recently_title {
+#recently-viewed-app-embed[data-position='left'] .keda-recently_title {
   border-top-right-radius: 0;
   border-bottom-right-radius: 15px;
 }
-.keda-recently-viewed_trigger[data-position='right'] .keda-recently_title {
+#recently-viewed-app-embed[data-position='right'] .keda-recently_title {
   border-top-left-radius: 0;
   border-bottom-left-radius: 15px;
 }
@@ -183,13 +184,13 @@
   border-bottom-right-radius: 0;
 }
 
-.keda-recently-viewed_trigger[data-position='left']
+#recently-viewed-app-embed[data-position='left']
   .keda-recently_actions
   .keda-recently_down {
   border-bottom-right-radius: 15px;
   border-bottom-left-radius: 0;
 }
-.keda-recently-viewed_trigger[data-position='right']
+#recently-viewed-app-embed[data-position='right']
   .keda-recently_actions
   .keda-recently_down {
   border-bottom-left-radius: 0;
@@ -323,12 +324,10 @@
   background: transparent;
   border-radius: 15px;
 }
-.keda-recently-viewed_trigger[data-position='left']
-  .keda-recently-viewed_popup {
+#recently-viewed-app-embed[data-position='left'] .keda-recently-viewed_popup {
   left: -100%;
 }
-.keda-recently-viewed_trigger[data-position='right']
-  .keda-recently-viewed_popup {
+#recently-viewed-app-embed[data-position='right'] .keda-recently-viewed_popup {
   right: -100%;
 }
 
@@ -575,11 +574,11 @@
   background: var(--keda-popup-dot-active-color, #ec621d);
 }
 
-.keda-recently-viewed_trigger[data-position='left']
+#recently-viewed-app-embed[data-position='left']
   .keda-recently-viewed_popup.active {
   left: calc(39px - 0.5rem);
 }
-.keda-recently-viewed_trigger[data-position='right']
+#recently-viewed-app-embed[data-position='right']
   .keda-recently-viewed_popup.active {
   right: calc(39px - 0.5rem);
 }
