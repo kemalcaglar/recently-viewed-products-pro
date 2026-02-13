@@ -454,6 +454,8 @@
     const root = document.documentElement;
 
     // Trigger settings
+    root.style.setProperty('--keda-trigger-position', config.position);
+    root.style.setProperty('--keda-trigger-vertical-position', config.vertical + '%');
     root.style.setProperty('--keda-trigger-button-color', config.buttonColor);
     root.style.setProperty('--keda-trigger-button-hover-color', config.buttonHoverColor);
     root.style.setProperty('--keda-trigger-text-color', config.textColor);
