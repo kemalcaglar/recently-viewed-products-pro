@@ -67,6 +67,12 @@
       popupDotActiveColor: el.dataset.popupDotActiveColor || '#ec621d',
       popupDotRadius: el.dataset.popupDotRadius || '50%'
     };
+    const position = el.dataset.position;
+    if (position) {
+      document.body.setAttribute('data-recently-viewed-position', position);
+    } else {
+      document.body.removeAttribute('data-recently-viewed-position');
+    }
   }
 
   function getRecentProducts() {
