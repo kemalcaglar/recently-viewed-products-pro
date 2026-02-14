@@ -67,12 +67,6 @@
       popupDotActiveColor: el.dataset.popupDotActiveColor || '#ec621d',
       popupDotRadius: el.dataset.popupDotRadius || '50%'
     };
-    const position = el.dataset.position;
-    if (position) {
-      document.body.setAttribute('data-recently-viewed-position', position);
-    } else {
-      document.body.removeAttribute('data-recently-viewed-position');
-    }
   }
 
   function getRecentProducts() {
@@ -455,6 +449,11 @@
   function init() {
     const config = getConfig();
     if (!config) return;
+
+    // Body attribute for CSS selectors (e.g. body[data-recently-viewed-position="left"])
+    if (config.position) {
+      document.body.setAttribute('data-recently-viewed-position', config.position);
+    }
 
     // Set CSS custom properties from config
     const root = document.documentElement;
