@@ -383,7 +383,7 @@
   const checkOwlCarousel = (config) => {
     const start = () => {
       const recent = getRecentProducts();
-      if (recent.length === 0) return;
+      if (recent.length <= 3) return;
 
       const isCloseName = `keda_${recentlyViewedObj.scenarioName}_close`;
       const closeTime = getLocalStorageWithExpiry(isCloseName);
