@@ -187,14 +187,14 @@ body[data-recently-viewed-position='right'] .keda-recently_title {
 body[data-recently-viewed-position='left']
   .keda-recently_actions
   .keda-recently_down {
-  border-bottom-left-radius: 15px !important;
-  border-bottom-right-radius: 0;
+  border-bottom-right-radius: 15px !important;
+  border-bottom-left-radius: 0;
 }
 body[data-recently-viewed-position='right']
   .keda-recently_actions
   .keda-recently_down {
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 15px !important;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 15px !important;
 }
 .keda-recently-viewed_trigger
   .keda-recently_content
