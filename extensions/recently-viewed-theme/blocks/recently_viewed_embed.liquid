@@ -42,6 +42,7 @@
   data-popup-title-size="{{ block.settings.popup_title_size }}px"
   data-popup-title-weight="{{ block.settings.popup_title_weight }}"
   data-popup-title-color="{{ block.settings.popup_title_color }}"
+  data-popup-close-text="{{ block.settings.popup_close_text }}"
   data-popup-close-size="{{ block.settings.popup_close_size }}px"
   data-popup-close-weight="{{ block.settings.popup_close_weight }}"
   data-popup-close-color="{{ block.settings.popup_close_color }}"
@@ -258,6 +259,12 @@
       "id": "popup_title_color",
       "label": "Title Color",
       "default": "#000000"
+    },
+    {
+      "type": "text",
+      "id": "popup_close_text",
+      "label": "Close Button Text",
+      "default": "Close"
     },
     {
       "type": "range",

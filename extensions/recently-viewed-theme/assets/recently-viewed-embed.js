@@ -49,6 +49,7 @@
       popupTitleSize: el.dataset.popupTitleSize || '18px',
       popupTitleWeight: el.dataset.popupTitleWeight || '600',
       popupTitleColor: el.dataset.popupTitleColor || '#000000',
+      popupCloseText: el.dataset.popupCloseText || 'Close',
       popupCloseSize: el.dataset.popupCloseSize || '14px',
       popupCloseWeight: el.dataset.popupCloseWeight || '400',
       popupCloseColor: el.dataset.popupCloseColor || '#666666',
@@ -194,7 +195,7 @@
             <div class="keda-recently_recommend">
               <div class="keda-recently_title">
                 <span>${title}</span>
-                <span class="keda-recently_close">Kapat</span>
+                <span class="keda-recently_close">${config.popupCloseText}</span>
               </div>
               <div class="keda-recently_products owl-carousel">
                 ${this.popupProducts(products)}
