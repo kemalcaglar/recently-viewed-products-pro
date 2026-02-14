@@ -21,6 +21,7 @@
       title: el.dataset.title || 'Recently Viewed',
       vertical: parseInt(el.dataset.vertical, 10) || 50,
       maxProducts: parseInt(el.dataset.maxProducts, 10) || 5,
+      borderRadius: parseInt(el.dataset.borderRadius, 10) || 0,
       productId: el.dataset.productId || '',
       productTitle: el.dataset.productTitle || '',
       productImage: el.dataset.productImage || '',
@@ -461,6 +462,7 @@
     // Trigger settings
     root.style.setProperty('--keda-trigger-position', config.position);
     root.style.setProperty('--keda-trigger-vertical-position', config.vertical + '%');
+    root.style.setProperty('--keda-trigger-border-radius', config.borderRadius + 'px');
     root.style.setProperty('--keda-trigger-button-color', config.buttonColor);
     root.style.setProperty('--keda-trigger-button-hover-color', config.buttonHoverColor);
     root.style.setProperty('--keda-trigger-text-color', config.textColor);

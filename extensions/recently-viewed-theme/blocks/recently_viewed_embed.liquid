@@ -20,6 +20,7 @@
   data-title="{{ block.settings.title | escape }}"
   data-vertical="{{ block.settings.vertical_position }}"
   data-max-products="{{ block.settings.max_products }}"
+  data-border-radius="{{ block.settings.border_radius }}px"
   data-button-color="{{ block.settings.button_color }}"
   data-button-hover-color="{{ block.settings.button_hover_color }}"
   data-text-size="{{ block.settings.text_size }}"
@@ -114,6 +115,16 @@
       "step": 1,
       "label": "Max Products to Show",
       "default": 5
+    },
+    {
+      "type": "range",
+      "id": "border_radius",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Border Radius",
+      "default": 0
     },
     {
       "type": "range",
