@@ -23,10 +23,10 @@
   user-select: none;
 }
 
-body[data-recently-viewed-position='left'] {
+body[data-recently-viewed-position='left'] .keda-recently-viewed_trigger {
   left: 0;
 }
-body[data-recently-viewed-position='right'] {
+body[data-recently-viewed-position='right'] .keda-recently-viewed_trigger {
   right: 0;
 }
 
@@ -46,11 +46,11 @@ body[data-recently-viewed-position='right'] {
 }
 
 body[data-recently-viewed-position='left'] .keda-recently_close {
-  right: 0;
+  left: 0;
   border-top-right-radius: 10px;
 }
 body[data-recently-viewed-position='right'] .keda-recently_close {
-  left: 0;
+  right: 0;
   border-top-left-radius: 10px;
 }
 
@@ -110,11 +110,11 @@ body[data-recently-viewed-position='right'] .keda-recently_content {
 
 body[data-recently-viewed-position='left'] .keda-recently_title {
   border-top-right-radius: 0;
-  border-bottom-right-radius: 15px;
+  border-top-right-radius: 15px;
 }
 body[data-recently-viewed-position='right'] .keda-recently_title {
   border-top-left-radius: 0;
-  border-bottom-left-radius: 15px;
+  border-top-left-radius: 15px;
 }
 
 .keda-recently-viewed_trigger
@@ -187,14 +187,14 @@ body[data-recently-viewed-position='right'] .keda-recently_title {
 body[data-recently-viewed-position='left']
   .keda-recently_actions
   .keda-recently_down {
-  border-bottom-right-radius: 15px;
-  border-bottom-left-radius: 0;
+  border-bottom-left-radius: 15px !important;
+  border-bottom-right-radius: 0;
 }
 body[data-recently-viewed-position='right']
   .keda-recently_actions
   .keda-recently_down {
   border-bottom-left-radius: 0;
-  border-bottom-right-radius: 15px;
+  border-bottom-right-radius: 15px !important;
 }
 .keda-recently-viewed_trigger
   .keda-recently_content
@@ -281,8 +281,13 @@ body[data-recently-viewed-position='right']
   width: auto;
 }
 
-.keda-recently-viewed_trigger.active {
+body[data-recently-viewed-position='left']
+  .keda-recently-viewed_trigger.active {
   left: -80px;
+}
+body[data-recently-viewed-position='right']
+  .keda-recently-viewed_trigger.active {
+  right: -80px;
 }
 
 .keda-recently-viewed_trigger.active
