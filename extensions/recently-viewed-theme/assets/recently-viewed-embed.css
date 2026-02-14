@@ -627,8 +627,13 @@ body[data-recently-viewed-position='right'] .keda-recently-viewed_popup.active {
     display: none;
   }
 
-  .keda-recently-viewed_trigger.active {
+  body[data-recently-viewed-position='left']
+    .keda-recently-viewed_trigger.active {
     left: 0;
+  }
+  body[data-recently-viewed-position='right']
+    .keda-recently-viewed_trigger.active {
+    right: 0;
   }
 
   .keda-recently-viewed_popup {
@@ -705,7 +710,12 @@ body[data-recently-viewed-position='right'] .keda-recently-viewed_popup.active {
     font-size: 14px;
   }
 
-  .keda-recently-viewed_popup.active {
+  body[data-recently-viewed-position='left']
+    .keda-recently-viewed_popup.active {
     left: calc(49px - 0.5rem);
+  }
+  body[data-recently-viewed-position='right']
+    .keda-recently-viewed_popup.active {
+    right: calc(49px - 0.5rem);
   }
 }
